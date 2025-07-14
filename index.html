@@ -1,27 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jack Simm Portfolio</title>
   <style>
-    :root {
-      --bg: #ffffff;
-      --fg: #333333;
-      --accent: #007acc;
-      --font: 'Georgia', serif;
-    }
-    * {
-      box-sizing: border-box;
+    body {
+      font-family: Georgia, serif;
+      background: #ffffff;
+      color: #333;
+      line-height: 1.6;
       margin: 0;
       padding: 0;
-    }
-    body {
-      font-family: var(--font);
-      background-color: var(--bg);
-      color: var(--fg);
-      line-height: 1.6;
-      padding-bottom: 60px;
     }
     nav {
       background: #f4f4f4;
@@ -29,60 +19,114 @@
       text-align: center;
     }
     nav a {
-      color: var(--fg);
+      margin: 0 12px;
+      color: #333;
       text-decoration: none;
-      margin: 0 15px;
       font-weight: bold;
     }
     nav a:hover {
-      color: var(--accent);
+      color: #007acc;
     }
     main {
-      max-width: 900px;
+      max-width: 800px;
       margin: 40px auto;
       padding: 0 20px;
     }
-    h1, h2, h3 {
-      color: var(--accent);
+    h1, h2 {
+      color: #007acc;
     }
     .project {
-      border-left: 4px solid var(--accent);
+      border-left: 4px solid #007acc;
       padding-left: 16px;
       margin-bottom: 30px;
     }
     .project img {
       max-width: 100%;
-      margin-top: 12px;
+      margin-top: 10px;
       border-radius: 4px;
+    }
+    ul li {
+      margin-bottom: 12px;
     }
     footer {
       text-align: center;
       background-color: #f4f4f4;
       color: #888;
       font-size: 0.9rem;
-      padding: 10px 0;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
+      padding: 12px 0;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
   <nav>
-    <a href="about.html">About</a>
-    <a href="experience.html">Experience</a>
-    <a href="projects.html">Projects</a>
-    <a href="skills.html">Skills</a>
-    <a href="contact.html">Contact</a>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
   </nav>
 
   <main>
-    <h1>Welcome to Jack Simm's Portfolio</h1>
-    <p>Explore my background, work, and contact details using the navigation above.</p>
+    <section id="home">
+      <h1>Welcome to Jack Simm's Portfolio</h1>
+      <p>Explore my background, work, and contact details using the navigation above.</p>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>I am a passionate product designer currently studying BA Product Design at Middlesex University. With a strong foundation in manufacturing and engineering, I merge hands-on technical knowledge with creative design principles.</p>
+      <p>My background includes experience with tier-one automotive suppliers, apprenticeships, and vocational training, giving me practical insights that enhance my conceptual and prototyping work. I take a user-centered approach and enjoy transforming everyday challenges into functional, thoughtful solutions.</p>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <ul>
+        <li><strong>Product Development Manager</strong> – Fabb Brothers (2024)</li>
+        <li><strong>Kaizen Team Member</strong> – Unipres UK (2022–2023)</li>
+        <li><strong>Cost Planning Analyst</strong> – Unipres UK (2021–2022)</li>
+        <li><strong>Engineering Maintenance Technician</strong> – Unipres UK (2017–2021)</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+
+      <div class="project">
+        <h3>Grown With Care</h3>
+        <p>Smart plant pot device that tracks ownership duration and soil moisture. Potential app connectivity and real-time feedback features.</p>
+        <img src="IMG_0633.PNG" alt="Grown With Care Project">
+      </div>
+
+      <div class="project">
+        <h3>Jerry Can Tool</h3>
+        <p>Ergonomic kitchen tool designed for chefs to easily open slippery jerry cans. CAD optimized and 3D printed for functional testing.</p>
+        <img src="Artboard 1.JPG" alt="Jerry Can Tool Project">
+      </div>
+
+      <div class="project">
+        <h3>Transport Device</h3>
+        <p>Long-term design research project exploring modern mobility using retrofitted manufacturer parts for functional innovation.</p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <p><strong>Software:</strong> Illustrator, InDesign, Photoshop, SolidWorks, Keyshot, Shapr3D</p>
+      <p><strong>Expertise:</strong> CAD modeling, user-centered design, prototyping, problem-solving, concept development</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p><strong>Email:</strong> jack.simm.design@gmail.com</p>
+      <p><strong>Phone:</strong> +44 7375 845 232</p>
+      <p><strong>Location:</strong> London</p>
+    </section>
   </main>
 
   <footer>
-    &copy; 2025 Jack Simm – Portfolio
+    &copy; 2025 Jack Simm
   </footer>
 </body>
 </html>
