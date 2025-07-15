@@ -99,7 +99,7 @@
       display: flex;
       flex-direction: column;
       gap: 40px;
-      margin: 40px auto;
+      margin: 60px auto;
     }
 
     .button {
@@ -149,12 +149,11 @@
       text-align: center;
     }
 
-    .skill-icon {
+    .skill-icon,
+    .skill-icon svg {
       width: 50px;
       height: 50px;
-      margin-bottom: 10px;
-      filter: invert(32%) sepia(0%) saturate(0%) hue-rotate(168deg) brightness(96%) contrast(90%);
-      opacity: 0.8;
+      fill: #4caf50;
     }
 
     .skill-name {
@@ -196,7 +195,7 @@
   </header>
 
   <main>
-    <!-- Full-Width Banner Image -->
+    <!-- Banner -->
     <div class="banner-section">
       <img src="IMG_5572.JPG" alt="Banner Image" class="banner-img" />
       <div class="banner-overlay">
@@ -208,7 +207,7 @@
       </div>
     </div>
 
-    <!-- Bio + Experience/Skills -->
+    <!-- Content -->
     <div class="container">
       <div class="row">
         <!-- Bio -->
@@ -231,8 +230,13 @@
 
           <h3 style="margin-top: 30px;">Skills</h3>
           <div class="skills-grid">
+            <!-- Custom CAD Icon as Inline SVG -->
             <div class="skill">
-              <img src="https://img.icons8.com/ios-filled/50/000000/cad.png" alt="CAD" class="skill-icon"/>
+              <div class="skill-icon">
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 20 L32 4 L62 20 V44 L32 60 L2 44 Z M32 8 L58 22 L32 36 L6 22 Z M32 38 V56" />
+                </svg>
+              </div>
               <div class="skill-name">CAD Modelling</div>
             </div>
             <div class="skill">
