@@ -123,10 +123,6 @@
       font-size: 1.4rem;
     }
 
-    ul {
-      padding-left: 20px;
-    }
-
     .row {
       display: flex;
       gap: 60px;
@@ -141,7 +137,7 @@
 
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
       gap: 20px;
       margin-top: 20px;
     }
@@ -157,10 +153,13 @@
       width: 50px;
       height: 50px;
       margin-bottom: 10px;
+      filter: invert(32%) sepia(0%) saturate(0%) hue-rotate(168deg) brightness(96%) contrast(90%);
+      opacity: 0.8;
     }
 
     .skill-name {
       font-size: 0.95rem;
+      color: #444;
     }
 
     @media (max-width: 768px) {
@@ -233,35 +232,31 @@
           <h3 style="margin-top: 30px;">Skills</h3>
           <div class="skills-grid">
             <div class="skill">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidworks/solidworks-original.svg" alt="SolidWorks" class="skill-icon" />
-              <div class="skill-name">SolidWorks</div>
+              <img src="https://img.icons8.com/ios-filled/50/000000/cad.png" alt="CAD" class="skill-icon"/>
+              <div class="skill-name">CAD Modelling</div>
             </div>
             <div class="skill">
-              <img src="https://img.icons8.com/ios-filled/50/4caf50/shapr3d.png" alt="Shapr3D" class="skill-icon" />
-              <div class="skill-name">Shapr3D</div>
-            </div>
-            <div class="skill">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-line.svg" alt="Photoshop" class="skill-icon" />
+              <img src="https://img.icons8.com/ios-filled/50/000000/adobe-photoshop.png" alt="Photoshop" class="skill-icon"/>
               <div class="skill-name">Photoshop</div>
             </div>
             <div class="skill">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-line.svg" alt="Illustrator" class="skill-icon" />
+              <img src="https://img.icons8.com/ios-filled/50/000000/adobe-illustrator.png" alt="Illustrator" class="skill-icon"/>
               <div class="skill-name">Illustrator</div>
             </div>
             <div class="skill">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/indesign/indesign-line.svg" alt="InDesign" class="skill-icon" />
+              <img src="https://img.icons8.com/ios-filled/50/000000/adobe-indesign.png" alt="InDesign" class="skill-icon"/>
               <div class="skill-name">InDesign</div>
             </div>
             <div class="skill">
-              <img src="https://img.icons8.com/ios-filled/50/2196f3/3d-printer.png" alt="Rapid Prototyping" class="skill-icon" />
+              <img src="https://img.icons8.com/ios-filled/50/000000/3d-printer.png" alt="Prototyping" class="skill-icon"/>
               <div class="skill-name">Prototyping</div>
             </div>
             <div class="skill">
-              <img src="https://img.icons8.com/ios-glyphs/50/f44336/design--v1.png" alt="User-Centered Design" class="skill-icon" />
+              <img src="https://img.icons8.com/ios-filled/50/000000/idea.png" alt="User Design" class="skill-icon"/>
               <div class="skill-name">User Design</div>
             </div>
             <div class="skill">
-              <img src="https://img.icons8.com/ios-filled/50/795548/factory.png" alt="Production" class="skill-icon" />
+              <img src="https://img.icons8.com/ios-filled/50/000000/factory.png" alt="Production" class="skill-icon"/>
               <div class="skill-name">Production</div>
             </div>
           </div>
