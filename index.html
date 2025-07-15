@@ -10,9 +10,6 @@
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: #d7e5db;
       color: #222;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
     }
     header {
       display: flex;
@@ -20,170 +17,116 @@
       align-items: center;
       padding: 20px 40px;
       font-weight: bold;
-      background: transparent;
       position: relative;
     }
-    header .left {
-      font-size: 1rem;
-      cursor: pointer;
-    }
     .dropdown {
-  position: absolute;
-  top: 60px;
-  left: 40px;
-  background: white;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  border-radius: 6px;
-  display: none;
-  flex-direction: column;
-  z-index: 10;
-}
+      position: absolute;
+      top: 60px;
+      left: 40px;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 6px;
+      display: none;
+      flex-direction: column;
+      z-index: 10;
+    }
     .dropdown a {
       padding: 12px 20px;
       text-decoration: none;
       color: #222;
       border-bottom: 1px solid #eee;
     }
-    .dropdown a:hover {
-      background: #f0f0f0;
-    }
-    header .left:hover + .dropdown,
-    .dropdown:hover {
-      display: flex;
+    header .left {
+      cursor: pointer;
     }
     main {
-      flex: 1;
       display: flex;
-      align-items: center;
       justify-content: center;
       padding: 60px 20px;
     }
     .container {
       max-width: 1000px;
-      background: #ffffff;
+      background: #fff;
       border-radius: 16px;
       padding: 40px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
       display: flex;
-      gap: 60px;
       flex-wrap: wrap;
+      gap: 60px;
     }
     .info {
       flex: 1 1 400px;
     }
-    .info h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+    .details {
+      flex: 1 1 400px;
     }
-    .info p {
-      margin: 10px 0 20px;
-      line-height: 1.6;
-    }
-    .info .button {
-      display: inline-block;
-      margin-top: 20px;
+    .button {
       background: #222;
-      color: #fff;
+      color: white;
       padding: 10px 20px;
       border-radius: 5px;
       text-decoration: none;
-      font-weight: bold;
-    }
-    .details {
-      flex: 1 1 400px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .details h3 {
-      margin-bottom: 6px;
-      font-size: 1.1rem;
-    }
-    .details ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .details li {
-      margin-bottom: 8px;
+      display: inline-block;
+      margin-top: 20px;
     }
     footer {
       text-align: center;
-      font-size: 0.8rem;
       padding: 20px;
-      color: #555;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
   <header>
-  <div class="left" onclick="toggleDropdown()">≡ Jack Simm</div>
-  <div class="dropdown" id="dropdownMenu">
-    <a href="projects.html">Projects</a>
-    <a href="gallery.html">Gallery</a>
-  </div>
-  <div class="right">Contact</div>
-</header>
-
-<script>
-  const toggle = document.querySelector(".left");
-  const menu = document.getElementById("dropdownMenu");
-
-  toggle.addEventListener("mouseenter", () => {
-    menu.style.display = "flex";
-  });
-  toggle.addEventListener("mouseleave", () => {
-    setTimeout(() => {
-      if (!menu.matches(":hover")) menu.style.display = "none";
-    }, 200);
-  });
-  menu.addEventListener("mouseleave", () => {
-    menu.style.display = "none";
-  });
-</script>
+    <div class="left" onclick="toggleDropdown()">≡ Jack Simm</div>
+    <div class="dropdown" id="dropdownMenu">
+      <a href="projects.html">Projects</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="cv.html">CV</a>
+    </div>
+    <div class="right">Contact</div>
+  </header>
 
   <main>
     <div class="container">
       <div class="info">
         <h1>Jack Simm</h1>
-        <p>Product Designer and Development Manager with a background in engineering and manufacturing. I specialise in innovative problem-solving, user-focused design, and delivering practical solutions in real-world settings.</p>
-        <p>Currently studying Product Design at Middlesex University, with experience leading design and production teams, improving operations, and managing design projects in fast-paced environments.</p>
-        <a class="button" href="#">Download CV</a>
+        <p>Product Designer and Development Manager with a background in engineering and manufacturing.</p>
+        <p>Currently studying Product Design at Middlesex University.</p>
+        <a class="button" href="cv.html">View CV</a>
       </div>
-
       <div class="details">
-        <div>
-          <h3>Experience</h3>
-          <ul>
-            <li><strong>Product Development Manager</strong> – Fabb Brothers (2024)</li>
-            <li><strong>Kaizen Team Member</strong> – Unipres UK (2022–2023)</li>
-            <li><strong>Cost Planning Analyst</strong> – Unipres UK (2021–2022)</li>
-            <li><strong>Engineering Maintenance Technician</strong> – Unipres UK (2017–2021)</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Education</h3>
-          <ul>
-            <li><strong>BA Product Design</strong> – Middlesex University (2021–Present)</li>
-            <li><strong>Level 4 HNC</strong> – General Engineering (2019–2021)</li>
-            <li><strong>Level 3 NVQ</strong> – Engineering Maintenance (2017–2019)</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Skills</h3>
-          <ul>
-            <li>CAD Modelling (SolidWorks, Shapr3D)</li>
-            <li>Adobe Suite (Photoshop, Illustrator, InDesign)</li>
-            <li>Rapid Prototyping</li>
-            <li>User-Centred Design</li>
-            <li>Production Coordination</li>
-          </ul>
-        </div>
+        <h3>Experience</h3>
+        <ul>
+          <li>Fabb Brothers – Product Development Manager</li>
+          <li>Unipres – Kaizen, Cost Planning, Maintenance Technician</li>
+        </ul>
+        <h3>Education</h3>
+        <ul>
+          <li>BA Product Design – Middlesex University</li>
+        </ul>
+        <h3>Skills</h3>
+        <ul>
+          <li>CAD, Adobe Suite, Prototyping</li>
+        </ul>
       </div>
     </div>
   </main>
 
-  <footer>
-    &copy; 2025 Jack Simm – Portfolio
-  </footer>
+  <footer>&copy; 2025 Jack Simm – Portfolio</footer>
+
+  <script>
+    function toggleDropdown() {
+      const menu = document.getElementById(\"dropdownMenu\");
+      menu.style.display = (menu.style.display === \"flex\") ? \"none\" : \"flex\";
+    }
+
+    document.addEventListener(\"click\", function(event) {
+      const menu = document.getElementById(\"dropdownMenu\");
+      const toggle = document.querySelector(\".left\");
+      if (!toggle.contains(event.target) && !menu.contains(event.target)) {
+        menu.style.display = \"none\";
+      }
+    });
+  </script>
 </body>
 </html>
