@@ -28,16 +28,16 @@
       cursor: pointer;
     }
     .dropdown {
-      position: absolute;
-      top: 60px;
-      left: 40px;
-      background: white;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      border-radius: 6px;
-      overflow: hidden;
-      display: none;
-      flex-direction: column;
-    }
+  position: absolute;
+  top: 60px;
+  left: 40px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 6px;
+  display: none;
+  flex-direction: column;
+  z-index: 10;
+}
     .dropdown a {
       padding: 12px 20px;
       text-decoration: none;
@@ -116,13 +116,28 @@
 </head>
 <body>
   <header>
-    <div class="left">≡ Jack Simm</div>
-    <div class="dropdown">
-      <a href="projects.html">Projects</a>
-      <a href="gallery.html">Gallery</a>
-    </div>
-    <div class="right">Contact</div>
-  </header>
+  <div class="left" onclick="toggleDropdown()">≡ Jack Simm</div>
+  <div class="dropdown" id="dropdownMenu">
+    <a href="projects.html">Projects</a>
+    <a href="gallery.html">Gallery</a>
+  </div>
+  <div class="right">Contact</div>
+</header>
+
+<script>
+  function toggleDropdown() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+  }
+
+  document.addEventListener("click", function(event) {
+    const menu = document.getElementById("dropdownMenu");
+    const toggle = document.querySelector(".left");
+    if (!toggle.contains(event.target) && !menu.contains(event.target)) {
+      menu.style.display = "none";
+    }
+  });
+</script>
 
   <main>
     <div class="container">
