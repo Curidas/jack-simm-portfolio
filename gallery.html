@@ -11,25 +11,30 @@
       background: #f7f7f7;
       color: #222;
     }
+
     nav {
       background: #fff;
       padding: 20px;
       text-align: center;
       font-weight: bold;
     }
+
     nav a {
       margin: 0 15px;
       color: #222;
       text-decoration: none;
     }
+
     nav a:hover {
       text-decoration: underline;
     }
+
     h1 {
       text-align: center;
       margin-top: 40px;
       font-size: 2rem;
     }
+
     .gallery {
       display: flex;
       flex-wrap: wrap;
@@ -37,12 +42,40 @@
       gap: 20px;
       padding: 40px;
     }
+
     .gallery img {
       max-width: 300px;
       width: 100%;
       height: auto;
       border-radius: 8px;
       object-fit: contain;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Lightbox Styles */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
   </style>
 </head>
@@ -55,9 +88,26 @@
   </nav>
 
   <h1>Gallery</h1>
+
   <div class="gallery">
-    <img src="IMG_0633.PNG" alt="Grown With Care" />
-    <img src="Artboard 1.JPG" alt="Jerry Can Tool" />
+    <img src="IMG_0633.PNG" alt="Grown With Care" onclick="openLightbox(this.src)" />
+    <img src="Artboard 1.JPG" alt="Jerry Can Tool" onclick="openLightbox(this.src)" />
   </div>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Expanded view">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
