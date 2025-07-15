@@ -125,17 +125,19 @@
 </header>
 
 <script>
-  function toggleDropdown() {
-    const menu = document.getElementById("dropdownMenu");
-    menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
-  }
+  const toggle = document.querySelector(".left");
+  const menu = document.getElementById("dropdownMenu");
 
-  document.addEventListener("click", function(event) {
-    const menu = document.getElementById("dropdownMenu");
-    const toggle = document.querySelector(".left");
-    if (!toggle.contains(event.target) && !menu.contains(event.target)) {
-      menu.style.display = "none";
-    }
+  toggle.addEventListener("mouseenter", () => {
+    menu.style.display = "flex";
+  });
+  toggle.addEventListener("mouseleave", () => {
+    setTimeout(() => {
+      if (!menu.matches(":hover")) menu.style.display = "none";
+    }, 200);
+  });
+  menu.addEventListener("mouseleave", () => {
+    menu.style.display = "none";
   });
 </script>
 
