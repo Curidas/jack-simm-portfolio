@@ -21,9 +21,35 @@
       padding: 20px 40px;
       font-weight: bold;
       background: transparent;
+      position: relative;
     }
-    header .left, header .right {
+    header .left {
       font-size: 1rem;
+      cursor: pointer;
+    }
+    .dropdown {
+      position: absolute;
+      top: 60px;
+      left: 40px;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 6px;
+      overflow: hidden;
+      display: none;
+      flex-direction: column;
+    }
+    .dropdown a {
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #222;
+      border-bottom: 1px solid #eee;
+    }
+    .dropdown a:hover {
+      background: #f0f0f0;
+    }
+    header .left:hover + .dropdown,
+    .dropdown:hover {
+      display: flex;
     }
     main {
       flex: 1;
@@ -91,6 +117,10 @@
 <body>
   <header>
     <div class="left">≡ Jack Simm</div>
+    <div class="dropdown">
+      <a href="#projects">Projects</a>
+      <a href="#gallery">Gallery</a>
+    </div>
     <div class="right">Contact</div>
   </header>
 
