@@ -46,44 +46,49 @@
 
     main {
       display: flex;
-      justify-content: flex-start;
       flex-direction: column;
       align-items: flex-start;
       padding: 0;
     }
 
-    .banner {
-      background-image: url('IMG_5572.JPG');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      min-height: 300px;
+    .banner-container {
+      position: relative;
       width: 100%;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      padding: 20px 40px;
     }
 
-    .profile-block {
+    .banner-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .profile-overlay {
+      position: absolute;
+      top: 50%;
+      left: 40px;
+      transform: translateY(-50%);
       display: flex;
       align-items: center;
       gap: 24px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px 30px;
+      border-radius: 12px;
     }
 
     .profile-pic {
-      width: 180px;
-      height: 180px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
       object-fit: cover;
       filter: grayscale(100%);
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      border: 4px solid white;
     }
 
     .titles h2 {
       margin: 0;
       font-weight: normal;
-      color: #fff;
+      color: white;
     }
 
     .container {
@@ -147,9 +152,10 @@
   </header>
 
   <main>
-    <!-- Banner Section -->
-    <div class="banner">
-      <div class="profile-block">
+    <!-- Full Width Banner with Overlay -->
+    <div class="banner-container">
+      <img src="IMG_5572.JPG" alt="Banner Image" />
+      <div class="profile-overlay">
         <img src="profile.jpg" alt="Jack Simm" class="profile-pic">
         <div class="titles">
           <h2>Product Designer</h2>
