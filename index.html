@@ -52,13 +52,10 @@
       border-radius: 16px;
       padding: 40px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 60px;
+      flex-direction: column;
+      gap: 40px;
     }
-    .info {
-      flex: 1 1 400px;
-    }
-    .details {
+    .info, .details {
       flex: 1 1 400px;
     }
     .button {
@@ -103,12 +100,14 @@
   </header>
 
   <main>
-    <!-- Profile Image & Title (Left-Aligned) -->
-    <div style="display: flex; align-items: center; gap: 24px; margin-bottom: 40px;">
-      <img src="profile.jpg" alt="Jack Simm" class="profile-pic">
-      <div>
-        <h2 style="margin: 0; font-weight: normal;">Product Designer</h2>
-        <h2 style="margin: 4px 0 0; font-weight: normal;">Product Development Manager</h2>
+    <!-- Profile Image & Title Fully Left-Aligned -->
+    <div class="container" style="margin-bottom: 0;">
+      <div style="display: flex; align-items: center; gap: 24px;">
+        <img src="profile.jpg" alt="Jack Simm" class="profile-pic">
+        <div>
+          <h2 style="margin: 0; font-weight: normal;">Product Designer</h2>
+          <h2 style="margin: 4px 0 0; font-weight: normal;">Product Development Manager</h2>
+        </div>
       </div>
     </div>
 
