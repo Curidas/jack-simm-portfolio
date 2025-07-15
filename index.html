@@ -43,6 +43,8 @@
       display: flex;
       justify-content: center;
       padding: 60px 20px;
+      flex-direction: column;
+      align-items: center;
     }
     .container {
       max-width: 1000px;
@@ -79,6 +81,14 @@
     ul {
       padding-left: 20px;
     }
+    .profile-pic {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      filter: grayscale(100%);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
   </style>
 </head>
 <body>
@@ -93,13 +103,21 @@
   </header>
 
   <main>
+    <!-- Profile Image & Title -->
+    <div style="text-align: center; margin-bottom: 40px;">
+      <img src="profile.jpg" alt="Jack Simm" class="profile-pic">
+      <h2 style="margin-top: 16px; font-weight: normal;">Product Designer / Product Development Manager</h2>
+    </div>
+
+    <!-- Main Content -->
     <div class="container">
       <div class="info">
         <h1>Jack Simm</h1>
-        <p>Product Designer/ Product Development Manager with a strong background in engineering and manufacturing. I specialise in innovative problem-solving, user-focused design, and delivering practical solutions in real-world settings.</p>
-        <p>Currently studying BA Product Design at Middlesex University, with experience leading design and production teams, improving operations, and managing design projects in fast-paced environments.</p>
+        <p>Product Designer and Development Manager with a strong background in engineering and manufacturing. I specialise in innovative problem-solving, user-focused design, and delivering practical solutions in real-world settings.</p>
+        <p>Currently studying Product Design at Middlesex University, with experience leading design and production teams, improving operations, and managing design projects in fast-paced environments.</p>
         <a class="button" href="cv.html">View CV</a>
       </div>
+
       <div class="details">
         <div>
           <h3>Experience</h3>
@@ -108,14 +126,6 @@
             <li><strong>Kaizen Team Member</strong> – Unipres UK (2022–2023)</li>
             <li><strong>Cost Planning Analyst</strong> – Unipres UK (2021–2022)</li>
             <li><strong>Engineering Maintenance Technician</strong> – Unipres UK (2017–2021)</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Education</h3>
-          <ul>
-            <li><strong>BA Product Design</strong> – Middlesex University (2023–Present)</li>
-            <li><strong>Level 4 HNC</strong> – Manufacturing Engineering (2021–2023)</li>
-            <li><strong>Level 3 BTEC</strong> – Engineering (2016–2021)</li>
           </ul>
         </div>
         <div>
