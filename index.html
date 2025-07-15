@@ -3,139 +3,140 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jack Simm Portfolio</title>
+  <title>Jack Simm – Product Designer</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: #ffffff;
-      color: #444;
-      line-height: 1.6;
       margin: 0;
-      padding: 0;
-      text-align: center;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #d7e5db;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-    nav {
-      background: #f4f4f4;
-      padding: 16px;
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: transparent;
+      font-size: 1rem;
     }
-    nav a {
-      margin: 0 12px;
-      color: #444;
+    header .left, header .right {
+      font-weight: bold;
+    }
+    main {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+    }
+    .container {
+      max-width: 1000px;
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 60px;
+    }
+    .info {
+      flex: 1;
+    }
+    .info h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    .info p {
+      margin: 10px 0 20px;
+      line-height: 1.6;
+    }
+    .info .button {
+      display: inline-block;
+      margin-top: 20px;
+      background: #222;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
       text-decoration: none;
       font-weight: bold;
     }
-    nav a:hover {
-      color: #222;
+    .details {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
-    main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
+    .details h3 {
+      margin-bottom: 6px;
+      font-size: 1.1rem;
     }
-    h1, h2, h3 {
-      color: #222;
-    }
-    .project {
-      border-left: 4px solid #222;
-      padding-left: 16px;
-      margin-bottom: 30px;
-      text-align: left;
-    }
-    .project img {
-      max-width: 100%;
-      margin-top: 10px;
-      border-radius: 4px;
-    }
-    ul {
+    .details ul {
       list-style: none;
-      padding-left: 0;
+      padding: 0;
+      margin: 0;
     }
-    ul li {
-      margin-bottom: 12px;
+    .details li {
+      margin-bottom: 8px;
     }
     footer {
       text-align: center;
-      background-color: #f4f4f4;
-      color: #888;
-      font-size: 0.9rem;
-      padding: 12px 0;
-      margin-top: 40px;
+      font-size: 0.8rem;
+      padding: 20px;
+      color: #555;
     }
-  a, a:link, a:visited, a:hover, a:active {
-  color: #222 !important;
-  text-decoration: none;
-}
-</style>
+  </style>
 </head>
 <body>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <header>
+    <div class="left">≡ Jack Simm</div>
+    <div class="right">Contact</div>
+  </header>
 
   <main>
-    <section id="home">
-      <h1>Welcome to Jack Simm's Portfolio</h1>
-      <p>Explore my background, work, and contact details using the navigation above.</p>
-    </section>
-
-    <section id="about">
-      <h2>About</h2>
-      <p>I am a passionate product designer currently studying BA Product Design at Middlesex University. With a strong foundation in manufacturing and engineering, I merge hands-on technical knowledge with creative design principles.</p>
-      <p>My background includes experience with tier-one automotive suppliers, apprenticeships, and vocational training, giving me practical insights that enhance my conceptual and prototyping work. I take a user-centered approach and enjoy transforming everyday challenges into functional, thoughtful solutions.</p>
-    </section>
-
-    <section id="experience">
-      <h2>Experience</h2>
-      <ul>
-        <li><strong>Product Development Manager</strong> – Fabb Brothers (2024)</li>
-        <li><strong>Kaizen Team Member</strong> – Unipres UK (2022–2023)</li>
-        <li><strong>Cost Planning Analyst</strong> – Unipres UK (2021–2022)</li>
-        <li><strong>Engineering Maintenance Technician</strong> – Unipres UK (2017–2021)</li>
-      </ul>
-    </section>
-
-    <section id="projects">
-      <h2>Projects</h2>
-
-      <div class="project">
-        <h3>Grown With Care</h3>
-        <p>Smart plant pot device that tracks ownership duration and soil moisture. Potential app connectivity and real-time feedback features.</p>
-        <img src="IMG_0633.PNG" alt="Grown With Care Project">
+    <div class="container">
+      <div class="info">
+        <h1>Jack Simm</h1>
+        <p>Product Designer and Development Manager with a strong background in engineering and manufacturing. I specialise in innovative problem-solving, user-focused design, and delivering practical solutions in real-world settings.</p>
+        <p>Currently studying Product Design at Middlesex University, with experience leading design and production teams, improving operations, and managing design projects in fast-paced environments.</p>
+        <a class="button" href="#">Download CV</a>
       </div>
 
-      <div class="project">
-        <h3>Jerry Can Tool</h3>
-        <p>Ergonomic kitchen tool designed for chefs to easily open slippery jerry cans. CAD optimized and 3D printed for functional testing.</p>
-        <img src="Artboard 1.JPG" alt="Jerry Can Tool Project">
+      <div class="details">
+        <div>
+          <h3>Experience</h3>
+          <ul>
+            <li><strong>Product Development Manager</strong>, Fabb Brothers (2024)</li>
+            <li><strong>Kaizen Team Member</strong>, Unipres UK (2022–2023)</li>
+            <li><strong>Cost Planning Analyst</strong>, Unipres UK (2021–2022)</li>
+            <li><strong>Engineering Maintenance Technician</strong>, Unipres UK (2017–2021)</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Education</h3>
+          <ul>
+            <li><strong>BA Product Design</strong> – Middlesex University (2021–Present)</li>
+            <li><strong>Level 4 HNC</strong> – General Engineering (2019–2021)</li>
+            <li><strong>Level 3 NVQ</strong> – Engineering Maintenance (2017–2019)</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Skills</h3>
+          <ul>
+            <li>CAD Modelling (SolidWorks, Shapr3D)</li>
+            <li>Adobe Suite (Photoshop, Illustrator, InDesign)</li>
+            <li>Rapid Prototyping</li>
+            <li>User-Centred Design</li>
+            <li>Production Coordination</li>
+          </ul>
+        </div>
       </div>
-
-      <div class="project">
-        <h3>Transport Device</h3>
-        <p>Long-term design research project exploring modern mobility using retrofitted manufacturer parts for functional innovation.</p>
-      </div>
-    </section>
-
-    <section id="skills">
-      <h2>Skills</h2>
-      <p><strong>Software:</strong> Illustrator, InDesign, Photoshop, SolidWorks, Keyshot, Shapr3D</p>
-      <p><strong>Expertise:</strong> CAD modeling, user-centered design, prototyping, problem-solving, concept development</p>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <p><strong>Email:</strong> jack.simm.design@gmail.com</p>
-      <p><strong>Phone:</strong> +44 7375 845 232</p>
-      <p><strong>Location:</strong> London</p>
-    </section>
+    </div>
   </main>
 
   <footer>
-    &copy; 2025 Jack Simm
+    &copy; 2025 Jack Simm – Portfolio Site
   </footer>
 </body>
 </html>
