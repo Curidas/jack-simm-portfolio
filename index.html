@@ -9,7 +9,9 @@
       margin: 0;
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: #d7e5db;
-      color: #444;
+      color: #333;
+      line-height: 1.6;
+      font-size: 17px;
     }
 
     header {
@@ -17,12 +19,13 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 40px;
-      font-weight: bold;
-      position: relative;
+      font-weight: 600;
+      font-size: 1.1rem;
     }
 
     .left {
       cursor: pointer;
+      letter-spacing: 0.5px;
     }
 
     .dropdown {
@@ -41,7 +44,8 @@
       padding: 12px 20px;
       text-decoration: none;
       color: #222;
-      border-bottom: 1px solid #eee;
+      font-weight: 500;
+      font-size: 1rem;
     }
 
     main {
@@ -86,8 +90,10 @@
 
     .titles h2 {
       margin: 0;
-      font-weight: normal;
+      font-weight: 500;
       color: white;
+      font-size: 1.8rem;
+      letter-spacing: 0.3px;
     }
 
     .container {
@@ -102,19 +108,24 @@
       margin: 60px 0;
     }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-    }
-
     h3 {
-      margin-bottom: 6px;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      font-weight: 600;
+      color: #222;
     }
 
     ul {
       padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    ul li {
+      margin-bottom: 8px;
+    }
+
+    strong {
+      color: #000;
     }
 
     .row {
@@ -140,7 +151,8 @@
       margin: 0 15px;
       display: inline-flex;
       align-items: center;
-      font-weight: bold;
+      font-weight: 600;
+      font-size: 1rem;
     }
 
     .contact-links svg {
@@ -149,10 +161,18 @@
       margin-right: 8px;
       vertical-align: middle;
       fill: #222;
+      transition: fill 0.3s ease;
     }
 
     .contact-links a:hover svg {
-      fill: #555;
+      fill: #007f5f;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #666;
     }
   </style>
 </head>
@@ -182,8 +202,10 @@
     <div class="container">
       <div class="row">
         <div class="column">
-          <h3>Jack Simm</h3>
-          <p>A current BA Product Design student and former Product Development Manager with a strong background in manufacturing engineering. I specialise in innovative problem-solving, user-focused design, and delivering practical solutions in real-world settings. With experience leading design and production teams, improving operations, and managing design projects in fast-paced environments.</p>
+          <h3>About Me</h3>
+          <p>
+            I’m a <strong>BA Product Design student</strong> and former <strong>Product Development Manager</strong> with a strong background in manufacturing engineering. I specialise in <strong>user-focused design</strong>, innovative problem-solving, and delivering practical solutions. My experience includes leading design teams, improving operations, and managing projects in fast-paced environments.
+          </p>
         </div>
 
         <div class="column">
@@ -197,17 +219,16 @@
 
           <h3 style="margin-top: 30px;">Skills</h3>
           <ul>
-            <li>CAD Modelling (SolidWorks, Shapr3D)</li>
-            <li>Adobe Suite (Photoshop, Illustrator, InDesign)</li>
-            <li>Rapid Prototyping</li>
-            <li>User-Centred Design</li>
-            <li>Production Coordination</li>
+            <li><strong>CAD Modelling</strong> (SolidWorks, Shapr3D)</li>
+            <li><strong>Adobe Suite</strong> (Photoshop, Illustrator, InDesign)</li>
+            <li><strong>Rapid Prototyping</strong></li>
+            <li><strong>User-Centred Design</strong></li>
+            <li><strong>Production Coordination</strong></li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- Contact Section with Icons -->
     <div class="contact-section">
       <h3>Contact Me</h3>
       <div class="contact-links">
@@ -241,6 +262,11 @@
 
     menu.addEventListener("mouseleave", () => {
       menu.style.display = "none";
+    });
+
+    toggle.addEventListener("click", () => {
+      const isVisible = menu.style.display === "flex";
+      menu.style.display = isVisible ? "none" : "flex";
     });
   </script>
 </body>
