@@ -5,18 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jack Simm – Product Designer</title>
   <style>
-    :root {
-      --main-bg: #d7e5db;
-      --text-color: #333;
-      --accent-color: #007f5f;
-      --card-bg: #fff;
-    }
-
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: var(--main-bg);
-      color: var(--text-color);
+      background: #d7e5db;
+      color: #333;
       line-height: 1.6;
       font-size: 17px;
     }
@@ -74,20 +67,20 @@
 
     .banner-overlay {
       position: absolute;
-      bottom: 20px;
-      left: 20px;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 20px;
-      border-radius: 12px;
+      top: 75%;
+      left: 40px;
+      transform: translateY(-50%);
       display: flex;
-      gap: 20px;
       align-items: center;
-      flex-wrap: wrap;
+      gap: 24px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px 30px;
+      border-radius: 12px;
     }
 
     .profile-pic {
-      width: 160px;
-      height: 160px;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
       object-fit: cover;
       filter: grayscale(100%);
@@ -97,25 +90,26 @@
 
     .titles h2 {
       margin: 0;
-      color: white;
-      font-size: 1.6rem;
       font-weight: 500;
+      color: white;
+      font-size: 1.8rem;
+      letter-spacing: 0.3px;
     }
 
     .container {
-      width: 90%;
+      width: 85%;
       max-width: 1200px;
-      background: var(--card-bg);
+      background: #fff;
       border-radius: 16px;
-      padding: 40px;
+      padding: 60px;
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 60px;
       margin: 60px 0;
     }
 
     h3 {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       margin-bottom: 12px;
       font-weight: 600;
       color: #222;
@@ -123,6 +117,7 @@
 
     ul {
       padding-left: 20px;
+      margin-top: 10px;
     }
 
     ul li {
@@ -135,18 +130,19 @@
 
     .row {
       display: flex;
-      gap: 40px;
+      gap: 60px;
+      align-items: flex-start;
       flex-wrap: wrap;
     }
 
     .column {
       flex: 1;
-      min-width: 280px;
+      min-width: 300px;
     }
 
     .contact-section {
       text-align: center;
-      padding-bottom: 40px;
+      margin-bottom: 40px;
     }
 
     .contact-links a {
@@ -169,7 +165,7 @@
     }
 
     .contact-links a:hover svg {
-      fill: var(--accent-color);
+      fill: #007f5f;
     }
 
     footer {
@@ -179,7 +175,7 @@
       color: #666;
     }
 
-    /* Mobile optimization */
+    /* Mobile Styles */
     @media (max-width: 768px) {
       header {
         padding: 16px 20px;
@@ -188,12 +184,24 @@
 
       .banner-overlay {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         padding: 16px;
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.6);
       }
 
       .titles h2 {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
+        text-align: center;
+        line-height: 1.4;
+      }
+
+      .profile-pic {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 12px;
       }
 
       .container {
@@ -203,11 +211,6 @@
       .contact-links a {
         display: block;
         margin: 12px auto;
-      }
-
-      .profile-pic {
-        width: 140px;
-        height: 140px;
       }
     }
   </style>
@@ -239,7 +242,7 @@
         <div class="column">
           <h3>About Me</h3>
           <p>
-            I’m a <strong>BA Product Design student</strong> and former <strong>Product Development Manager</strong> with a strong background in manufacturing engineering. I specialise in <strong>user-focused design</strong>, innovative problem-solving, and delivering practical solutions.
+            I’m a <strong>BA Product Design student</strong> and former <strong>Product Development Manager</strong> with a strong background in manufacturing engineering. I specialise in <strong>user-focused design</strong>, innovative problem-solving, and delivering practical solutions. My experience includes leading design teams, improving operations, and managing projects in fast-paced environments.
           </p>
         </div>
 
