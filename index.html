@@ -10,6 +10,8 @@
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: #d7e5db;
       color: #333;
+      line-height: 1.6;
+      font-size: 17px;
     }
 
     header {
@@ -23,6 +25,7 @@
 
     .left {
       cursor: pointer;
+      letter-spacing: 0.5px;
     }
 
     .dropdown {
@@ -42,94 +45,69 @@
       text-decoration: none;
       color: #222;
       font-weight: 500;
+      font-size: 1rem;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .banner-section {
-      width: 100%;
-      height: 120vh;
-      overflow: hidden;
       position: relative;
+      width: 100%;
     }
 
     .banner-img {
       width: 100%;
-      height: 100%;
+      height: auto;
+      display: block;
+      max-height: 600px;
       object-fit: cover;
-      object-position: center;
     }
 
-    .profile-overlay {
+    .banner-overlay {
       position: absolute;
       bottom: 60px;
-      left: 50px;
-      background: rgba(0, 0, 0, 0.75);
-      padding: 25px 40px;
-      border-radius: 20px;
+      left: 40px;
       display: flex;
-      flex-direction: row;
       align-items: center;
-      width: 550px;
+      gap: 24px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px 30px;
+      border-radius: 12px;
       max-width: 90%;
-      gap: 20px;
     }
 
     .profile-pic {
-      width: 120px;
-      height: 120px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
       object-fit: cover;
       filter: grayscale(100%);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       border: 3px solid white;
-    }
-
-    .titles {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
     }
 
     .titles h2 {
+      margin: 0;
+      font-weight: 500;
       color: white;
-      margin: 4px 0;
-      font-size: 1.4rem;
-      text-align: left;
-    }
-
-    .mobile-profile {
-      display: none;
-      background: rgba(0, 0, 0, 0.75);
-      text-align: center;
-      padding: 20px;
-      margin: 40px 20px;
-      border-radius: 16px;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .mobile-profile img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      filter: grayscale(100%);
-      border: 3px solid white;
-      margin-bottom: 12px;
-    }
-
-    .mobile-profile h2 {
-      color: white;
-      margin: 5px 0;
-      font-size: 1.2rem;
+      font-size: 1.6rem;
+      letter-spacing: 0.3px;
     }
 
     .container {
-      max-width: 1100px;
-      background: white;
+      width: 85%;
+      max-width: 1200px;
+      background: #fff;
       border-radius: 16px;
       padding: 60px;
-      margin: 60px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+      margin: 60px 0;
     }
 
     h3 {
@@ -139,23 +117,29 @@
       color: #222;
     }
 
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    ul li {
+      margin-bottom: 8px;
+    }
+
+    strong {
+      color: #000;
+    }
+
     .row {
       display: flex;
-      flex-wrap: wrap;
       gap: 60px;
+      align-items: flex-start;
+      flex-wrap: wrap;
     }
 
     .column {
       flex: 1;
       min-width: 300px;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    ul li {
-      margin-bottom: 10px;
     }
 
     .contact-section {
@@ -170,13 +154,16 @@
       display: inline-flex;
       align-items: center;
       font-weight: 600;
+      font-size: 1rem;
     }
 
     .contact-links svg {
       width: 20px;
       height: 20px;
       margin-right: 8px;
+      vertical-align: middle;
       fill: #222;
+      transition: fill 0.3s ease;
     }
 
     .contact-links a:hover svg {
@@ -190,27 +177,35 @@
       color: #666;
     }
 
+    /* ===== MOBILE STYLES ===== */
     @media (max-width: 768px) {
-      .profile-overlay {
-        display: none;
+      .banner-img {
+        max-height: 400px;
       }
 
-      .mobile-profile {
-        display: block;
+      .banner-overlay {
+        bottom: auto;
+        top: 30px;
+        left: 20px;
+        right: 20px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .profile-pic {
+        width: 140px;
+        height: 140px;
+        margin-bottom: 15px;
+      }
+
+      .titles h2 {
+        font-size: 1.4rem;
       }
 
       .container {
-        padding: 20px;
-        margin: 30px auto;
-      }
-
-      .contact-links a {
-        display: block;
-        margin: 12px auto;
-      }
-
-      .banner-section {
-        height: 85vh;
+        padding: 30px 20px;
       }
     }
   </style>
@@ -225,63 +220,60 @@
     </div>
   </header>
 
-  <div class="banner-section">
-    <img src="IMG_5572.JPG" alt="Banner Image" class="banner-img" />
-    <div class="profile-overlay">
-      <img src="profile.jpg" alt="Jack Simm" class="profile-pic" />
-      <div class="titles">
-        <h2>Product Designer</h2>
-        <h2>Product Development Manager</h2>
+  <main>
+    <div class="banner-section">
+      <img src="IMG_5572.JPG" alt="Banner Image" class="banner-img" />
+      <div class="banner-overlay">
+        <img src="profile.jpg" alt="Jack Simm" class="profile-pic" />
+        <div class="titles">
+          <h2>Product Designer</h2>
+          <h2>Product Development Manager</h2>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="mobile-profile">
-    <img src="profile.jpg" alt="Jack Simm" />
-    <h2>Product Designer</h2>
-    <h2>Product Development Manager</h2>
-  </div>
+    <div class="container">
+      <div class="row">
+        <div class="column">
+          <h3>About Me</h3>
+          <p>
+            I’m a <strong>BA Product Design student</strong> and former <strong>Product Development Manager</strong> with a strong background in manufacturing engineering. I specialise in <strong>user-focused design</strong>, innovative problem-solving, and delivering practical solutions. My experience includes leading design teams, improving operations, and managing projects in fast-paced environments.
+          </p>
+        </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="column">
-        <h3>About Me</h3>
-        <p>
-          I’m a <strong>BA Product Design student</strong> and former <strong>Product Development Manager</strong> with a strong background in manufacturing engineering. I specialise in <strong>user-focused design</strong>, innovative problem-solving, and delivering practical solutions. My experience includes leading design teams, improving operations, and managing projects in fast-paced environments.
-        </p>
-      </div>
-      <div class="column">
-        <h3>Experience</h3>
-        <ul>
-          <li><strong>Product Development Manager</strong> – Fabb Brothers (2024)</li>
-          <li><strong>Kaizen Team</strong> – Unipres UK (2022–2023)</li>
-          <li><strong>Cost Planning</strong> – Unipres UK (2021–2022)</li>
-          <li><strong>Engineering Maintenance Technician</strong> – Unipres UK (2017–2021)</li>
-        </ul>
+        <div class="column">
+          <h3>Experience</h3>
+          <ul>
+            <li><strong>Product Development Manager</strong> – Fabb Brothers (2024)</li>
+            <li><strong>Kaizen Team</strong> – Unipres UK (2022–2023)</li>
+            <li><strong>Cost Planning</strong> – Unipres UK (2021–2022)</li>
+            <li><strong>Engineering Maintenance Technician</strong> – Unipres UK (2017–2021)</li>
+          </ul>
 
-        <h3 style="margin-top: 30px;">Skills</h3>
-        <ul>
-          <li><strong>CAD Modelling</strong> (SolidWorks, Shapr3D)</li>
-          <li><strong>Adobe Suite</strong> (Photoshop, Illustrator, InDesign)</li>
-          <li><strong>Rapid Prototyping</strong></li>
-          <li><strong>User-Centred Design</strong></li>
-          <li><strong>Production Coordination</strong></li>
-        </ul>
+          <h3 style="margin-top: 30px;">Skills</h3>
+          <ul>
+            <li><strong>CAD Modelling</strong> (SolidWorks, Shapr3D)</li>
+            <li><strong>Adobe Suite</strong> (Photoshop, Illustrator, InDesign)</li>
+            <li><strong>Rapid Prototyping</strong></li>
+            <li><strong>User-Centred Design</strong></li>
+            <li><strong>Production Coordination</strong></li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="contact-section">
-    <h3>Contact Me</h3>
-    <div class="contact-links">
-      <a href="mailto:jack.simm.design@gmail.com">
-        📧 Email Me
-      </a>
-      <a href="https://www.instagram.com/jack_simm_design" target="_blank">
-        📸 Instagram
-      </a>
+    <div class="contact-section">
+      <h3>Contact Me</h3>
+      <div class="contact-links">
+        <a href="mailto:jack.simm.design@gmail.com">
+          📧 Email Me
+        </a>
+        <a href="https://www.instagram.com/jack_simm_design" target="_blank">
+          📷 Instagram
+        </a>
+      </div>
     </div>
-  </div>
+  </main>
 
   <footer>&copy; 2025 Jack Simm – Portfolio</footer>
 
