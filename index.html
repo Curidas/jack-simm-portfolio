@@ -5,11 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jack Simm – Product Designer</title>
   <style>
+    :root {
+      --main-bg: #d7e5db;
+      --text-color: #333;
+      --accent-color: #007f5f;
+      --card-bg: #fff;
+    }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: #d7e5db;
-      color: #333;
+      background: var(--main-bg);
+      color: var(--text-color);
       line-height: 1.6;
       font-size: 17px;
     }
@@ -67,20 +74,20 @@
 
     .banner-overlay {
       position: absolute;
-      top: 75%;
-      left: 40px;
-      transform: translateY(-50%);
-      display: flex;
-      align-items: center;
-      gap: 24px;
+      bottom: 20px;
+      left: 20px;
       background: rgba(0, 0, 0, 0.5);
-      padding: 20px 30px;
+      padding: 20px;
       border-radius: 12px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
     .profile-pic {
-      width: 200px;
-      height: 200px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
       object-fit: cover;
       filter: grayscale(100%);
@@ -90,26 +97,25 @@
 
     .titles h2 {
       margin: 0;
-      font-weight: 500;
       color: white;
-      font-size: 1.8rem;
-      letter-spacing: 0.3px;
+      font-size: 1.6rem;
+      font-weight: 500;
     }
 
     .container {
-      width: 85%;
+      width: 90%;
       max-width: 1200px;
-      background: #fff;
+      background: var(--card-bg);
       border-radius: 16px;
-      padding: 60px;
+      padding: 40px;
       display: flex;
       flex-direction: column;
-      gap: 60px;
+      gap: 40px;
       margin: 60px 0;
     }
 
     h3 {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       margin-bottom: 12px;
       font-weight: 600;
       color: #222;
@@ -117,7 +123,6 @@
 
     ul {
       padding-left: 20px;
-      margin-top: 10px;
     }
 
     ul li {
@@ -130,19 +135,18 @@
 
     .row {
       display: flex;
-      gap: 60px;
-      align-items: flex-start;
+      gap: 40px;
       flex-wrap: wrap;
     }
 
     .column {
       flex: 1;
-      min-width: 300px;
+      min-width: 280px;
     }
 
     .contact-section {
       text-align: center;
-      margin-bottom: 40px;
+      padding-bottom: 40px;
     }
 
     .contact-links a {
@@ -165,7 +169,7 @@
     }
 
     .contact-links a:hover svg {
-      fill: #007f5f;
+      fill: var(--accent-color);
     }
 
     footer {
@@ -173,6 +177,38 @@
       padding: 20px;
       font-size: 0.9rem;
       color: #666;
+    }
+
+    /* Mobile optimization */
+    @media (max-width: 768px) {
+      header {
+        padding: 16px 20px;
+        font-size: 1rem;
+      }
+
+      .banner-overlay {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
+      }
+
+      .titles h2 {
+        font-size: 1.3rem;
+      }
+
+      .container {
+        padding: 20px;
+      }
+
+      .contact-links a {
+        display: block;
+        margin: 12px auto;
+      }
+
+      .profile-pic {
+        width: 140px;
+        height: 140px;
+      }
     }
   </style>
 </head>
@@ -203,7 +239,7 @@
         <div class="column">
           <h3>About Me</h3>
           <p>
-            I’m a <strong>BA Product Design student</strong> and former <strong>Product Development Manager</strong> with a strong background in manufacturing engineering. I specialise in <strong>user-focused design</strong>, innovative problem-solving, and delivering practical solutions. My experience includes leading design teams, improving operations, and managing projects in fast-paced environments.
+            I’m a <strong>BA Product Design student</strong> and former <strong>Product Development Manager</strong> with a strong background in manufacturing engineering. I specialise in <strong>user-focused design</strong>, innovative problem-solving, and delivering practical solutions.
           </p>
         </div>
 
