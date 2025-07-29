@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jack Simm – Product Designer</title>
+  <script src="https://unpkg.com/feather-icons"></script>
   <style>
     body {
       margin: 0;
@@ -175,15 +176,16 @@
       padding: 12px 0;
     }
 
+    .contact-links i,
     .contact-links svg {
       width: 20px;
       height: 20px;
       margin-right: 8px;
-      fill: #222;
+      stroke: #222;
     }
 
     .contact-links a:hover svg {
-      fill: #007f5f;
+      stroke: #007f5f;
     }
 
     footer {
@@ -281,8 +283,12 @@
   <div class="contact-section">
     <h3>Contact Me</h3>
     <div class="contact-links">
-      <a href="mailto:jack.simm.design@gmail.com">📧 Email Me</a>
-      <a href="https://www.instagram.com/jack_simm_design" target="_blank">📸 Instagram</a>
+      <a href="mailto:jack.simm.design@gmail.com">
+        <i data-feather="mail"></i> Email Me
+      </a>
+      <a href="https://www.instagram.com/jack_simm_design" target="_blank">
+        <i data-feather="instagram"></i> Instagram
+      </a>
     </div>
   </div>
 
@@ -310,6 +316,9 @@
       const isVisible = menu.style.display === "flex";
       menu.style.display = isVisible ? "none" : "flex";
     });
+
+    // Activate feather icons
+    feather.replace();
   </script>
 </body>
 </html>
