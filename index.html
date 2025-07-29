@@ -53,31 +53,24 @@
 
     .banner-section {
       width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
+      padding: 40px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #1c1c1c;
     }
 
     .banner-img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
+      max-width: 1200px;
+      height: auto;
+      object-fit: contain;
+      background-color: #1c1c1c;
+      display: block;
     }
 
     .profile-overlay {
-      position: absolute;
-      bottom: 60px;
-      left: 50px;
-      background: rgba(0, 0, 0, 0.75);
-      padding: 25px 40px;
-      border-radius: 20px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      width: 550px;
-      max-width: 90%;
-      gap: 20px;
+      display: none; /* Hidden due to image layout change */
     }
 
     .profile-pic {
@@ -104,7 +97,7 @@
     }
 
     .mobile-profile {
-      display: none;
+      display: block;
       background: rgba(0, 0, 0, 0.75);
       text-align: center;
       padding: 15px;
@@ -201,14 +194,6 @@
     }
 
     @media (max-width: 768px) {
-      .profile-overlay {
-        display: none;
-      }
-
-      .mobile-profile {
-        display: block;
-      }
-
       .container {
         padding: 20px;
         margin: 30px auto;
@@ -217,10 +202,6 @@
       .contact-links a {
         display: block;
         margin: 12px auto;
-      }
-
-      .banner-section {
-        height: 70vh;
       }
 
       .titles h2 {
@@ -241,13 +222,6 @@
 
   <div class="banner-section">
     <img src="Exploded Organiser.32.jpg" alt="Exploded organiser product render by Jack Simm" class="banner-img" loading="lazy" />
-    <div class="profile-overlay">
-      <img src="profile.jpg" alt="Portrait of Jack Simm" class="profile-pic" />
-      <div class="titles">
-        <h2>Product Designer</h2>
-        <h2>Product Development Manager</h2>
-      </div>
-    </div>
   </div>
 
   <div class="mobile-profile">
