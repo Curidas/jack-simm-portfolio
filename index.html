@@ -53,24 +53,29 @@
 
     .banner-section {
       width: 100%;
-      padding: 40px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #1c1c1c;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
     }
 
     .banner-img {
       width: 100%;
-      max-width: 1200px;
-      height: auto;
-      object-fit: contain;
-      background-color: #1c1c1c;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
       display: block;
     }
 
     .profile-overlay {
-      display: none; /* Hidden due to image layout change */
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      background: rgba(0, 0, 0, 0.65);
+      padding: 20px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
 
     .profile-pic {
@@ -97,31 +102,7 @@
     }
 
     .mobile-profile {
-      display: block;
-      background: rgba(0, 0, 0, 0.75);
-      text-align: center;
-      padding: 15px;
-      margin: 20px 16px;
-      border-radius: 16px;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .mobile-profile img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      filter: grayscale(100%);
-      border: 3px solid white;
-      margin-bottom: 12px;
-    }
-
-    .mobile-profile h2 {
-      color: white;
-      margin: 5px 0;
-      font-size: 1.2rem;
+      display: none;
     }
 
     .container {
@@ -194,6 +175,38 @@
     }
 
     @media (max-width: 768px) {
+      .profile-overlay {
+        display: none;
+      }
+
+      .mobile-profile {
+        display: block;
+        background: rgba(0, 0, 0, 0.75);
+        text-align: center;
+        padding: 15px;
+        margin: 20px 16px;
+        border-radius: 16px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .mobile-profile img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        filter: grayscale(100%);
+        border: 3px solid white;
+        margin-bottom: 12px;
+      }
+
+      .mobile-profile h2 {
+        color: white;
+        margin: 5px 0;
+        font-size: 1.2rem;
+      }
+
       .container {
         padding: 20px;
         margin: 30px auto;
@@ -222,6 +235,13 @@
 
   <div class="banner-section">
     <img src="Exploded Organiser.32.jpg" alt="Exploded organiser product render by Jack Simm" class="banner-img" loading="lazy" />
+    <div class="profile-overlay">
+      <img src="profile.jpg" alt="Jack Simm" class="profile-pic" loading="lazy" />
+      <div class="titles">
+        <h2>Product Designer</h2>
+        <h2>Product Development Manager</h2>
+      </div>
+    </div>
   </div>
 
   <div class="mobile-profile">
