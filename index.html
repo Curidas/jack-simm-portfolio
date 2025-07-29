@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jack Simm – Product Designer</title>
-  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://unpkg.com/feather-icons" defer></script>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: #d7e5db;
-      color: #333;
+      background: #1c1c1c;
+      color: #eee;
     }
 
     header {
@@ -32,8 +32,8 @@
       position: absolute;
       top: 60px;
       left: 40px;
-      background: white;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background: #2a2a2a;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
       border-radius: 6px;
       display: none;
       flex-direction: column;
@@ -43,8 +43,12 @@
     .dropdown a {
       padding: 12px 20px;
       text-decoration: none;
-      color: #222;
+      color: #eee;
       font-weight: 500;
+    }
+
+    .dropdown a:hover {
+      background: #3a3a3a;
     }
 
     .banner-section {
@@ -129,7 +133,8 @@
 
     .container {
       max-width: 1100px;
-      background: white;
+      background: #2a2a2a;
+      color: #f5f5f5;
       border-radius: 16px;
       padding: 60px;
       margin: 60px auto;
@@ -139,7 +144,7 @@
       font-size: 1.6rem;
       margin-bottom: 12px;
       font-weight: 600;
-      color: #222;
+      color: #ffffff;
     }
 
     .row {
@@ -167,7 +172,7 @@
     }
 
     .contact-links a {
-      color: #222;
+      color: #f5f5f5;
       text-decoration: none;
       margin: 0 15px;
       display: inline-flex;
@@ -181,18 +186,18 @@
       width: 20px;
       height: 20px;
       margin-right: 8px;
-      stroke: #222;
+      stroke: #f5f5f5;
     }
 
     .contact-links a:hover svg {
-      stroke: #333;
+      stroke: #ffffff;
     }
 
     footer {
       text-align: center;
       padding: 20px;
       font-size: 0.9rem;
-      color: #666;
+      color: #999;
     }
 
     @media (max-width: 768px) {
@@ -283,10 +288,10 @@
   <div class="contact-section">
     <h3>Contact Me</h3>
     <div class="contact-links">
-      <a href="mailto:jack.simm.design@gmail.com">
+      <a href="mailto:jack.simm.design@gmail.com" aria-label="Email Jack Simm">
         <i data-feather="mail"></i> Email Me
       </a>
-      <a href="https://www.instagram.com/jack_simm_design" target="_blank">
+      <a href="https://www.instagram.com/jack_simm_design" target="_blank" aria-label="Jack Simm on Instagram">
         <i data-feather="instagram"></i> Instagram
       </a>
     </div>
@@ -298,23 +303,13 @@
     const toggle = document.querySelector(".left");
     const menu = document.getElementById("dropdownMenu");
 
-    toggle.addEventListener("mouseenter", () => {
-      menu.style.display = "flex";
-    });
-
-    toggle.addEventListener("mouseleave", () => {
-      setTimeout(() => {
-        if (!menu.matches(":hover")) menu.style.display = "none";
-      }, 200);
+    toggle.addEventListener("click", () => {
+      const isVisible = menu.style.display === "flex";
+      menu.style.display = isVisible ? "none" : "flex";
     });
 
     menu.addEventListener("mouseleave", () => {
       menu.style.display = "none";
-    });
-
-    toggle.addEventListener("click", () => {
-      const isVisible = menu.style.display === "flex";
-      menu.style.display = isVisible ? "none" : "flex";
     });
 
     // Feather icons init
