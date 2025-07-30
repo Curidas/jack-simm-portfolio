@@ -2,52 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gallery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gallery – Jack Simm</title>
+  <script src="https://unpkg.com/feather-icons"></script>
   <style>
     body {
       margin: 0;
-      background-color: #111;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #1c1c1c;
+      color: #eee;
+    }
+
+    /* Header Styles (from homepage) */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .left {
+      cursor: pointer;
+      font-size: 1.2rem;
+      padding: 10px;
+      color: #eee;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 60px;
+      left: 40px;
+      background: #2a2a2a;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 6px;
+      display: none;
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    .dropdown a {
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #eee;
+      font-weight: 500;
+    }
+
+    .gallery-container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
-      padding: 40px 20px;
-      color: #fff;
+      gap: 40px;
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    .home-link {
-      align-self: flex-start;
-      margin-bottom: 20px;
-    }
-
-    .home-link a {
-      text-decoration: none;
-      color: #fff;
-      background-color: #444;
-      padding: 10px 20px;
-      border-radius: 8px;
-      transition: background-color 0.3s ease;
-    }
-
-    .home-link a:hover {
-      background-color: #666;
-    }
-
-    img {
+    .gallery-container img {
       max-width: 100%;
       height: auto;
       border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
       transition: transform 0.3s ease;
       cursor: zoom-in;
     }
 
-    img:hover {
+    .gallery-container img:hover {
       transform: scale(1.03);
     }
 
+    /* Lightbox */
     .lightbox {
       position: fixed;
       top: 0;
@@ -67,28 +92,52 @@
       border-radius: 12px;
       cursor: zoom-out;
     }
+
+    @media (max-width: 768px) {
+      .gallery-container {
+        padding: 40px 16px;
+        gap: 20px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Homepage Link Section -->
-  <div class="home-link">
-    <a href="index.html">&larr; Return to Homepage</a>
+  <!-- Navigation Bar from Homepage -->
+  <header>
+    <div class="left" onclick="toggleDropdown()">≡ Jack Simm</div>
+    <div class="dropdown" id="dropdownMenu">
+      <a href="projects.html">Projects</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="cv.html">CV</a>
+    </div>
+  </header>
+
+  <!-- Gallery Images -->
+  <div class="gallery-container">
+    <img src="Exploded Organiser.32.jpg" alt="Exploded Organiser Render" loading="lazy" />
+    <img src="untitled.31.jpg" alt="Untitled Design Render" loading="lazy" />
   </div>
 
-  <!-- Two Large Images -->
-  <img src="Exploded Organiser.32.jpg" alt="Exploded Organiser" loading="lazy" />
-  <img src="untitled.31.jpg" alt="Untitled Design" loading="lazy" />
-
-  <!-- Lightbox Container -->
+  <!-- Lightbox -->
   <div id="lightbox" class="lightbox">
     <img id="lightbox-img" src="" alt="Enlarged view" />
   </div>
 
   <script>
+    // Dropdown toggle
+    const toggle = document.querySelector(".left");
+    const menu = document.getElementById("dropdownMenu");
+
+    toggle.addEventListener("click", () => {
+      const isVisible = menu.style.display === "flex";
+      menu.style.display = isVisible ? "none" : "flex";
+    });
+
+    // Lightbox functionality
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
-    const images = document.querySelectorAll('body > img');
+    const images = document.querySelectorAll('.gallery-container img');
 
     images.forEach(img => {
       img.addEventListener('click', () => {
@@ -111,6 +160,8 @@
         document.body.style.overflow = '';
       }
     });
+
+    feather.replace();
   </script>
 
 </body>
