@@ -13,7 +13,7 @@
       color: #eee;
     }
 
-    /* Header Styles (from homepage) */
+    /* Header Navigation */
     header {
       display: flex;
       justify-content: space-between;
@@ -49,6 +49,11 @@
       font-weight: 500;
     }
 
+    .dropdown a:hover {
+      background-color: #383838;
+    }
+
+    /* Gallery Layout */
     .gallery-container {
       display: flex;
       flex-direction: column;
@@ -72,7 +77,7 @@
       transform: scale(1.03);
     }
 
-    /* Lightbox */
+    /* Lightbox Styles */
     .lightbox {
       position: fixed;
       top: 0;
@@ -103,17 +108,18 @@
 </head>
 <body>
 
-  <!-- Navigation Bar from Homepage -->
+  <!-- Navigation Header -->
   <header>
     <div class="left" onclick="toggleDropdown()">≡ Jack Simm</div>
     <div class="dropdown" id="dropdownMenu">
+      <a href="index.html">Home</a>
       <a href="projects.html">Projects</a>
       <a href="gallery.html">Gallery</a>
       <a href="cv.html">CV</a>
     </div>
   </header>
 
-  <!-- Gallery Images -->
+  <!-- Gallery Section -->
   <div class="gallery-container">
     <img src="Exploded Organiser.32.jpg" alt="Exploded Organiser Render" loading="lazy" />
     <img src="untitled.31.jpg" alt="Untitled Design Render" loading="lazy" />
@@ -161,6 +167,7 @@
       }
     });
 
+    // Replace feather icons
     feather.replace();
   </script>
 
