@@ -9,7 +9,7 @@
       margin: 0;
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background-color: #ffffff;
-      color: #ffffff; /* Set default text to white */
+      color: #1c1c1c; /* Default body text color */
       font-size: 17px;
       line-height: 1.6;
     }
@@ -19,9 +19,9 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 40px;
-      background-color: #000000; /* Black banner */
+      background-color: #1c1c1c; /* Exact homepage banner shade */
       font-weight: 600;
-      color: #ffffff;
+      color: #eee; /* Light text consistent with homepage */
     }
 
     .left {
@@ -32,20 +32,24 @@
       position: absolute;
       top: 60px;
       left: 40px;
-      background: #ffffff;
+      background: #2a2a2a;
       border-radius: 6px;
       display: none;
       flex-direction: column;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
       z-index: 10;
     }
 
     .dropdown a {
       padding: 12px 20px;
       text-decoration: none;
-      color: #000000;
+      color: #eee;
       font-weight: 500;
       font-size: 1rem;
+    }
+
+    .dropdown a:hover {
+      background: #383838;
     }
 
     .container {
@@ -58,7 +62,7 @@
     h1 {
       font-size: 2.5rem;
       margin-bottom: 60px;
-      color: #000000;
+      color: #1c1c1c;
     }
 
     .project img {
@@ -78,7 +82,7 @@
       text-align: center;
       padding: 40px;
       font-size: 0.9rem;
-      color: #444;
+      color: #666;
     }
   </style>
 </head>
@@ -95,8 +99,7 @@
   </header>
 
   <div class="container">
-    <h1 style="color: #000000;">Projects</h1>
-
+    <h1>Projects</h1>
     <div class="project">
       <img src="Exploded Organiser.32.jpg" alt="Exploded Organiser View" />
       <img src="untitled.31.jpg" alt="Exploded Organiser View 2" />
@@ -130,6 +133,5 @@
       menu.style.display = isVisible ? "none" : "flex";
     });
   </script>
-
 </body>
 </html>
