@@ -89,31 +89,31 @@
       z-index: 1;
     }
 
-    /* About Me overlay on banner */
+    /* About Me overlay on banner (slimmer) */
     .about-overlay {
       position: absolute;
-      bottom: 80px;
-      left: 64px;
-      background: rgba(255 255 255 / 0.85);
-      padding: 48px 56px;
-      border-radius: 28px;
+      bottom: 60px;
+      left: 48px;
+      background: rgba(255 255 255 / 0.7);
+      padding: 28px 36px;
+      border-radius: 20px;
       display: flex;
       align-items: center;
-      gap: 40px;
-      max-width: 720px;
-      box-shadow: 0 30px 60px rgb(0 0 0 / 0.12);
-      backdrop-filter: saturate(180%) blur(18px);
+      gap: 24px;
+      max-width: 520px;
+      box-shadow: 0 24px 40px rgb(0 0 0 / 0.08);
+      backdrop-filter: saturate(180%) blur(12px);
       z-index: 10;
     }
 
     .profile-pic {
       flex-shrink: 0;
-      width: 160px;
-      height: 160px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       object-fit: cover;
       filter: grayscale(0%);
-      box-shadow: 0 10px 30px rgb(0 0 0 / 0.12);
+      box-shadow: 0 8px 20px rgb(0 0 0 / 0.08);
       cursor: default;
       transition: transform 0.3s ease;
     }
@@ -123,15 +123,15 @@
     }
 
     .about-text {
-      max-width: 480px;
+      max-width: 380px;
       color: #1d1d1f;
-      text-shadow: 0 1px 2px rgb(255 255 255 / 0.8);
+      text-shadow: none;
     }
 
     .about-text h2 {
       font-weight: 300;
-      font-size: 3.2rem;
-      margin: 0 0 12px 0;
+      font-size: 2.4rem;
+      margin: 0 0 8px 0;
       line-height: 1.1;
       letter-spacing: -0.02em;
       color: #111;
@@ -139,9 +139,9 @@
 
     .about-text p {
       font-weight: 300;
-      font-size: 1.3rem;
+      font-size: 1.15rem;
       line-height: 1.6;
-      color: #3c3c43;
+      color: #4a4a4a;
       margin: 0;
       letter-spacing: 0.01em;
     }
@@ -198,22 +198,22 @@
         left: 50%;
         transform: translateX(-50%);
         max-width: 90vw;
-        padding: 36px 32px;
-        gap: 28px;
+        padding: 24px 24px;
+        gap: 20px;
       }
 
       .profile-pic {
-        width: 140px;
-        height: 140px;
+        width: 100px;
+        height: 100px;
       }
 
       .about-text h2 {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
         text-align: center;
       }
 
       .about-text p {
-        font-size: 1.1rem;
+        font-size: 1rem;
         text-align: center;
       }
     }
@@ -272,16 +272,8 @@
 
     toggle.addEventListener("click", () => {
       const expanded = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!expanded));
+      toggle.setAttribute('aria-expanded', !expanded);
       menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-    });
-
-    // Hide dropdown if clicking outside
-    document.addEventListener("click", (e) => {
-      if (!toggle.contains(e.target) && !menu.contains(e.target)) {
-        menu.style.display = "none";
-        toggle.setAttribute('aria-expanded', 'false');
-      }
     });
 
     const slides = document.querySelectorAll('.slide');
