@@ -48,31 +48,26 @@
       font-weight: 500;
     }
 
-    /* Banner Slideshow */
-    .banner-section {
-      position: relative;
+    .slideshow-container {
       width: 100%;
-      height: 100vh;
+      height: 120vh;
       overflow: hidden;
+      position: relative;
     }
 
-    .banner-slideshow {
+    .slide {
       position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
-      background-size: cover;
-      background-position: center;
-      animation: slideshow 20s infinite;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
     }
 
-    @keyframes slideshow {
-      0%    { background-image: url("Exploded Organiser.32.jpg"); }
-      25%   { background-image: url("untitled.31.jpg"); }
-      50%   { background-image: url("untitled.34.jpg"); }
-      75%   { background-image: url("untitled.36.jpg"); }
-      100%  { background-image: url("Exploded Organiser.32.jpg"); }
+    .slide.active {
+      opacity: 1;
+      z-index: 1;
     }
 
     .profile-overlay {
@@ -88,6 +83,7 @@
       width: 550px;
       max-width: 90%;
       gap: 20px;
+      z-index: 2;
     }
 
     .profile-pic {
@@ -231,7 +227,7 @@
         gap: 30px;
       }
 
-      .banner-section {
+      .slideshow-container {
         height: 70vh;
       }
 
@@ -251,8 +247,14 @@
     </div>
   </header>
 
-  <div class="banner-section">
-    <div class="banner-slideshow"></div>
+  <!-- Slideshow Banner -->
+  <div class="slideshow-container">
+    <img src="Exploded Organiser.32.jpg" class="slide active" alt="Slide 1">
+    <img src="untitled.31.jpg" class="slide" alt="Slide 2">
+    <img src="untitled.34.jpg" class="slide" alt="Slide 3">
+    <img src="untitled.36.jpg" class="slide" alt="Slide 4">
+    <img src="untitled.37.jpg" class="slide" alt="Slide 5">
+
     <div class="profile-overlay">
       <img src="profile.jpg" alt="Portrait of Jack Simm" class="profile-pic" />
       <div class="titles">
@@ -318,9 +320,18 @@
     const menu = document.getElementById("dropdownMenu");
 
     toggle.addEventListener("click", () => {
-      const isVisible = menu.style.display === "flex";
-      menu.style.display = isVisible ? "none" : "flex";
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
     });
+
+    // Slideshow functionality
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 5000);
 
     feather.replace();
   </script>
