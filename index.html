@@ -5,14 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jack Simm – Product Designer</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/feather-icons"></script>
   <style>
     :root {
-      --bg: #f5f5f7;
-      --text: #1c1c1e;
-      --text-strong: #000;
-      --overlay-bg: rgba(255, 255, 255, 0.8);
-      --shadow: rgba(0, 0, 0, 0.1);
+      --bg: #ffffff;
+      --text: #1d1d1f;
+      --gray: #6e6e73;
+      --accent: #f5f5f7;
+      --shadow: rgba(0, 0, 0, 0.06);
     }
 
     body {
@@ -21,250 +20,217 @@
       background-color: var(--bg);
       color: var(--text);
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
     }
 
+    /* Header */
     header {
+      position: sticky;
+      top: 0;
+      background: #fff;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 24px 64px;
-      background-color: white;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-      user-select: none;
+      padding: 20px 64px;
+      z-index: 1000;
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
     }
 
-    .left {
-      font-size: 1.3rem;
+    .brand {
       font-weight: 600;
-      color: var(--text-strong);
+      font-size: 1.2rem;
       cursor: pointer;
     }
 
     .dropdown {
       position: absolute;
-      top: 72px;
+      top: 64px;
       left: 64px;
-      background: white;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-      border-radius: 12px;
       display: none;
       flex-direction: column;
-      min-width: 160px;
-      z-index: 110;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: all 0.3s ease;
     }
 
     .dropdown a {
-      padding: 16px 24px;
       text-decoration: none;
-      color: var(--text-strong);
-      font-weight: 600;
-      font-size: 1rem;
-      transition: background-color 0.25s ease;
-      border-radius: 12px;
+      padding: 16px 24px;
+      font-weight: 500;
+      color: var(--text);
+      transition: background 0.2s;
     }
 
-    .dropdown a:hover,
-    .dropdown a:focus {
-      background-color: #f0f0f3;
-      outline: none;
+    .dropdown a:hover {
+      background: #f2f2f5;
     }
 
-    .banner-section {
+    /* Banner */
+    .hero {
       position: relative;
       height: 100vh;
+      background: #000;
       overflow: hidden;
     }
 
-    .slide {
-      position: absolute;
+    .hero img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0;
-      transition: opacity 4s ease-in-out;
+      opacity: 0.9;
     }
 
-    .slide.active {
-      opacity: 1;
-      z-index: 1;
-    }
-
-    .profile-overlay {
+    .overlay {
       position: absolute;
-      bottom: 40px;
-      left: 40px;
-      background: var(--overlay-bg);
-      padding: 28px 36px;
-      border-radius: 16px;
+      bottom: 48px;
+      left: 64px;
       display: flex;
       align-items: center;
-      gap: 24px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      padding: 24px 32px;
+      border-radius: 18px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
       max-width: 480px;
-      box-shadow: 0 12px 24px var(--shadow);
-      z-index: 10;
-      backdrop-filter: saturate(180%) blur(20px);
+      gap: 24px;
     }
 
-    .profile-pic {
+    .overlay img {
       width: 96px;
       height: 96px;
       border-radius: 50%;
       object-fit: cover;
-      filter: none;
-      box-shadow: 0 0 0 4px var(--bg);
+      box-shadow: 0 0 0 3px white;
     }
 
-    .titles h2 {
-      margin: 0 0 6px;
+    .overlay-text h1 {
+      font-size: 1.5rem;
       font-weight: 700;
-      font-size: 1.35rem;
-      color: var(--text-strong);
-      line-height: 1.2;
+      margin: 0;
+      color: #000;
     }
 
-    .titles h2 + h2 {
-      font-weight: 600;
-      color: #444;
-      font-size: 1.05rem;
-      margin-top: 2px;
+    .overlay-text p {
+      margin: 4px 0 0;
+      font-size: 1rem;
+      color: var(--gray);
     }
 
-    .container {
-      max-width: 1100px;
-      margin: 80px auto 120px;
+    /* About */
+    .about {
+      max-width: 960px;
+      margin: 120px auto 160px;
       padding: 0 40px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
+      text-align: center;
     }
 
-    .about-text {
+    .about h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .about p {
       font-size: 1.125rem;
-      font-weight: 400;
-      color: #333;
-      max-width: 650px;
-      line-height: 1.5;
-      letter-spacing: -0.01em;
+      color: #444;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 64px 24px;
+      font-size: 0.9rem;
+      color: #aaa;
     }
 
     @media (max-width: 768px) {
       header {
-        padding: 20px 32px;
+        padding: 20px;
       }
-      .profile-overlay {
-        bottom: 20px;
+
+      .dropdown {
+        left: 20px;
+      }
+
+      .overlay {
         left: 20px;
         right: 20px;
-        max-width: none;
-        padding: 20px 24px;
-        gap: 18px;
+        bottom: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        max-width: 90%;
       }
-      .profile-pic {
+
+      .overlay img {
         width: 72px;
         height: 72px;
       }
-      .titles h2 {
-        font-size: 1.1rem;
+
+      .overlay-text h1 {
+        font-size: 1.25rem;
       }
-      .titles h2 + h2 {
-        font-size: 0.9rem;
+
+      .about h2 {
+        font-size: 2rem;
       }
-      .container {
-        margin: 40px auto 80px;
-        padding: 0 20px;
-      }
-      .about-text {
+
+      .about p {
         font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
+
   <header>
-    <div class="left" id="dropdownToggle" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu">
-      ≡ Jack Simm
-    </div>
-    <nav class="dropdown" id="dropdownMenu" role="menu" aria-label="Main navigation">
-      <a href="projects.html" role="menuitem" tabindex="-1">Projects</a>
-      <a href="gallery.html" role="menuitem" tabindex="-1">Gallery</a>
-      <a href="cv.html" role="menuitem" tabindex="-1">CV</a>
+    <div class="brand" onclick="toggleDropdown()">≡ Jack Simm</div>
+    <nav class="dropdown" id="dropdown">
+      <a href="projects.html">Projects</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="cv.html">CV</a>
     </nav>
   </header>
 
-  <section class="banner-section">
-    <img src="Exploded Organiser.32.jpg" alt="Render 1" class="slide active" />
-    <img src="untitled.31.jpg" alt="Render 2" class="slide" />
-    <img src="untitled.34.jpg" alt="Render 3" class="slide" />
-    <img src="untitled.36.jpg" alt="Render 4" class="slide" />
-    <img src="untitled.37.jpg" alt="Render 5" class="slide" />
-
-    <div class="profile-overlay" aria-label="About Jack Simm">
-      <img src="profile.jpg" alt="Portrait of Jack Simm" class="profile-pic" />
-      <div class="titles">
-        <h2>Jack Simm</h2>
-        <h2>Product Designer</h2>
-        <h2>Product Development Manager</h2>
+  <section class="hero">
+    <img src="Exploded Organiser.32.jpg" alt="Banner Image" />
+    <div class="overlay">
+      <img src="profile.jpg" alt="Jack Simm Headshot" />
+      <div class="overlay-text">
+        <h1>Jack Simm</h1>
+        <p>Product Designer & Development Manager</p>
       </div>
     </div>
   </section>
 
-  <main class="container" role="main">
-    <section aria-labelledby="about-heading" class="about-text">
-      <h3 id="about-heading" style="font-weight:700; font-size:1.5rem; margin-bottom:16px; color: var(--text-strong);">About Me</h3>
-      <p>
-        I’m a <strong>BA Product Design student</strong> and former <strong>Product Development Manager</strong> with a strong background in manufacturing engineering. I specialise in <strong>user-focused design</strong>, innovative problem-solving, and delivering practical solutions.
-      </p>
-    </section>
-  </main>
+  <section class="about">
+    <h2>About Me</h2>
+    <p>
+      I’m a BA Product Design student and former Product Development Manager with a manufacturing engineering background. I focus on user-centered design, turning complex problems into elegant, simple solutions.
+    </p>
+  </section>
 
-  <footer style="text-align:center; padding: 40px; font-size:0.9rem; color:#888;">
-    &copy; 2025 Jack Simm – Portfolio
+  <footer>
+    &copy; 2025 Jack Simm – All rights reserved.
   </footer>
 
   <script>
-    const toggle = document.getElementById('dropdownToggle');
-    const menu = document.getElementById('dropdownMenu');
+    const dropdown = document.getElementById('dropdown');
+    const toggle = document.querySelector('.brand');
 
-    toggle.addEventListener('click', () => {
-      const isVisible = menu.style.display === 'flex';
-      menu.style.display = isVisible ? 'none' : 'flex';
-      toggle.setAttribute('aria-expanded', String(!isVisible));
-    });
+    function toggleDropdown() {
+      dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+    }
 
     document.addEventListener('click', (e) => {
-      if (!menu.contains(e.target) && e.target !== toggle) {
-        menu.style.display = 'none';
-        toggle.setAttribute('aria-expanded', 'false');
+      if (!dropdown.contains(e.target) && e.target !== toggle) {
+        dropdown.style.display = 'none';
       }
     });
-
-    toggle.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggle.click();
-      }
-    });
-
-    const slides = document.querySelectorAll('.slide');
-    let current = 0;
-
-    setInterval(() => {
-      slides[current].classList.remove('active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('active');
-    }, 10000);
-
-    feather.replace();
-  </script>
-</body>
-</html>
-
-
-    feather.replace();
   </script>
 </body>
 </html>
