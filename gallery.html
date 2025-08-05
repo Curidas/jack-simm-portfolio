@@ -37,6 +37,7 @@
     .left {
       font-weight: 600;
       cursor: pointer;
+      user-select: none;
     }
 
     .dropdown {
@@ -50,6 +51,7 @@
       flex-direction: column;
       z-index: 1000;
       overflow: hidden;
+      min-width: 140px;
     }
 
     .dropdown a {
@@ -58,10 +60,13 @@
       color: var(--text);
       font-weight: 500;
       transition: background 0.2s;
+      white-space: nowrap;
     }
 
-    .dropdown a:hover {
+    .dropdown a:hover,
+    .dropdown a:focus {
       background-color: var(--accent);
+      outline: none;
     }
 
     /* Gallery Layout */
@@ -81,11 +86,14 @@
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       cursor: zoom-in;
+      user-select: none;
     }
 
-    .gallery-container img:hover {
+    .gallery-container img:hover,
+    .gallery-container img:focus {
       transform: scale(1.015);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+      outline: none;
     }
 
     /* Lightbox */
@@ -131,39 +139,62 @@
 
   <!-- Navigation Header -->
   <header>
-    <div class="left" onclick="toggleDropdown()">≡ Jack Simm</div>
-    <div class="dropdown" id="dropdownMenu">
-      <a href="index.html">Home</a>
-      <a href="projects.html">Projects</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="cv.html">CV</a>
+    <div class="left" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu" onclick="toggleDropdown()" onkeydown="handleKey(event)">
+      ≡ Jack Simm
     </div>
+    <nav class="dropdown" id="dropdownMenu" role="menu" aria-label="Main navigation">
+      <a href="index.html" role="menuitem" tabindex="-1">Home</a>
+      <a href="projects.html" role="menuitem" tabindex="-1">Projects</a>
+      <a href="gallery.html" role="menuitem" tabindex="-1">Gallery</a>
+      <a href="cv.html" role="menuitem" tabindex="-1">CV</a>
+    </nav>
   </header>
 
   <!-- Gallery Section -->
-  <section class="gallery-container">
-    <img src="Exploded Organiser.32.jpg" alt="Exploded Organiser Render" loading="lazy" />
-    <img src="untitled.31.jpg" alt="Untitled Design Render" loading="lazy" />
-    <img src="untitled.34.jpg" alt="Yellow 3D Object" loading="lazy" />
-    <img src="untitled.36.jpg" alt="Red Exploded Product Design" loading="lazy" />
-    <img src="untitled.37.jpg" alt="Chrome and Orange Component Design" loading="lazy" />
+  <section class="gallery-container" aria-label="Gallery of design images">
+    <img src="Exploded Organiser.32.jpg" alt="Exploded Organiser Render" loading="lazy" tabindex="0" />
+    <img src="untitled.31.jpg" alt="Untitled Design Render" loading="lazy" tabindex="0" />
+    <img src="untitled.34.jpg" alt="Yellow 3D Object" loading="lazy" tabindex="0" />
+    <img src="untitled.36.jpg" alt="Red Exploded Product Design" loading="lazy" tabindex="0" />
+    <img src="untitled.37.jpg" alt="Chrome and Orange Component Design" loading="lazy" tabindex="0" />
   </section>
 
   <!-- Lightbox -->
-  <div id="lightbox" class="lightbox">
-    <img id="lightbox-img" src="" alt="Enlarged view" />
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged image view">
+    <img id="lightbox-img" src="" alt="Enlarged view" tabindex="0" />
   </div>
 
   <script>
-    // Toggle dropdown
+    // Dropdown toggle function with ARIA updates
     const toggle = document.querySelector(".left");
     const menu = document.getElementById("dropdownMenu");
 
-    toggle.addEventListener("click", () => {
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    function toggleDropdown() {
+      const isOpen = menu.style.display === "flex";
+      menu.style.display = isOpen ? "none" : "flex";
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+    }
+
+    function handleKey(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleDropdown();
+      }
+      if (e.key === 'Escape') {
+        menu.style.display = 'none';
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+        menu.style.display = 'none';
+        toggle.setAttribute('aria-expanded', 'false');
+      }
     });
 
-    // Lightbox
+    // Lightbox functionality
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const images = document.querySelectorAll('.gallery-container img');
@@ -171,22 +202,36 @@
     images.forEach(img => {
       img.addEventListener('click', () => {
         lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
         lightbox.style.display = 'flex';
         document.body.style.overflow = 'hidden';
+        lightboxImg.focus();
+      });
+      img.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt;
+          lightbox.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+          lightboxImg.focus();
+        }
       });
     });
 
-    lightbox.addEventListener('click', () => {
+    function closeLightbox() {
       lightbox.style.display = 'none';
       lightboxImg.src = '';
+      lightboxImg.alt = '';
       document.body.style.overflow = '';
-    });
+      toggle.focus();
+    }
+
+    lightbox.addEventListener('click', closeLightbox);
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        lightbox.style.display = 'none';
-        lightboxImg.src = '';
-        document.body.style.overflow = '';
+      if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+        closeLightbox();
       }
     });
 
