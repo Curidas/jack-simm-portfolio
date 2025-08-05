@@ -4,86 +4,79 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jack Simm – Product Designer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/feather-icons"></script>
   <style>
-    /* Base reset and fonts */
-    body {
-      margin: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      background-color: #fff;
-      color: #1d1d1f;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: 1.6;
-      overflow-x: hidden;
+    :root {
+      --bg: #f5f5f7;
+      --text: #1c1c1e;
+      --text-strong: #000;
+      --overlay-bg: rgba(255, 255, 255, 0.8);
+      --shadow: rgba(0, 0, 0, 0.1);
     }
 
-    /* HEADER */
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 28px 80px;
-      background: #fff;
-      border-bottom: 1px solid #d2d2d7;
+      padding: 24px 64px;
+      background-color: white;
       position: sticky;
       top: 0;
       z-index: 100;
-      font-weight: 600;
-      font-size: 1.3rem;
-      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
       user-select: none;
-      color: #000;
-      transition: box-shadow 0.25s ease;
-    }
-
-    header:hover {
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.07);
     }
 
     .left {
-      letter-spacing: 0.04em;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-strong);
+      cursor: pointer;
     }
 
     .dropdown {
       position: absolute;
       top: 72px;
-      left: 80px;
-      background: #fff;
-      box-shadow: 0 12px 40px rgb(0 0 0 / 0.12);
-      border-radius: 16px;
+      left: 64px;
+      background: white;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      border-radius: 12px;
       display: none;
       flex-direction: column;
-      min-width: 200px;
-      padding: 12px 0;
-      font-weight: 600;
-      font-size: 1rem;
-      user-select: none;
+      min-width: 160px;
+      z-index: 110;
     }
 
     .dropdown a {
-      padding: 16px 32px;
+      padding: 16px 24px;
       text-decoration: none;
-      color: #1d1d1f;
-      transition: background-color 0.3s ease;
+      color: var(--text-strong);
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background-color 0.25s ease;
       border-radius: 12px;
     }
 
-    .dropdown a:hover {
-      background-color: #f2f2f7;
+    .dropdown a:hover,
+    .dropdown a:focus {
+      background-color: #f0f0f3;
+      outline: none;
     }
 
-    /* BANNER */
     .banner-section {
       position: relative;
-      height: 90vh;
+      height: 100vh;
       overflow: hidden;
-      background: #fafafa;
-      display: flex;
-      align-items: center;
-      padding-left: 80px;
     }
 
     .slide {
@@ -93,9 +86,6 @@
       object-fit: cover;
       opacity: 0;
       transition: opacity 4s ease-in-out;
-      top: 0;
-      left: 0;
-      z-index: 0;
     }
 
     .slide.active {
@@ -103,234 +93,159 @@
       z-index: 1;
     }
 
-    /* ABOUT OVERLAY */
-    .about-overlay {
-      position: relative;
-      background: rgba(255 255 255 / 0.72);
-      padding: 28px 40px;
-      border-radius: 24px;
+    .profile-overlay {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      background: var(--overlay-bg);
+      padding: 28px 36px;
+      border-radius: 16px;
       display: flex;
       align-items: center;
-      gap: 28px;
-      max-width: 520px;
-      box-shadow: 0 32px 60px rgb(0 0 0 / 0.10);
-      backdrop-filter: saturate(180%) blur(12px);
+      gap: 24px;
+      max-width: 480px;
+      box-shadow: 0 12px 24px var(--shadow);
       z-index: 10;
-      animation: fadeInUp 1s ease forwards;
+      backdrop-filter: saturate(180%) blur(20px);
     }
 
     .profile-pic {
-      flex-shrink: 0;
-      width: 130px;
-      height: 130px;
+      width: 96px;
+      height: 96px;
       border-radius: 50%;
       object-fit: cover;
-      filter: grayscale(0%);
-      box-shadow: 0 12px 32px rgb(0 0 0 / 0.12);
-      cursor: default;
-      transition: transform 0.3s ease;
+      filter: none;
+      box-shadow: 0 0 0 4px var(--bg);
     }
 
-    .profile-pic:hover {
-      transform: scale(1.06);
+    .titles h2 {
+      margin: 0 0 6px;
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: var(--text-strong);
+      line-height: 1.2;
+    }
+
+    .titles h2 + h2 {
+      font-weight: 600;
+      color: #444;
+      font-size: 1.05rem;
+      margin-top: 2px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 80px auto 120px;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
     }
 
     .about-text {
-      max-width: 380px;
-      color: #1d1d1f;
-      text-shadow: none;
+      font-size: 1.125rem;
+      font-weight: 400;
+      color: #333;
+      max-width: 650px;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
     }
 
-    .about-text h2 {
-      font-weight: 300;
-      font-size: 2.8rem;
-      margin: 0 0 12px 0;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      color: #111;
-    }
-
-    .about-text p {
-      font-weight: 300;
-      font-size: 1.25rem;
-      line-height: 1.65;
-      color: #4a4a4a;
-      margin: 0;
-      letter-spacing: 0.01em;
-    }
-
-    /* CONTACT */
-    .contact-section {
-      text-align: center;
-      margin: 140px 0 80px;
-      font-weight: 600;
-      color: #1d1d1f;
-      animation: fadeIn 1.2s ease forwards;
-    }
-
-    .contact-links {
-      display: inline-flex;
-      gap: 48px;
-      margin-top: 32px;
-      justify-content: center;
-    }
-
-    .contact-links a {
-      color: #1d1d1f;
-      transition: color 0.3s ease;
-      outline-offset: 4px;
-    }
-
-    .contact-links a:hover,
-    .contact-links a:focus {
-      color: #0071e3;
-      outline: none;
-    }
-
-    .contact-links i,
-    .contact-links svg {
-      width: 32px;
-      height: 32px;
-      stroke-width: 2.5;
-      stroke: currentColor;
-      display: block;
-    }
-
-    footer {
-      text-align: center;
-      padding: 48px 24px;
-      font-size: 1rem;
-      color: #8e8e93;
-      border-top: 1px solid #d2d2d7;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      user-select: none;
-      animation: fadeIn 1.5s ease forwards;
-    }
-
-    /* ANIMATIONS */
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
+    @media (max-width: 768px) {
       header {
-        padding: 20px 48px;
-        font-size: 1.1rem;
+        padding: 20px 32px;
       }
-
-      .banner-section {
-        padding-left: 40px;
-        justify-content: center;
+      .profile-overlay {
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        max-width: none;
+        padding: 20px 24px;
+        gap: 18px;
       }
-
-      .about-overlay {
-        max-width: 90vw;
-        padding: 24px 28px;
-        gap: 20px;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
       .profile-pic {
-        width: 110px;
-        height: 110px;
+        width: 72px;
+        height: 72px;
       }
-
-      .about-text h2 {
-        font-size: 2.2rem;
-      }
-
-      .about-text p {
+      .titles h2 {
         font-size: 1.1rem;
       }
-    }
-
-    @media (max-width: 480px) {
-      header {
-        padding: 16px 24px;
+      .titles h2 + h2 {
+        font-size: 0.9rem;
+      }
+      .container {
+        margin: 40px auto 80px;
+        padding: 0 20px;
+      }
+      .about-text {
         font-size: 1rem;
-      }
-
-      .contact-section {
-        margin: 100px 20px 60px;
-      }
-
-      .contact-links {
-        gap: 32px;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="left" onclick="toggleDropdown()" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">≡ Jack Simm</div>
-    <nav class="dropdown" id="dropdownMenu" aria-label="Primary Navigation">
-      <a href="projects.html">Projects</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="cv.html">CV</a>
+    <div class="left" id="dropdownToggle" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu">
+      ≡ Jack Simm
+    </div>
+    <nav class="dropdown" id="dropdownMenu" role="menu" aria-label="Main navigation">
+      <a href="projects.html" role="menuitem" tabindex="-1">Projects</a>
+      <a href="gallery.html" role="menuitem" tabindex="-1">Gallery</a>
+      <a href="cv.html" role="menuitem" tabindex="-1">CV</a>
     </nav>
   </header>
 
-  <section class="banner-section" aria-label="Banner with renders">
+  <section class="banner-section">
     <img src="Exploded Organiser.32.jpg" alt="Render 1" class="slide active" />
     <img src="untitled.31.jpg" alt="Render 2" class="slide" />
     <img src="untitled.34.jpg" alt="Render 3" class="slide" />
     <img src="untitled.36.jpg" alt="Render 4" class="slide" />
     <img src="untitled.37.jpg" alt="Render 5" class="slide" />
 
-    <div class="about-overlay" aria-label="About Jack Simm">
+    <div class="profile-overlay" aria-label="About Jack Simm">
       <img src="profile.jpg" alt="Portrait of Jack Simm" class="profile-pic" />
-      <div class="about-text">
+      <div class="titles">
         <h2>Jack Simm</h2>
-        <p>I’m a <strong>BA Product Design student</strong> and former <strong>Product Development Manager</strong> with a strong background in manufacturing engineering. I specialise in <strong>user-focused design</strong>, innovative problem-solving, and delivering practical solutions.</p>
+        <h2>Product Designer</h2>
+        <h2>Product Development Manager</h2>
       </div>
     </div>
   </section>
 
-  <section class="contact-section">
-    <h3>Contact Me</h3>
-    <div class="contact-links">
-      <a href="mailto:jack.simm.design@gmail.com" aria-label="Email Jack Simm" tabindex="0">
-        <i data-feather="mail"></i>
-      </a>
-      <a href="https://www.instagram.com/jack_simm_design" target="_blank" rel="noopener" aria-label="Instagram" tabindex="0">
-        <i data-feather="instagram"></i>
-      </a>
-    </div>
-  </section>
+  <main class="container" role="main">
+    <section aria-labelledby="about-heading" class="about-text">
+      <h3 id="about-heading" style="font-weight:700; font-size:1.5rem; margin-bottom:16px; color: var(--text-strong);">About Me</h3>
+      <p>
+        I’m a <strong>BA Product Design student</strong> and former <strong>Product Development Manager</strong> with a strong background in manufacturing engineering. I specialise in <strong>user-focused design</strong>, innovative problem-solving, and delivering practical solutions.
+      </p>
+    </section>
+  </main>
 
-  <footer>&copy; 2025 Jack Simm – Portfolio</footer>
+  <footer style="text-align:center; padding: 40px; font-size:0.9rem; color:#888;">
+    &copy; 2025 Jack Simm – Portfolio
+  </footer>
 
   <script>
-    const toggle = document.querySelector(".left");
-    const menu = document.getElementById("dropdownMenu");
+    const toggle = document.getElementById('dropdownToggle');
+    const menu = document.getElementById('dropdownMenu');
 
-    function toggleDropdown() {
-      const expanded = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', !expanded);
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-    }
+    toggle.addEventListener('click', () => {
+      const isVisible = menu.style.display === 'flex';
+      menu.style.display = isVisible ? 'none' : 'flex';
+      toggle.setAttribute('aria-expanded', String(!isVisible));
+    });
 
-    toggle.addEventListener("click", toggleDropdown);
-    toggle.addEventListener("keydown", (e) => {
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && e.target !== toggle) {
+        menu.style.display = 'none';
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    toggle.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        toggleDropdown();
+        toggle.click();
       }
     });
 
@@ -342,6 +257,12 @@
       current = (current + 1) % slides.length;
       slides[current].classList.add('active');
     }, 10000);
+
+    feather.replace();
+  </script>
+</body>
+</html>
+
 
     feather.replace();
   </script>
