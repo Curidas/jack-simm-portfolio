@@ -4,238 +4,63 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gallery – Jack Simm</title>
-  <script src="https://unpkg.com/feather-icons"></script>
   <style>
-    :root {
-      --bg: #f9f9f9;
-      --text: #111;
-      --accent: #ddd;
-    }
-
     body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'SF Pro Display', sans-serif;
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      background: #fafafa;
+      color: #111;
     }
 
-    /* Header */
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 48px;
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      background: #fff;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 20px 60px;
+      background: white;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
       position: sticky;
       top: 0;
-      z-index: 100;
     }
 
-    .left {
-      font-weight: 600;
-      cursor: pointer;
-      user-select: none;
+    header h1 {
+      font-size: 1.4rem;
     }
 
-    .dropdown {
-      position: absolute;
-      top: 70px;
-      left: 48px;
-      background: white;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-      border-radius: 12px;
-      display: none;
-      flex-direction: column;
-      z-index: 1000;
-      overflow: hidden;
-      min-width: 140px;
-    }
-
-    .dropdown a {
-      padding: 16px 24px;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 500;
-      transition: background 0.2s;
-      white-space: nowrap;
-    }
-
-    .dropdown a:hover,
-    .dropdown a:focus {
-      background-color: var(--accent);
-      outline: none;
-    }
-
-    /* Gallery Layout */
-    .gallery-container {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 32px;
-      padding: 60px clamp(16px, 5vw, 60px);
-      max-width: 1600px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      padding: 60px;
     }
 
-    .gallery-container img {
+    .grid img {
       width: 100%;
-      height: auto;
       border-radius: 16px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      cursor: zoom-in;
-      user-select: none;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      object-fit: cover;
     }
 
-    .gallery-container img:hover,
-    .gallery-container img:focus {
-      transform: scale(1.015);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-      outline: none;
-    }
-
-    /* Lightbox */
-    .lightbox {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.95);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-
-    .lightbox img {
-      max-width: 92%;
-      max-height: 92%;
-      border-radius: 12px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-      cursor: zoom-out;
-    }
-
-    @media (max-width: 600px) {
-      .gallery-container {
-        grid-template-columns: 1fr;
-        gap: 24px;
-        padding: 40px 16px;
-      }
-
-      header {
-        padding: 20px;
-      }
-
-      .dropdown {
-        left: 20px;
-      }
+    footer {
+      text-align: center;
+      padding: 60px 20px;
+      font-size: 0.9rem;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Header -->
   <header>
-    <div class="left" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu" onclick="toggleDropdown()" onkeydown="handleKey(event)">
-      ≡ Jack Simm
-    </div>
-    <nav class="dropdown" id="dropdownMenu" role="menu" aria-label="Main navigation">
-      <a href="index.html" role="menuitem" tabindex="-1">Home</a>
-      <a href="projects.html" role="menuitem" tabindex="-1">Projects</a>
-      <a href="gallery.html" role="menuitem" tabindex="-1">Gallery</a>
-      <a href="cv.html" role="menuitem" tabindex="-1">CV</a>
-    </nav>
+    <h1>Gallery – Jack Simm</h1>
   </header>
 
-  <!-- Gallery Section -->
-  <section class="gallery-container" aria-label="Gallery of design images">
-    <img src="Exploded Organiser.32.jpg" alt="Exploded Organiser Render" loading="lazy" tabindex="0" />
-    <img src="untitled.31.jpg" alt="Untitled Design Render" loading="lazy" tabindex="0" />
-    <img src="untitled.34.jpg" alt="Yellow 3D Object" loading="lazy" tabindex="0" />
-    <img src="untitled.36.jpg" alt="Red Exploded Product Design" loading="lazy" tabindex="0" />
-    <img src="untitled.37.jpg" alt="Chrome and Orange Component Design" loading="lazy" tabindex="0" />
+  <section class="grid">
+    <img src="g.bip.25.JPG" alt="Design 1" />
+    <img src="untitled.31.jpg" alt="Design 2" />
+    <!-- Add more images as needed -->
   </section>
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged image view">
-    <img id="lightbox-img" src="" alt="Enlarged view" tabindex="0" />
-  </div>
+  <footer>
+    &copy; 2025 Jack Simm – Portfolio
+  </footer>
 
-  <script>
-    // Dropdown toggle function with ARIA updates
-    const toggle = document.querySelector(".left");
-    const menu = document.getElementById("dropdownMenu");
-
-    function toggleDropdown() {
-      const isOpen = menu.style.display === "flex";
-      menu.style.display = isOpen ? "none" : "flex";
-      toggle.setAttribute('aria-expanded', String(!isOpen));
-    }
-
-    function handleKey(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggleDropdown();
-      }
-      if (e.key === 'Escape') {
-        menu.style.display = 'none';
-        toggle.setAttribute('aria-expanded', 'false');
-      }
-    }
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-        menu.style.display = 'none';
-        toggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    // Lightbox functionality
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const images = document.querySelectorAll('.gallery-container img');
-
-    images.forEach(img => {
-      img.addEventListener('click', () => {
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
-        lightbox.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-        lightboxImg.focus();
-      });
-      img.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          lightboxImg.src = img.src;
-          lightboxImg.alt = img.alt;
-          lightbox.style.display = 'flex';
-          document.body.style.overflow = 'hidden';
-          lightboxImg.focus();
-        }
-      });
-    });
-
-    function closeLightbox() {
-      lightbox.style.display = 'none';
-      lightboxImg.src = '';
-      lightboxImg.alt = '';
-      document.body.style.overflow = '';
-      toggle.focus();
-    }
-
-    lightbox.addEventListener('click', closeLightbox);
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.style.display === 'flex') {
-        closeLightbox();
-      }
-    });
-
-    feather.replace();
-  </script>
 </body>
 </html>
