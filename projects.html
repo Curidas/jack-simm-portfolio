@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Projects – Jack Simm</title>
   <style>
     :root {
-      --bg: #ffffff;
-      --text: #1c1c1c;
+      --bg: #fff;
+      --text: #1d1d1f;
       --accent: #f5f5f7;
-      --shadow: rgba(0, 0, 0, 0.1);
+      --shadow-light: rgba(0, 0, 0, 0.07);
+      --shadow-hover: rgba(0, 0, 0, 0.12);
     }
 
     body {
@@ -19,77 +20,102 @@
       color: var(--text);
       font-size: clamp(1rem, 1.2vw, 1.1rem);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
+    /* Header */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
-      background-color: #1c1c1c;
-      color: #eee;
+      padding: 24px 48px;
+      background: #fff;
+      border-bottom: 1px solid #d2d2d7;
+      position: sticky;
+      top: 0;
+      z-index: 100;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      user-select: none;
+      cursor: pointer;
+      color: var(--text);
+      transition: box-shadow 0.25s ease;
+    }
+    header:hover {
+      box-shadow: 0 2px 8px var(--shadow-light);
     }
 
     .left {
-      cursor: pointer;
+      letter-spacing: 0.04em;
     }
 
     .dropdown {
       position: absolute;
-      top: 60px;
-      left: 40px;
-      background: #2a2a2a;
-      border-radius: 8px;
+      top: 70px;
+      left: 48px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 24px var(--shadow-light);
       display: none;
       flex-direction: column;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      z-index: 10;
+      z-index: 1000;
+      min-width: 140px;
+      overflow: hidden;
     }
 
     .dropdown a {
-      padding: 14px 24px;
+      padding: 16px 24px;
       text-decoration: none;
-      color: #eee;
+      color: var(--text);
       font-weight: 500;
+      white-space: nowrap;
+      transition: background-color 0.2s ease;
     }
 
-    .dropdown a:hover {
-      background-color: #383838;
+    .dropdown a:hover,
+    .dropdown a:focus {
+      background-color: var(--accent);
+      outline: none;
     }
 
+    /* Container */
     .container {
-      max-width: 1200px;
-      margin: 80px auto;
-      padding: 0 30px;
+      max-width: 1400px;
+      margin: 80px auto 120px;
+      padding: 0 clamp(16px, 5vw, 48px);
     }
 
     h1 {
       text-align: center;
       font-size: clamp(2rem, 4vw, 3rem);
-      margin-bottom: 60px;
-      color: #111;
+      margin-bottom: 72px;
+      color: var(--text);
       font-weight: 600;
       letter-spacing: -0.5px;
     }
 
+    /* Projects Grid */
     .project-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 48px;
     }
 
     .project img {
       width: 100%;
-      border-radius: 14px;
-      box-shadow: 0 10px 30px var(--shadow);
+      border-radius: 16px;
+      box-shadow: 0 16px 40px var(--shadow-light);
       transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: zoom-in;
+      user-select: none;
     }
 
-    .project img:hover {
+    .project img:hover,
+    .project img:focus {
       transform: scale(1.015);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 20px 60px var(--shadow-hover);
+      outline: none;
     }
 
     footer {
@@ -101,57 +127,78 @@
 
     @media (max-width: 600px) {
       .container {
+        margin: 60px auto 80px;
         padding: 0 16px;
       }
-
       header {
-        padding: 20px;
+        padding: 20px 16px;
+      }
+      .dropdown {
+        left: 16px;
+        top: 60px;
       }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="left" onclick="toggleDropdown()">≡ Jack Simm</div>
-    <div class="dropdown" id="dropdownMenu">
-      <a href="index.html">Home</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="cv.html">CV</a>
-    </div>
-  </header>
-
-  <div class="container">
-    <h1>Projects</h1>
-    <div class="project-grid">
-      <div class="project">
-        <img src="Exploded Organiser.32.jpg" alt="Exploded Organiser View" />
-      </div>
-      <div class="project">
-        <img src="untitled.31.jpg" alt="Exploded Organiser View 2" />
-      </div>
-      <!-- Add more projects as needed -->
-    </div>
+<header>
+  <div class="left" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu" onclick="toggleDropdown()" onkeydown="handleKey(event)">
+    ≡ Jack Simm
   </div>
+  <nav class="dropdown" id="dropdownMenu" role="menu" aria-label="Main navigation">
+    <a href="index.html" role="menuitem" tabindex="-1">Home</a>
+    <a href="gallery.html" role="menuitem" tabindex="-1">Gallery</a>
+    <a href="projects.html" role="menuitem" tabindex="-1">Projects</a>
+    <a href="cv.html" role="menuitem" tabindex="-1">CV</a>
+  </nav>
+</header>
 
-  <footer>
-    &copy; 2025 Jack Simm – Portfolio
-  </footer>
+<div class="container">
+  <h1>Projects</h1>
+  <div class="project-grid">
+    <div class="project">
+      <img src="Exploded Organiser.32.jpg" alt="Exploded Organiser View" tabindex="0" />
+    </div>
+    <div class="project">
+      <img src="untitled.31.jpg" alt="Exploded Organiser View 2" tabindex="0" />
+    </div>
+    <!-- Add more projects as needed -->
+  </div>
+</div>
 
-  <script>
-    const toggle = document.querySelector(".left");
-    const menu = document.getElementById("dropdownMenu");
+<footer>
+  &copy; 2025 Jack Simm – Portfolio
+</footer>
 
-    toggle.addEventListener("click", () => {
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-    });
+<script>
+  const toggle = document.querySelector(".left");
+  const menu = document.getElementById("dropdownMenu");
 
-    document.addEventListener("click", (e) => {
-      if (!menu.contains(e.target) && e.target !== toggle) {
-        menu.style.display = "none";
-      }
-    });
-  </script>
+  function toggleDropdown() {
+    const isOpen = menu.style.display === "flex";
+    menu.style.display = isOpen ? "none" : "flex";
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+  }
+
+  function handleKey(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleDropdown();
+    }
+    if (e.key === 'Escape') {
+      menu.style.display = 'none';
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  document.addEventListener("click", (e) => {
+    if (!menu.contains(e.target) && e.target !== toggle) {
+      menu.style.display = "none";
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>
 
 </body>
 </html>
