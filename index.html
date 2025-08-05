@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jack Simm – Product Designer</title>
   <script src="https://unpkg.com/feather-icons"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -238,9 +239,9 @@
     </div>
   </header>
 
-  <div class="banner-section">
+  <div class="banner-section" data-aos="fade-up">
     <img src="Exploded Organiser.32.jpg" alt="Exploded organiser product render by Jack Simm" class="banner-img" loading="lazy" />
-    <div class="profile-overlay">
+    <div class="profile-overlay" data-aos="zoom-in" data-aos-delay="200">
       <img src="profile.jpg" alt="Portrait of Jack Simm" class="profile-pic" />
       <div class="titles">
         <h2>Jack Simm</h2>
@@ -250,14 +251,14 @@
     </div>
   </div>
 
-  <div class="mobile-profile">
+  <div class="mobile-profile" data-aos="fade-up" data-aos-delay="300">
     <img src="profile.jpg" alt="Jack Simm" loading="lazy" />
     <h2>Jack Simm</h2>
     <h2>Product Designer</h2>
     <h2>Product Development Manager</h2>
   </div>
 
-  <div class="container">
+  <div class="container" data-aos="fade-up" data-aos-delay="400">
     <div class="row">
       <div class="column">
         <h3>About Me</h3>
@@ -286,7 +287,7 @@
     </div>
   </div>
 
-  <div class="contact-section">
+  <div class="contact-section" data-aos="fade-up" data-aos-delay="500">
     <h3>Contact Me</h3>
     <div class="contact-links">
       <a href="mailto:jack.simm.design@gmail.com" aria-label="Email Jack Simm">
@@ -310,6 +311,13 @@
     });
 
     feather.replace();
+  </script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
   </script>
 </body>
 </html>
