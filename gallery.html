@@ -125,6 +125,7 @@
     <img src="untitled.31.jpg" alt="Untitled Design Render" loading="lazy" />
     <img src="untitled.34.jpg" alt="Yellow 3D Object" loading="lazy" />
     <img src="untitled.36.jpg" alt="Red Exploded Product Design" loading="lazy" />
+    <img src="untitled.37.jpg" alt="Chrome and Orange Component Design" loading="lazy" />
   </div>
 
   <!-- Lightbox -->
@@ -149,6 +150,7 @@
     images.forEach(img => {
       img.addEventListener('click', () => {
         lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
         lightbox.style.display = 'flex';
         document.body.style.overflow = 'hidden';
       });
@@ -157,6 +159,7 @@
     lightbox.addEventListener('click', () => {
       lightbox.style.display = 'none';
       lightboxImg.src = '';
+      lightboxImg.alt = '';
       document.body.style.overflow = '';
     });
 
@@ -164,6 +167,7 @@
       if (e.key === 'Escape') {
         lightbox.style.display = 'none';
         lightboxImg.src = '';
+        lightboxImg.alt = '';
         document.body.style.overflow = '';
       }
     });
