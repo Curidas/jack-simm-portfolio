@@ -2,255 +2,160 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jack Simm – Product Designer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gallery – Jack Simm</title>
   <script src="https://unpkg.com/feather-icons"></script>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #f5f5f7;
-      color: #1c1c1e;
+    :root {
+      --bg: #f9f9f9;
+      --text: #111;
+      --accent: #ddd;
     }
 
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Header */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 24px 64px;
-      background-color: white;
+      padding: 24px 48px;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
     }
 
     .left {
-      font-size: 1.3rem;
       font-weight: 600;
-      color: #000;
       cursor: pointer;
     }
 
     .dropdown {
       position: absolute;
-      top: 80px;
-      left: 64px;
+      top: 70px;
+      left: 48px;
       background: white;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      border-radius: 12px;
       display: none;
       flex-direction: column;
-    }
-
-    .dropdown a {
-      padding: 14px 20px;
-      text-decoration: none;
-      color: #1c1c1e;
-      font-weight: 500;
-    }
-
-    .dropdown a:hover {
-      background-color: #f0f0f0;
-    }
-
-    .banner-section {
-      position: relative;
-      height: 100vh;
+      z-index: 1000;
       overflow: hidden;
     }
 
-    .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 4s ease-in-out;
-    }
-
-    .slide.active {
-      opacity: 1;
-      z-index: 1;
-    }
-
-    .profile-overlay {
-      position: absolute;
-      bottom: 80px;
-      left: 80px;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 30px 50px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      max-width: 600px;
-      z-index: 2;
-    }
-
-    .profile-pic {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      filter: grayscale(100%);
-      border: 2px solid #000;
-    }
-
-    .titles h2 {
-      margin: 4px 0;
-      font-weight: 600;
-      font-size: 1.25rem;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 80px auto;
-      padding: 0 40px;
-    }
-
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 60px;
-    }
-
-    .column {
-      flex: 1;
-      min-width: 300px;
-    }
-
-    h3 {
-      font-size: 1.6rem;
-      margin-bottom: 12px;
-      font-weight: 600;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    ul li {
-      margin-bottom: 10px;
-    }
-
-    .contact-section {
-      text-align: center;
-      margin-top: 100px;
-    }
-
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 20px;
-    }
-
-    .contact-links a {
-      color: #1c1c1e;
+    .dropdown a {
+      padding: 16px 24px;
       text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: background 0.2s;
     }
 
-    .contact-links i,
-    .contact-links svg {
-      width: 28px;
-      height: 28px;
-      stroke: #1c1c1e;
+    .dropdown a:hover {
+      background-color: var(--accent);
     }
 
-    footer {
-      text-align: center;
-      padding: 40px;
-      font-size: 0.9rem;
-      color: #888;
+    /* Gallery Layout */
+    .gallery-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      padding: 60px clamp(16px, 5vw, 60px);
+      max-width: 1600px;
+      margin: 0 auto;
     }
 
-    @media (max-width: 768px) {
+    .gallery-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: zoom-in;
+    }
+
+    .gallery-container img:hover {
+      transform: scale(1.015);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.95);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .lightbox img {
+      max-width: 92%;
+      max-height: 92%;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      cursor: zoom-out;
+    }
+
+    @media (max-width: 600px) {
+      .gallery-container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 40px 16px;
+      }
+
       header {
         padding: 20px;
       }
-      .profile-overlay {
+
+      .dropdown {
         left: 20px;
-        right: 20px;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 20px;
-      }
-      .titles h2 {
-        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
+
+  <!-- Navigation Header -->
   <header>
     <div class="left" onclick="toggleDropdown()">≡ Jack Simm</div>
     <div class="dropdown" id="dropdownMenu">
+      <a href="index.html">Home</a>
       <a href="projects.html">Projects</a>
       <a href="gallery.html">Gallery</a>
       <a href="cv.html">CV</a>
     </div>
   </header>
 
-  <div class="banner-section">
-    <img src="Exploded Organiser.32.jpg" alt="Render 1" class="slide active" />
-    <img src="untitled.31.jpg" alt="Render 2" class="slide" />
-    <img src="untitled.34.jpg" alt="Render 3" class="slide" />
-    <img src="untitled.36.jpg" alt="Render 4" class="slide" />
-    <img src="untitled.37.jpg" alt="Render 5" class="slide" />
+  <!-- Gallery Section -->
+  <section class="gallery-container">
+    <img src="Exploded Organiser.32.jpg" alt="Exploded Organiser Render" loading="lazy" />
+    <img src="untitled.31.jpg" alt="Untitled Design Render" loading="lazy" />
+    <img src="untitled.34.jpg" alt="Yellow 3D Object" loading="lazy" />
+    <img src="untitled.36.jpg" alt="Red Exploded Product Design" loading="lazy" />
+    <img src="untitled.37.jpg" alt="Chrome and Orange Component Design" loading="lazy" />
+  </section>
 
-    <div class="profile-overlay">
-      <img src="profile.jpg" alt="Portrait of Jack Simm" class="profile-pic" />
-      <div class="titles">
-        <h2>Jack Simm</h2>
-        <h2>Product Designer</h2>
-        <h2>Product Development Manager</h2>
-      </div>
-    </div>
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <img id="lightbox-img" src="" alt="Enlarged view" />
   </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="column">
-        <h3>About Me</h3>
-        <p>I’m a <strong>BA Product Design student</strong> and former <strong>Product Development Manager</strong> with a strong background in manufacturing engineering. I specialise in <strong>user-focused design</strong>, innovative problem-solving, and delivering practical solutions.</p>
-      </div>
-      <div class="column">
-        <h3>Experience</h3>
-        <ul>
-          <li><strong>Product Development Manager</strong> – Fabb Brothers (2024)</li>
-          <li><strong>Kaizen Team</strong> – Unipres UK (2022–2023)</li>
-          <li><strong>Cost Planning</strong> – Unipres UK (2021–2022)</li>
-          <li><strong>Engineering Maintenance Technician</strong> – Unipres UK (2017–2021)</li>
-        </ul>
-        <h3>Skills</h3>
-        <ul>
-          <li><strong>CAD Modelling</strong> (SolidWorks, Shapr3D)</li>
-          <li><strong>Adobe Suite</strong> (Photoshop, Illustrator, InDesign)</li>
-          <li><strong>Rapid Prototyping</strong></li>
-          <li><strong>User-Centred Design</strong></li>
-          <li><strong>Production Coordination</strong></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="contact-section">
-    <h3>Contact Me</h3>
-    <div class="contact-links">
-      <a href="mailto:jack.simm.design@gmail.com" aria-label="Email Jack Simm">
-        <i data-feather="mail"></i>
-      </a>
-      <a href="https://www.instagram.com/jack_simm_design" target="_blank" aria-label="Instagram">
-        <i data-feather="instagram"></i>
-      </a>
-    </div>
-  </div>
-
-  <footer>&copy; 2025 Jack Simm – Portfolio</footer>
 
   <script>
+    // Toggle dropdown
     const toggle = document.querySelector(".left");
     const menu = document.getElementById("dropdownMenu");
 
@@ -258,14 +163,32 @@
       menu.style.display = menu.style.display === "flex" ? "none" : "flex";
     });
 
-    const slides = document.querySelectorAll('.slide');
-    let current = 0;
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const images = document.querySelectorAll('.gallery-container img');
 
-    setInterval(() => {
-      slides[current].classList.remove('active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('active');
-    }, 10000);
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+      document.body.style.overflow = '';
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        lightbox.style.display = 'none';
+        lightboxImg.src = '';
+        document.body.style.overflow = '';
+      }
+    });
 
     feather.replace();
   </script>
