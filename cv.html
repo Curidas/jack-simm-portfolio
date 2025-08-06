@@ -2,106 +2,272 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jack Simm – CV</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jack Simm – Product Designer</title>
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --text: #1d1d1f;
+      --bg: #f5f5f7;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background-color: var(--white);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 70px;
+      left: 60px;
+      background-color: var(--white);
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      z-index: 99;
+    }
+
+    .dropdown a {
+      padding: 16px 24px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .dropdown a:hover {
+      background: #f2f2f2;
+    }
+
+    .banner {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background-image: url('g.bip.25.JPG'); /* Replace with your image file */
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .banner::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
+      z-index: 1;
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #fff;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+      animation: fadeInUp 1.2s ease forwards;
+      opacity: 0;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .hero-text h2 {
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      font-weight: 400;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section {
+      padding: 80px 60px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    section p, section li {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    section ul {
+      padding-left: 20px;
+      list-style: disc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 60px 20px;
+      font-size: 0.9rem;
+      color: #aaa;
+      background: var(--white);
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 20px;
+      }
+
+      .dropdown {
+        left: 20px;
+        width: calc(100% - 40px);
+      }
+
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .hero-text h2 {
+        font-size: 1rem;
+      }
+
+      section {
+        padding: 60px 20px;
+      }
     }
   </style>
 </head>
-<body class="bg-[#f9f9f9] text-gray-800">
-  <div class="min-h-screen flex flex-col lg:flex-row max-w-6xl mx-auto px-6 py-10">
-    
-    <!-- Sidebar -->
-    <aside class="lg:w-1/3 w-full lg:pr-10 mb-10 lg:mb-0">
-      <div class="sticky top-10">
-        <h1 class="text-3xl font-semibold mb-1">Jack Simm</h1>
-        <p class="text-lg text-gray-500 mb-6">Product Designer / Product Development Manager</p>
+<body>
 
-        <div class="mb-6">
-          <p class="text-sm text-gray-500">Email</p>
-          <p class="font-medium">jack.simm.design@gmail.com</p>
-        </div>
-        <div class="mb-6">
-          <p class="text-sm text-gray-500">Phone</p>
-          <p class="font-medium">+44 0737584523</p>
-        </div>
+  <!-- Header with Dropdown Nav -->
+  <header>
+    <div class="logo" onclick="toggleDropdown()">≡</div>
+    <div class="dropdown" id="dropdownMenu">
+      <a href="index.html">Home</a>
+      <a href="#profile">Profile</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
 
-        <h2 class="text-xl font-semibold mt-8 mb-2">Skills</h2>
-        <ul class="text-sm space-y-1">
-          <li>UX/UI</li>
-          <li>Typography</li>
-          <li>Photoshop / Illustrator / InDesign</li>
-          <li>HTML/CSS</li>
-          <li>Creativity & Time Management</li>
-          <li>CAD / Technical Packs</li>
-          <li>Communication / Teamwork</li>
-        </ul>
+  <!-- Banner -->
+  <section class="banner">
+    <div class="hero-text">
+      <h1>Jack Simm</h1>
+      <h2>Product Designer & Product Development Manager</h2>
+    </div>
+  </section>
 
-        <h2 class="text-xl font-semibold mt-8 mb-2">Hobbies</h2>
-        <ul class="text-sm space-y-1">
-          <li>Design & Antiques</li>
-          <li>Film Photography</li>
-          <li>Reading, TV & Film</li>
-          <li>Tennis, Badminton, Running</li>
-        </ul>
-      </div>
-    </aside>
+  <!-- Profile Section -->
+  <section id="profile">
+    <h2>Profile</h2>
+    <p>
+      An experienced mechanical maintenance technician with over half a decade in manufacturing.
+      Proven in team communication, customer-centric thinking, and design problem-solving.
+    </p>
+  </section>
 
-    <!-- Main Content -->
-    <main class="lg:w-2/3 w-full space-y-10">
-      
-      <!-- Summary -->
-      <section>
-        <h2 class="text-xl font-semibold mb-2">Profile</h2>
-        <p class="text-sm leading-relaxed text-gray-700">
-          Experienced mechanical maintenance technician turned designer with over half a decade in manufacturing. Known for cross-functional collaboration, continuous improvement, and customer-centric design thinking. Committed to problem-solving, quality delivery, and team development.
-        </p>
-      </section>
+  <!-- Experience Section -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <p><strong>Fabb Brothers (Mar 2024 – Sep 2024)</strong><br/>
+    Product Development Manager – Led sales, R&D, supplier coordination, and product innovation.</p>
+    <br/>
+    <p><strong>Unipres UK (2017 – 2023)</strong><br/>
+    Roles: Kaizen, Engineering Maintenance Technician<br/>
+    - Developed SOPs, implemented QHSE improvements<br/>
+    - Created CAD designs and tech packs, drove cost reduction</p>
+  </section>
 
-      <!-- Work Experience -->
-      <section>
-        <h2 class="text-xl font-semibold mb-4">Work Experience</h2>
-        <div class="space-y-6 text-sm">
+  <!-- Education Section -->
+  <section id="education">
+    <h2>Education</h2>
+    <ul>
+      <li>BA Product Design (Middlesex University) – 2023–Present</li>
+      <li>HNC Manufacturing Engineering – 2021–2023</li>
+      <li>Level 3 Engineering BTEC – 2016–2021</li>
+      <li>Level 3 Business Studies BTEC – 2015–2016</li>
+    </ul>
+  </section>
 
-          <div>
-            <p class="font-medium text-gray-900">Fabb Brothers</p>
-            <p class="text-gray-500 italic">Product Development Manager • Mar 2024 – Sep 2024</p>
-            <ul class="list-disc list-inside mt-1 text-gray-700">
-              <li>Led sales, supplier liaising and artisan production</li>
-              <li>Managed R&D for new and existing product lines</li>
-            </ul>
-          </div>
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: jack.simm.design@gmail.com</p>
+    <p>Phone: +44 0737584523</p>
+  </section>
 
-          <div>
-            <p class="font-medium text-gray-900">Unipres UK</p>
-            <p class="text-gray-500 italic">2017 – 2023</p>
-            <ul class="list-disc list-inside mt-1 text-gray-700">
-              <li>Kaizen Team & Engineering Maintenance roles</li>
-              <li>Created SOPs, followed up design improvements</li>
-              <li>Led cost planning and QHSE improvement initiatives</li>
-              <li>Delivered mechanical design solutions to spec</li>
-            </ul>
-          </div>
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Jack Simm – Portfolio
+  </footer>
 
-        </div>
-      </section>
+  <!-- Script for Dropdown -->
+  <script>
+    const toggle = document.querySelector(".logo");
+    const menu = document.getElementById("dropdownMenu");
 
-      <!-- Education -->
-      <section>
-        <h2 class="text-xl font-semibold mb-4">Education</h2>
-        <div class="space-y-4 text-sm">
-          <p><span class="font-medium">BA Product Design</span>, Middlesex University – 2023 – Present</p>
-          <p><span class="font-medium">HNC Manufacturing Engineering</span> – 2021 – 2023</p>
-          <p><span class="font-medium">Level 3 Engineering (BTEC)</span> – 2016 – 2021</p>
-          <p><span class="font-medium">Level 3 Business Studies (BTEC)</span> – 2015 – 2016</p>
-        </div>
-      </section>
+    toggle.addEventListener("click", () => {
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    });
 
-    </main>
-  </div>
+    document.addEventListener("click", (e) => {
+      if (!menu.contains(e.target) && e.target !== toggle) {
+        menu.style.display = "none";
+      }
+    });
+  </script>
+
 </body>
 </html>
