@@ -22,7 +22,6 @@
       font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: var(--bg-light);
       color: var(--text);
-      overflow-x: hidden;
     }
 
     header {
@@ -31,7 +30,7 @@
       align-items: center;
       padding: 20px 60px;
       background-color: var(--white);
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -67,38 +66,51 @@
       background: #f2f2f2;
     }
 
-    .hero {
+    .banner {
       position: relative;
       width: 100%;
       height: 100vh;
       overflow: hidden;
     }
 
-    .hero img {
+    .banner-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
+      opacity: 0;
+      animation: fadeIn 2s ease-in-out forwards;
     }
 
-    .hero-text {
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(1.02);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .banner-text {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
       color: var(--white);
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     }
 
-    .hero-text h1 {
+    .banner-text h1 {
       font-size: 3.5rem;
       font-weight: 600;
-      margin-bottom: 16px;
-      letter-spacing: -0.5px;
+      margin-bottom: 12px;
     }
 
-    .hero-text h2 {
-      font-size: 1.5rem;
+    .banner-text p {
+      font-size: 1.4rem;
       font-weight: 400;
     }
 
@@ -120,11 +132,11 @@
         width: calc(100% - 40px);
       }
 
-      .hero-text h1 {
-        font-size: 2.4rem;
+      .banner-text h1 {
+        font-size: 2.5rem;
       }
 
-      .hero-text h2 {
+      .banner-text p {
         font-size: 1.1rem;
       }
     }
@@ -142,14 +154,13 @@
     </div>
   </header>
 
-  <!-- Hero Banner with Centered Text -->
-  <section class="hero">
-    <img src="g.bip.25.JPG" alt="Banner Image" />
-    <div class="hero-text">
+  <div class="banner">
+    <img src="g.bip.25.JPG" alt="Banner Image" class="banner-img" />
+    <div class="banner-text">
       <h1>Jack Simm</h1>
-      <h2>Product Designer & Product Development Manager</h2>
+      <p>Product Designer & Product Development Manager</p>
     </div>
-  </section>
+  </div>
 
   <footer>
     &copy; 2025 Jack Simm – Portfolio
