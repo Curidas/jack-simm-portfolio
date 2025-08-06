@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jack Simm – Product Designer</title>
+  <title>Jack Simm – Designer</title>
   <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --text: #1d1d1f;
-      --light-text: #6e6e73;
-      --white: #fff;
-      --overlay-bg: rgba(255, 255, 255, 0.7);
-      --shadow: rgba(0, 0, 0, 0.1);
+      --light: #f5f5f7;
+      --white: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.05);
     }
 
     * {
@@ -21,10 +20,10 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'SF Pro Display', sans-serif;
-      background-color: var(--white);
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--light);
       color: var(--text);
-      line-height: 1.6;
+      overflow-x: hidden;
     }
 
     header {
@@ -33,15 +32,15 @@
       align-items: center;
       padding: 20px 60px;
       background-color: var(--white);
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      box-shadow: 0 1px 4px var(--shadow);
       position: sticky;
       top: 0;
       z-index: 100;
     }
 
     .logo {
-      font-size: 1.2rem;
       font-weight: 600;
+      font-size: 1.2rem;
       cursor: pointer;
     }
 
@@ -49,9 +48,9 @@
       position: absolute;
       top: 70px;
       left: 60px;
-      background-color: white;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
+      background-color: var(--white);
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
       display: none;
       flex-direction: column;
       z-index: 99;
@@ -70,78 +69,32 @@
     }
 
     .hero {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .overlay {
-      position: absolute;
-      bottom: 80px;
-      left: 60px;
       display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      background: var(--overlay-bg);
-      backdrop-filter: blur(30px);
-      padding: 30px 40px;
-      border-radius: 28px;
-      box-shadow: 0 20px 60px var(--shadow);
-      z-index: 2;
-      max-width: 600px;
-    }
-
-    .profile-card {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .profile-card img {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 0 10px rgba(0,0,0,0.08);
-    }
-
-    .profile-card .text h1 {
-      font-size: 1.9rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-      letter-spacing: -0.2px;
-    }
-
-    .profile-card .text p {
-      font-size: 1.1rem;
-      color: var(--light-text);
-    }
-
-    .about {
-      padding: 100px 20px;
-      max-width: 900px;
-      margin: 0 auto;
       text-align: center;
+      padding: 140px 20px 80px;
     }
 
-    .about h2 {
-      font-size: 2.4rem;
+    .hero h1 {
+      font-size: 3.5rem;
       font-weight: 600;
       margin-bottom: 20px;
+      letter-spacing: -0.5px;
     }
 
-    .about p {
-      font-size: 1.2rem;
-      color: #444;
-      line-height: 1.8;
-      max-width: 700px;
-      margin: 0 auto;
+    .hero h2 {
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: #6e6e73;
+    }
+
+    .banner {
+      width: 100%;
+      max-height: 80vh;
+      object-fit: cover;
+      display: block;
     }
 
     footer {
@@ -156,29 +109,17 @@
         padding: 20px 24px;
       }
 
-      .overlay {
-        left: 20px;
-        right: 20px;
-        bottom: 40px;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 24px;
-      }
-
-      .profile-card {
-        flex-direction: column;
-        gap: 16px;
-      }
-
-      .profile-card img {
-        width: 80px;
-        height: 80px;
-      }
-
       .dropdown {
         left: 20px;
         width: calc(100% - 40px);
+      }
+
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .hero h2 {
+        font-size: 1.2rem;
       }
     }
   </style>
@@ -186,7 +127,7 @@
 <body>
 
   <header>
-    <div class="logo" onclick="toggleDropdown()">≡ Jack Simm</div>
+    <div class="logo" onclick="toggleDropdown()">≡</div>
     <div class="dropdown" id="dropdownMenu">
       <a href="index.html">Home</a>
       <a href="gallery.html">Gallery</a>
@@ -195,27 +136,14 @@
     </div>
   </header>
 
+  <!-- Hero Section -->
   <section class="hero">
-    <img src="g.bip.25.JPG" alt="Banner" />
-    <div class="overlay">
-      <div class="profile-card">
-        <img src="profile.jpg" alt="Jack Simm" />
-        <div class="text">
-          <h1>Jack Simm</h1>
-          <p>Product Designer & Development Manager</p>
-        </div>
-      </div>
-    </div>
+    <h1>Jack Simm</h1>
+    <h2>Product & Industrial Designer</h2>
   </section>
 
-  <section class="about">
-    <h2>About Me</h2>
-    <p>
-      I’m a <strong>BA Product Design student</strong> and former <strong>Product Development Manager</strong>
-      with a manufacturing background. I craft design solutions that are <strong>practical</strong>, 
-      <strong>user-focused</strong>, and engineered for real-world execution.
-    </p>
-  </section>
+  <!-- Banner Image -->
+  <img src="g.bip.25.JPG" alt="Product Banner" class="banner" />
 
   <footer>
     &copy; 2025 Jack Simm – Portfolio
