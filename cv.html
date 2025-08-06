@@ -4,51 +4,104 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jack Simm – CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: #f9f9f9;
-      color: #222;
-    }
-    nav {
-      background: #fff;
-      padding: 20px;
-      text-align: center;
-      font-weight: bold;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: #222;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    .pdf-container {
-      padding: 40px 20px;
-      display: flex;
-      justify-content: center;
-    }
-    iframe {
-      width: 100%;
-      max-width: 1000px;
-      height: 90vh;
-      border: none;
+      font-family: 'Inter', sans-serif;
     }
   </style>
 </head>
-<body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="projects.html">Projects</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="cv.html">CV</a>
-  </nav>
+<body class="bg-[#f9f9f9] text-gray-800">
+  <div class="min-h-screen flex flex-col lg:flex-row max-w-6xl mx-auto px-6 py-10">
+    
+    <!-- Sidebar -->
+    <aside class="lg:w-1/3 w-full lg:pr-10 mb-10 lg:mb-0">
+      <div class="sticky top-10">
+        <h1 class="text-3xl font-semibold mb-1">Jack Simm</h1>
+        <p class="text-lg text-gray-500 mb-6">Product Designer / Product Development Manager</p>
 
-  <div class="pdf-container">
-    <iframe src="Jack_Simm_CV.pdf"></iframe>
+        <div class="mb-6">
+          <p class="text-sm text-gray-500">Email</p>
+          <p class="font-medium">jack.simm.design@gmail.com</p>
+        </div>
+        <div class="mb-6">
+          <p class="text-sm text-gray-500">Phone</p>
+          <p class="font-medium">+44 0737584523</p>
+        </div>
+
+        <h2 class="text-xl font-semibold mt-8 mb-2">Skills</h2>
+        <ul class="text-sm space-y-1">
+          <li>UX/UI</li>
+          <li>Typography</li>
+          <li>Photoshop / Illustrator / InDesign</li>
+          <li>HTML/CSS</li>
+          <li>Creativity & Time Management</li>
+          <li>CAD / Technical Packs</li>
+          <li>Communication / Teamwork</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold mt-8 mb-2">Hobbies</h2>
+        <ul class="text-sm space-y-1">
+          <li>Design & Antiques</li>
+          <li>Film Photography</li>
+          <li>Reading, TV & Film</li>
+          <li>Tennis, Badminton, Running</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="lg:w-2/3 w-full space-y-10">
+      
+      <!-- Summary -->
+      <section>
+        <h2 class="text-xl font-semibold mb-2">Profile</h2>
+        <p class="text-sm leading-relaxed text-gray-700">
+          Experienced mechanical maintenance technician turned designer with over half a decade in manufacturing. Known for cross-functional collaboration, continuous improvement, and customer-centric design thinking. Committed to problem-solving, quality delivery, and team development.
+        </p>
+      </section>
+
+      <!-- Work Experience -->
+      <section>
+        <h2 class="text-xl font-semibold mb-4">Work Experience</h2>
+        <div class="space-y-6 text-sm">
+
+          <div>
+            <p class="font-medium text-gray-900">Fabb Brothers</p>
+            <p class="text-gray-500 italic">Product Development Manager • Mar 2024 – Sep 2024</p>
+            <ul class="list-disc list-inside mt-1 text-gray-700">
+              <li>Led sales, supplier liaising and artisan production</li>
+              <li>Managed R&D for new and existing product lines</li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="font-medium text-gray-900">Unipres UK</p>
+            <p class="text-gray-500 italic">2017 – 2023</p>
+            <ul class="list-disc list-inside mt-1 text-gray-700">
+              <li>Kaizen Team & Engineering Maintenance roles</li>
+              <li>Created SOPs, followed up design improvements</li>
+              <li>Led cost planning and QHSE improvement initiatives</li>
+              <li>Delivered mechanical design solutions to spec</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section>
+        <h2 class="text-xl font-semibold mb-4">Education</h2>
+        <div class="space-y-4 text-sm">
+          <p><span class="font-medium">BA Product Design</span>, Middlesex University – 2023 – Present</p>
+          <p><span class="font-medium">HNC Manufacturing Engineering</span> – 2021 – 2023</p>
+          <p><span class="font-medium">Level 3 Engineering (BTEC)</span> – 2016 – 2021</p>
+          <p><span class="font-medium">Level 3 Business Studies (BTEC)</span> – 2015 – 2016</p>
+        </div>
+      </section>
+
+    </main>
   </div>
 </body>
 </html>
