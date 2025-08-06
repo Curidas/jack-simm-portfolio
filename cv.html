@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jack Simm – Timeline CV</title>
-  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600&display=swap" rel="stylesheet" />
+  <title>Jack Simm – CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #ffffff;
       --text: #1d1d1f;
-      --muted: #888;
-      --line: #d0d0d0;
-      --dot: #1d1d1f;
+      --bg: #f5f5f7;
+      --white: #ffffff;
+      --accent: #e5e5ea;
     }
 
     * {
@@ -25,11 +24,11 @@
     }
 
     body {
-      background: var(--bg);
       font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg);
       color: var(--text);
-      font-size: 17px;
       line-height: 1.6;
+      padding-bottom: 100px;
     }
 
     header {
@@ -37,8 +36,8 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 60px;
-      background: var(--bg);
-      border-bottom: 1px solid #eee;
+      background-color: var(--white);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -54,96 +53,64 @@
       position: absolute;
       top: 70px;
       left: 60px;
-      background-color: #ffffff;
-      border: 1px solid #e0e0e0;
+      background-color: var(--white);
       border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
       display: none;
       flex-direction: column;
       z-index: 99;
-      width: 200px;
     }
 
     .dropdown a {
-      padding: 14px 20px;
+      padding: 16px 24px;
       text-decoration: none;
       color: var(--text);
       font-weight: 500;
+      transition: background 0.2s;
     }
 
     .dropdown a:hover {
-      background-color: #f5f5f5;
+      background: #f2f2f2;
     }
 
-    .section {
-      max-width: 900px;
+    main {
+      max-width: 1000px;
       margin: 60px auto;
-      padding: 0 20px;
+      padding: 0 40px;
     }
 
-    .section h2 {
-      font-size: 1.8rem;
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-
-    .section p {
-      font-size: 1rem;
-      color: #2c2c2e;
-    }
-
-    .timeline {
-      position: relative;
-      margin-top: 30px;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 25px;
-      top: 0;
-      width: 2px;
-      height: 100%;
-      background: var(--line);
-    }
-
-    .event {
-      position: relative;
+    section {
       margin-bottom: 40px;
-      padding-left: 60px;
     }
 
-    .event::before {
-      content: '';
-      position: absolute;
-      left: 18px;
-      top: 6px;
-      width: 14px;
-      height: 14px;
-      background: var(--dot);
-      border-radius: 50%;
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 10px;
     }
 
-    .event h3 {
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+
+    h3 {
       font-size: 1.1rem;
       font-weight: 600;
-    }
-
-    .event small {
-      color: var(--muted);
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
       margin-top: 20px;
+      margin-bottom: 4px;
     }
 
-    ul {
-      padding-left: 20px;
-      margin-top: 10px;
+    p {
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .info {
+      font-size: 1rem;
+      margin-bottom: 4px;
     }
 
     footer {
@@ -151,10 +118,10 @@
       padding: 60px 20px;
       font-size: 0.9rem;
       color: #aaa;
-      border-top: 1px solid #eee;
+      background: var(--white);
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 600px) {
       header {
         padding: 20px;
       }
@@ -164,152 +131,79 @@
         width: calc(100% - 40px);
       }
 
-      .columns {
-        grid-template-columns: 1fr;
+      main {
+        padding: 0 20px;
       }
 
-      .section {
-        padding: 0 20px;
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.3rem;
+      }
+
+      h3 {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
   <header>
     <div class="logo" onclick="toggleDropdown()">≡</div>
     <div class="dropdown" id="dropdownMenu">
       <a href="index.html">Home</a>
-      <a href="#profile">Profile</a>
-      <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
-      <a href="#skills">Skills</a>
-      <a href="#hobbies">Hobbies</a>
-      <a href="#contact">Contact</a>
+      <a href="cv.html">CV</a>
     </div>
   </header>
 
-  <!-- Profile -->
-  <section class="section" id="profile">
-    <h2>Profile</h2>
-    <p>
-      Experienced mechanical maintenance technician with over half a decade in manufacturing.
-      Known for collaboration, customer focus, and delivering results through creative, compliant solutions.
-      Passionate about user-centered design, team development, and engineering improvement.
-    </p>
-  </section>
+  <main>
+    <section>
+      <h1>Jack Simm</h1>
+      <p class="info">Product Designer & Product Development Manager</p>
+      <p class="info">Email: jack@example.com</p>
+    </section>
 
-  <!-- Experience Timeline -->
-  <section class="section" id="experience">
-    <h2>Experience</h2>
-    <div class="timeline">
-      <div class="event">
-        <h3>Fabb Brothers – Product Development Manager</h3>
-        <small>Mar 2024 – Sep 2024</small>
-        <ul>
-          <li>Led R&D for new and existing product ranges</li>
-          <li>Managed sales and artisan supplier relationships</li>
-          <li>Oversaw distribution from the main workshop</li>
-        </ul>
-      </div>
+    <section>
+      <h2>Profile</h2>
+      <p>Experienced designer with a focus on innovation, functionality, and product development. Strong background in manufacturing, user-centered design, and cross-disciplinary collaboration.</p>
+    </section>
 
-      <div class="event">
-        <h3>Unipres UK – Kaizen Team</h3>
-        <small>Sep 2022 – Jun 2023</small>
-        <ul>
-          <li>Drove productivity, cost reduction and delivery targets</li>
-          <li>Worked cross-functionally to meet QHSE objectives</li>
-        </ul>
-      </div>
+    <section>
+      <h2>Experience</h2>
 
-      <div class="event">
-        <h3>Unipres UK – Cost Planning</h3>
-        <small>Sep 2021 – Sep 2022</small>
-        <ul>
-          <li>Created CAD design schemes and technical data packs</li>
-          <li>Worked with stakeholders to meet customer specifications</li>
-        </ul>
-      </div>
+      <h3>Fabb Brothers – Product Development Manager</h3>
+      <p class="info">2022 – Present</p>
+      <p>Lead the end-to-end product development process, overseeing everything from concept ideation through to production. Introduced lean practices and CAD-based design solutions to improve development cycles.</p>
 
-      <div class="event">
-        <h3>Unipres UK – Maintenance Technician</h3>
-        <small>Sep 2017 – Sep 2021</small>
-        <ul>
-          <li>Implemented engineering solutions and SOPs</li>
-          <li>Supported process improvement and defect analysis</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+      <h3>Unipres – Manufacturing Engineering Placement</h3>
+      <p class="info">2020 – 2021</p>
+      <p>Worked on production maintenance, process optimization, and supported Kaizen projects across multiple departments. Developed practical understanding of high-volume manufacturing environments.</p>
+    </section>
 
-  <!-- Education Timeline -->
-  <section class="section" id="education">
-    <h2>Education</h2>
-    <div class="timeline">
-      <div class="event">
-        <h3>BA Product Design</h3>
-        <small>Middlesex University – 2023 – Present</small>
-      </div>
+    <section>
+      <h2>Education</h2>
+      <h3>Northumbria University – BA (Hons) Design for Industry</h3>
+      <p class="info">2018 – 2022</p>
+      <p>Focused on human-centered design, prototyping, and real-world industry projects. Graduated with a first-class degree.</p>
+    </section>
 
-      <div class="event">
-        <h3>HNC Manufacturing Engineering</h3>
-        <small>2021 – 2023</small>
-      </div>
-
-      <div class="event">
-        <h3>Level 3 Engineering (BTEC)</h3>
-        <small>2016 – 2021</small>
-      </div>
-
-      <div class="event">
-        <h3>Level 3 Business Studies (BTEC)</h3>
-        <small>2015 – 2016</small>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills -->
-  <section class="section" id="skills">
-    <h2>Skills</h2>
-    <div class="columns">
+    <section>
+      <h2>Skills</h2>
       <ul>
-        <li>UX/UI</li>
-        <li>Typography</li>
-        <li>CAD & Technical Packs</li>
-        <li>Engineering Design</li>
-        <li>Team Collaboration</li>
+        <li>CAD (SolidWorks, Fusion 360, Shapr3D)</li>
+        <li>Adobe Creative Suite</li>
+        <li>Prototyping & User Testing</li>
+        <li>Design Thinking & Research</li>
+        <li>Project & Team Management</li>
       </ul>
-      <ul>
-        <li>Photoshop / Illustrator / InDesign</li>
-        <li>HTML / CSS</li>
-        <li>Presentations</li>
-        <li>Time Management</li>
-        <li>Attention to Detail</li>
-      </ul>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- Hobbies -->
-  <section class="section" id="hobbies">
-    <h2>Hobbies & Interests</h2>
-    <ul>
-      <li>Design, Antiques, and Film Photography</li>
-      <li>Reading, TV & Film</li>
-      <li>Tennis, Badminton, and Running</li>
-    </ul>
-  </section>
-
-  <!-- Contact -->
-  <section class="section" id="contact">
-    <h2>Contact</h2>
-    <p>Email: jack.simm.design@gmail.com</p>
-    <p>Phone: +44 0737584523</p>
-  </section>
-
-  <!-- Footer -->
   <footer>
-    &copy; 2025 Jack Simm – CV Timeline
+    &copy; 2025 Jack Simm – Portfolio
   </footer>
 
   <script>
