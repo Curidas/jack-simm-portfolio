@@ -3,12 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jack Simm – CV</title>
+  <title>Jack Simm – Timeline CV</title>
   <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --text: #1d1d1f;
       --bg: #ffffff;
+      --text: #1d1d1f;
+      --muted: #888;
+      --line: #d0d0d0;
+      --dot: #1d1d1f;
     }
 
     * {
@@ -22,11 +25,11 @@
     }
 
     body {
+      background: var(--bg);
       font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background-color: var(--bg);
       color: var(--text);
-      line-height: 1.6;
       font-size: 17px;
+      line-height: 1.6;
     }
 
     header {
@@ -34,8 +37,8 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 60px;
-      background-color: #ffffff;
-      border-bottom: 1px solid #eaeaea;
+      background: var(--bg);
+      border-bottom: 1px solid #eee;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -71,41 +74,83 @@
       background-color: #f5f5f5;
     }
 
-    section {
-      padding: 80px 60px;
+    .section {
       max-width: 900px;
-      margin: 0 auto;
+      margin: 60px auto;
+      padding: 0 20px;
     }
 
-    section h2 {
+    .section h2 {
       font-size: 1.8rem;
-      margin-bottom: 20px;
       font-weight: 600;
+      margin-bottom: 20px;
     }
 
-    section p, section li {
+    .section p {
       font-size: 1rem;
       color: #2c2c2e;
     }
 
-    section ul {
-      list-style: disc;
-      padding-left: 20px;
-      margin-bottom: 1rem;
+    .timeline {
+      position: relative;
+      margin-top: 30px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 25px;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background: var(--line);
+    }
+
+    .event {
+      position: relative;
+      margin-bottom: 40px;
+      padding-left: 60px;
+    }
+
+    .event::before {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      background: var(--dot);
+      border-radius: 50%;
+    }
+
+    .event h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .event small {
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px;
     }
 
     .columns {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 40px;
+      margin-top: 20px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
     }
 
     footer {
       text-align: center;
       padding: 60px 20px;
       font-size: 0.9rem;
-      color: #999;
-      background-color: #ffffff;
+      color: #aaa;
       border-top: 1px solid #eee;
     }
 
@@ -119,19 +164,19 @@
         width: calc(100% - 40px);
       }
 
-      section {
-        padding: 60px 20px;
-      }
-
       .columns {
         grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 0 20px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header with Dropdown Nav -->
+  <!-- Header -->
   <header>
     <div class="logo" onclick="toggleDropdown()">≡</div>
     <div class="dropdown" id="dropdownMenu">
@@ -145,82 +190,118 @@
     </div>
   </header>
 
-  <!-- Profile Section -->
-  <section id="profile">
+  <!-- Profile -->
+  <section class="section" id="profile">
     <h2>Profile</h2>
     <p>
-      An experienced mechanical maintenance technician with a proven track record in manufacturing.
-      Over half a decade at Unipres UK across key departments enabled me to develop teamwork,
-      communication, and customer-centric skills. I value integrity, professionalism, and results,
-      and bring a solution-focused mindset to every challenge.
+      Experienced mechanical maintenance technician with over half a decade in manufacturing.
+      Known for collaboration, customer focus, and delivering results through creative, compliant solutions.
+      Passionate about user-centered design, team development, and engineering improvement.
     </p>
   </section>
 
-  <!-- Experience Section -->
-  <section id="experience">
+  <!-- Experience Timeline -->
+  <section class="section" id="experience">
     <h2>Experience</h2>
+    <div class="timeline">
+      <div class="event">
+        <h3>Fabb Brothers – Product Development Manager</h3>
+        <small>Mar 2024 – Sep 2024</small>
+        <ul>
+          <li>Led R&D for new and existing product ranges</li>
+          <li>Managed sales and artisan supplier relationships</li>
+          <li>Oversaw distribution from the main workshop</li>
+        </ul>
+      </div>
 
-    <p><strong>Fabb Brothers</strong> <br><em>Product Development Manager, Mar 2024 – Sep 2024</em></p>
-    <ul>
-      <li>Oversaw daily operations of sales and distribution.</li>
-      <li>Led R&D for new product ranges and improvements.</li>
-      <li>Collaborated with suppliers and artisans on design projects.</li>
-    </ul>
+      <div class="event">
+        <h3>Unipres UK – Kaizen Team</h3>
+        <small>Sep 2022 – Jun 2023</small>
+        <ul>
+          <li>Drove productivity, cost reduction and delivery targets</li>
+          <li>Worked cross-functionally to meet QHSE objectives</li>
+        </ul>
+      </div>
 
-    <p><strong>Unipres UK</strong></p>
-    <ul>
-      <li>Worked in Kaizen Team: Improved productivity, quality and delivery.</li>
-      <li>Engineering Maintenance Technician: SOP creation, defect analysis, equipment improvements.</li>
-      <li>Cost Planning: Designed CAD schemes and technical data packs to support builds.</li>
-    </ul>
+      <div class="event">
+        <h3>Unipres UK – Cost Planning</h3>
+        <small>Sep 2021 – Sep 2022</small>
+        <ul>
+          <li>Created CAD design schemes and technical data packs</li>
+          <li>Worked with stakeholders to meet customer specifications</li>
+        </ul>
+      </div>
+
+      <div class="event">
+        <h3>Unipres UK – Maintenance Technician</h3>
+        <small>Sep 2017 – Sep 2021</small>
+        <ul>
+          <li>Implemented engineering solutions and SOPs</li>
+          <li>Supported process improvement and defect analysis</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
-  <!-- Education Section -->
-  <section id="education">
+  <!-- Education Timeline -->
+  <section class="section" id="education">
     <h2>Education</h2>
-    <ul>
-      <li>BA Product Design, Middlesex University (2023 – Present)</li>
-      <li>HNC Manufacturing Engineering (2021 – 2023)</li>
-      <li>Level 3 Engineering BTEC (2016 – 2021)</li>
-      <li>Level 3 Business Studies BTEC (2015 – 2016)</li>
-    </ul>
+    <div class="timeline">
+      <div class="event">
+        <h3>BA Product Design</h3>
+        <small>Middlesex University – 2023 – Present</small>
+      </div>
+
+      <div class="event">
+        <h3>HNC Manufacturing Engineering</h3>
+        <small>2021 – 2023</small>
+      </div>
+
+      <div class="event">
+        <h3>Level 3 Engineering (BTEC)</h3>
+        <small>2016 – 2021</small>
+      </div>
+
+      <div class="event">
+        <h3>Level 3 Business Studies (BTEC)</h3>
+        <small>2015 – 2016</small>
+      </div>
+    </div>
   </section>
 
-  <!-- Skills Section -->
-  <section id="skills">
+  <!-- Skills -->
+  <section class="section" id="skills">
     <h2>Skills</h2>
     <div class="columns">
       <ul>
         <li>UX/UI</li>
         <li>Typography</li>
         <li>CAD & Technical Packs</li>
-        <li>Communication</li>
-        <li>Problem Solving</li>
+        <li>Engineering Design</li>
+        <li>Team Collaboration</li>
       </ul>
       <ul>
         <li>Photoshop / Illustrator / InDesign</li>
         <li>HTML / CSS</li>
-        <li>Presentation Skills</li>
-        <li>Team Collaboration</li>
+        <li>Presentations</li>
+        <li>Time Management</li>
         <li>Attention to Detail</li>
       </ul>
     </div>
   </section>
 
-  <!-- Hobbies Section -->
-  <section id="hobbies">
+  <!-- Hobbies -->
+  <section class="section" id="hobbies">
     <h2>Hobbies & Interests</h2>
     <ul>
-      <li>Design</li>
-      <li>Film Photography</li>
-      <li>Reading</li>
-      <li>Tennis, Badminton, Running</li>
-      <li>Antiques, TV & Film</li>
+      <li>Design, Antiques, and Film Photography</li>
+      <li>Reading, TV & Film</li>
+      <li>Tennis, Badminton, and Running</li>
     </ul>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact">
+  <!-- Contact -->
+  <section class="section" id="contact">
     <h2>Contact</h2>
     <p>Email: jack.simm.design@gmail.com</p>
     <p>Phone: +44 0737584523</p>
@@ -228,10 +309,9 @@
 
   <!-- Footer -->
   <footer>
-    &copy; 2025 Jack Simm – CV Page
+    &copy; 2025 Jack Simm – CV Timeline
   </footer>
 
-  <!-- Script for Dropdown -->
   <script>
     const toggle = document.querySelector(".logo");
     const menu = document.getElementById("dropdownMenu");
