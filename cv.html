@@ -12,7 +12,7 @@
       --white: #ffffff;
       --accent: #e5e5ea;
       --line: #d2d2d7;
-      --dot: #1d1d1f;
+      --dot: #d2d2d7;
     }
 
     * {
@@ -114,7 +114,7 @@
     .timeline::before {
       content: "";
       position: absolute;
-      left: 16px;
+      left: 24px;
       top: 0;
       bottom: 0;
       width: 2px;
@@ -124,18 +124,17 @@
     .entry {
       position: relative;
       margin-bottom: 60px;
-      padding-left: 20px;
+      padding-left: 40px;
     }
 
     .entry::before {
       content: "";
       position: absolute;
-      left: 8px;
+      left: 16px;
       top: 6px;
       width: 16px;
       height: 16px;
-      background: var(--white);
-      border: 3px solid var(--dot);
+      background: var(--dot);
       border-radius: 50%;
       z-index: 1;
     }
