@@ -12,6 +12,7 @@
       --white: #ffffff;
       --accent: #e5e5ea;
       --line: #d2d2d7;
+      --dot: #1d1d1f;
     }
 
     * {
@@ -108,23 +109,35 @@
       position: relative;
       margin: 40px 0 60px 0;
       padding-left: 40px;
-      border-left: 2px solid var(--line);
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 16px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--line);
     }
 
     .entry {
       position: relative;
       margin-bottom: 60px;
+      padding-left: 20px;
     }
 
     .entry::before {
       content: "";
       position: absolute;
-      left: -16px;
-      top: 4px;
-      width: 12px;
-      height: 12px;
+      left: 8px;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      background: var(--white);
+      border: 3px solid var(--dot);
       border-radius: 50%;
-      background-color: var(--text);
+      z-index: 1;
     }
 
     .entry p {
