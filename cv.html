@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jack Simm – CV</title>
-  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --text: #1d1d1f;
       --bg: #f5f5f7;
       --white: #ffffff;
-      --accent: #e5e5ea;
+      --accent: #007aff;
       --line: #d2d2d7;
       --dot: #d2d2d7;
     }
@@ -30,13 +30,14 @@
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      font-weight: 300;
     }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 60px;
+      padding: 16px 60px;
       background-color: var(--white);
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
       position: sticky;
@@ -66,7 +67,7 @@
       padding: 16px 24px;
       text-decoration: none;
       color: var(--text);
-      font-weight: 500;
+      font-weight: 400;
       transition: background 0.2s;
     }
 
@@ -75,29 +76,28 @@
     }
 
     main {
-      max-width: 900px;
-      margin: 40px auto;
+      max-width: 850px;
+      margin: 60px auto;
       padding: 0 20px;
     }
 
-    h1, h2 {
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
     h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 4px;
     }
 
     h2 {
-      font-size: 1.4rem;
-      margin-top: 50px;
-      margin-bottom: 20px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 60px;
+      margin-bottom: 24px;
     }
 
     .label {
-      font-weight: 600;
-      color: #555;
+      font-weight: 400;
+      color: #666;
+      margin-bottom: 20px;
     }
 
     ul {
@@ -114,7 +114,7 @@
     .timeline::before {
       content: "";
       position: absolute;
-      left: 20px;
+      left: 28px;
       top: 0;
       bottom: 0;
       width: 2px;
@@ -125,13 +125,17 @@
       position: relative;
       margin-bottom: 60px;
       padding-left: 40px;
+      background: var(--white);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
     }
 
     .entry::before {
       content: "";
       position: absolute;
-      left: 12px;
-      top: 0.35em;
+      left: 20px;
+      top: 20px;
       width: 16px;
       height: 16px;
       background: var(--dot);
@@ -142,6 +146,25 @@
 
     .entry p {
       margin: 0 0 8px 0;
+      font-weight: 300;
+    }
+
+    .entry ul li {
+      margin-bottom: 6px;
+    }
+
+    .download-btn {
+      position: absolute;
+      right: 60px;
+      top: 24px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-weight: 400;
     }
   </style>
 </head>
@@ -155,6 +178,7 @@
       <a href="projects.html">Projects</a>
       <a href="cv.html">CV</a>
     </div>
+    <a href="Jack_Simm_CV.pdf" download><button class="download-btn">Download CV</button></a>
   </header>
 
   <main>
