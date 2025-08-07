@@ -54,19 +54,27 @@
     }
 
     .dropdown {
-      display: flex;
-      gap: 20px;
+      position: absolute;
+      top: 70px;
+      left: 60px;
+      background-color: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      z-index: 99;
     }
 
     .dropdown a {
-      font-weight: 400;
-      color: var(--text);
+      padding: 16px 24px;
       text-decoration: none;
-      transition: color 0.2s;
+      color: var(--text);
+      font-weight: 400;
+      transition: background 0.2s;
     }
 
     .dropdown a:hover {
-      color: var(--accent);
+      background: #f2f2f2;
     }
 
     main {
@@ -132,13 +140,20 @@
       color: var(--muted);
       margin-top: 80px;
     }
+
+    @media (max-width: 768px) {
+      .dropdown {
+        left: 20px;
+        width: calc(100% - 40px);
+      }
+    }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">≡</div>
-  <nav class="dropdown">
+  <div class="logo" onclick="toggleDropdown()">≡</div>
+  <nav class="dropdown" id="dropdownMenu">
     <a href="index.html">Home</a>
     <a href="gallery.html">Gallery</a>
     <a href="projects.html">Projects</a>
@@ -181,16 +196,6 @@
   <section>
     <h2>Work History</h2>
     <div class="card">
-      <h3>Product Development Manager</h3>
-      <p class="subtext">Fabb Brothers – Mar 2024 to Sep 2024</p>
-      <ul>
-        <li>Led R&D for new product lines</li>
-        <li>Liaised with artisans and suppliers</li>
-        <li>Oversaw workshop operations and client-facing projects</li>
-      </ul>
-    </div>
-
-    <div class="card">
       <h3>Engineering Maintenance Technician</h3>
       <p class="subtext">Unipres – Sep 2022 to Jun 2023</p>
       <ul>
@@ -214,6 +219,16 @@
       <ul>
         <li>Created standard operating sheets</li>
         <li>Implemented design improvements and process defect resolution</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Product Development Manager</h3>
+      <p class="subtext">Fabb Brothers – Mar 2024 to Sep 2024</p>
+      <ul>
+        <li>Led R&D for new product lines</li>
+        <li>Liaised with artisans and suppliers</li>
+        <li>Oversaw workshop operations and client-facing projects</li>
       </ul>
     </div>
   </section>
@@ -241,6 +256,21 @@
 <footer>
   &copy; 2025 Jack Simm – Portfolio
 </footer>
+
+<script>
+  const toggle = document.querySelector(".logo");
+  const menu = document.getElementById("dropdownMenu");
+
+  toggle.addEventListener("click", () => {
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!menu.contains(e.target) && e.target !== toggle) {
+      menu.style.display = "none";
+    }
+  });
+</script>
 
 </body>
 </html>
