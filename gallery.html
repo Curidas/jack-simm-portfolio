@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jack Simm – CV</title>
+  <title>Gallery – Jack Simm</title>
   <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -12,17 +12,12 @@
       --white: #ffffff;
       --accent: #007aff;
       --line: #d2d2d7;
-      --dot: #d2d2d7;
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     body {
@@ -76,7 +71,7 @@
     }
 
     main {
-      max-width: 850px;
+      max-width: 1000px;
       margin: 60px auto;
       padding: 0 20px;
     }
@@ -84,88 +79,33 @@
     h1 {
       font-size: 2.5rem;
       font-weight: 600;
-      margin-bottom: 4px;
+      margin-bottom: 40px;
+      text-align: center;
     }
 
-    h2 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-top: 60px;
-      margin-bottom: 24px;
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
     }
 
-    .label {
-      font-weight: 400;
-      color: #666;
-      margin-bottom: 20px;
-    }
-
-    ul {
-      padding-left: 20px;
-      list-style-type: disc;
-    }
-
-    .timeline {
-      position: relative;
-      margin: 40px 0 60px 0;
-      padding-left: 40px;
-    }
-
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 20px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--line);
-    }
-
-    .entry {
-      position: relative;
-      margin-bottom: 60px;
-      padding-left: 40px;
+    .gallery-item {
       background: var(--white);
-      padding: 20px;
-      padding-left: 60px;
       border-radius: 12px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .entry::before {
-      content: "";
-      position: absolute;
-      left: 12px;
-      top: 32px;
-      width: 16px;
-      height: 16px;
-      background: var(--dot);
-      border-radius: 50%;
-      transform: translateY(-50%);
-      z-index: 1;
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
-    .entry p {
-      margin: 0 0 8px 0;
-      font-weight: 300;
-    }
-
-    .entry ul li {
-      margin-bottom: 6px;
-    }
-
-    .download-btn {
-      position: absolute;
-      right: 60px;
-      top: 24px;
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      font-weight: 400;
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
   </style>
 </head>
@@ -179,79 +119,15 @@
       <a href="projects.html">Projects</a>
       <a href="cv.html">CV</a>
     </div>
-    <a href="Jack_Simm_CV.pdf" download><button class="download-btn">Download CV</button></a>
   </header>
 
   <main>
-    <h1>Jack Simm</h1>
-    <p class="label">Product Designer / Product Development Manager</p>
-    <p>Email: jack.simm.design@gmail.com<br>Phone: +44 0737584523</p>
-
-    <h2>Profile</h2>
-    <p>An experienced Mechanical Maintenance Technician with a proven track record in manufacturing and product development. My experience at Unipres UK shaped my customer-focused and problem-solving approach, with values rooted in trust, integrity, and quality delivery.</p>
-
-    <h2>Education</h2>
-    <div class="timeline">
-      <div class="entry">
-        <p><strong>2023 – Present:</strong> BA Product Design, Middlesex University</p>
-      </div>
-      <div class="entry">
-        <p><strong>2021 – 2023:</strong> HNC Manufacturing Engineering, Unipres UK</p>
-      </div>
-      <div class="entry">
-        <p><strong>2016 – 2021:</strong> Level 3 Engineering BTEC, Unipres UK</p>
-      </div>
-      <div class="entry">
-        <p><strong>2015 – 2016:</strong> Level 3 Business Studies BTEC</p>
+    <h1>Gallery</h1>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="untitled-41-2.jpg" alt="Product Design">
       </div>
     </div>
-
-    <h2>Work History</h2>
-    <div class="timeline">
-      <div class="entry">
-        <p><strong>Mar 2024 – Sep 2024:</strong> Fabb Brothers – Product Development Manager</p>
-        <ul>
-          <li>Led R&D for new product lines</li>
-          <li>Liaised with artisans and suppliers</li>
-          <li>Oversaw workshop operations and client-facing projects</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <p><strong>Sep 2022 – Jun 2023:</strong> Unipres – Engineering Maintenance Technician</p>
-        <ul>
-          <li>Delivered mechanical solutions across departments</li>
-          <li>Contributed to QHSE, productivity and cost reduction initiatives</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <p><strong>Sep 2021 – Sep 2022:</strong> Unipres – Cost Planning / CAD</p>
-        <ul>
-          <li>Developed technical data packs and design schemes</li>
-          <li>Managed cross-functional builds to customer specs</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <p><strong>Sep 2017 – Sep 2021:</strong> Unipres – Kaizen Team</p>
-        <ul>
-          <li>Created standard operating sheets</li>
-          <li>Implemented design improvements and process defect resolution</li>
-        </ul>
-      </div>
-    </div>
-
-    <h2>Skills</h2>
-    <ul>
-      <li>CAD: SolidWorks, Fusion 360, Shapr3D</li>
-      <li>Adobe: Photoshop, Illustrator, InDesign</li>
-      <li>Web: HTML/CSS</li>
-      <li>Soft Skills: Communication, Teamwork, Attention to Detail</li>
-    </ul>
-
-    <h2>Interests</h2>
-    <p>Design, Photography, Tennis, Film, Running, Antiques, Typography</p>
   </main>
 
   <script>
