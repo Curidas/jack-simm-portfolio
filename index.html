@@ -82,6 +82,13 @@
       justify-content: center;
     }
 
+    /* Mobile fix for background visibility */
+    @media (max-width: 768px) {
+      .banner {
+        background-attachment: scroll;
+      }
+    }
+
     .banner::after {
       content: '';
       position: absolute;
