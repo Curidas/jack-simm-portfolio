@@ -83,7 +83,7 @@
     .banner {
       position: relative;
       width: 100%;
-      height: 40vh; /* Responsive height */
+      height: 40vh;
       min-height: 240px;
       overflow: hidden;
     }
@@ -139,7 +139,8 @@
 
     .gallery-item img {
       width: 100%;
-      height: auto;
+      height: 250px; /* Consistent height for all thumbnails */
+      object-fit: cover; /* Crop to fit without distortion */
       display: block;
     }
 
