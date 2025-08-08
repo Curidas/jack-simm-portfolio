@@ -80,6 +80,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: opacity 0.4s ease;
     }
 
     /* Mobile fix for background visibility */
@@ -109,6 +110,7 @@
       text-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
       animation: fadeInUp 1.2s ease forwards;
       opacity: 0;
+      transition: opacity 0.4s ease;
     }
 
     .hero-text h1 {
@@ -195,8 +197,8 @@
     </div>
   </header>
 
-  <section class="banner">
-    <div class="hero-text">
+  <section class="banner" id="banner">
+    <div class="hero-text" id="heroText">
       <h1>Jack Simm</h1>
       <h2>Product Designer & Product Development Manager</h2>
     </div>
@@ -240,18 +242,30 @@
       }
     });
 
-    // Fade-in About section
+    // Fade-in About section + banner fade out
     const aboutSection = document.querySelector('.about');
+    const banner = document.getElementById('banner');
+    const heroText = document.getElementById('heroText');
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           aboutSection.classList.add('show');
-          observer.unobserve(entry.target); // stops observing after first trigger
+          observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.2 });
 
     observer.observe(aboutSection);
+
+    // Scroll fade effect for banner
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const bannerHeight = banner.offsetHeight;
+      const opacity = Math.max(0, 1 - scrollY / (bannerHeight / 2));
+      banner.style.opacity = opacity;
+      heroText.style.opacity = opacity;
+    });
   </script>
 
 </body>
