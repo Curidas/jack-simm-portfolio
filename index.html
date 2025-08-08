@@ -22,6 +22,7 @@
       font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: var(--bg);
       color: var(--text);
+      line-height: 1.6;
     }
 
     header {
@@ -60,12 +61,14 @@
       color: var(--text);
       font-weight: 500;
       transition: background 0.2s;
+      cursor: pointer;
     }
 
     .dropdown a:hover {
       background: #f2f2f2;
     }
 
+    /* Banner */
     .banner {
       position: relative;
       width: 100%;
@@ -73,6 +76,7 @@
       background-image: url('g.bip.25.JPG'); /* Replace with your image file */
       background-size: cover;
       background-position: center;
+      background-attachment: fixed;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -112,20 +116,47 @@
     }
 
     @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+      to { opacity: 1; }
     }
 
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* About Section */
+    .about {
+      min-height: 100vh;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .about.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .about-content {
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .about-content h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .about-content p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #555;
     }
 
     footer {
@@ -137,22 +168,10 @@
     }
 
     @media (max-width: 600px) {
-      header {
-        padding: 20px;
-      }
-
-      .dropdown {
-        left: 20px;
-        width: calc(100% - 40px);
-      }
-
-      .hero-text h1 {
-        font-size: 2rem;
-      }
-
-      .hero-text h2 {
-        font-size: 1rem;
-      }
+      header { padding: 20px; }
+      .dropdown { left: 20px; width: calc(100% - 40px); }
+      .hero-text h1 { font-size: 2rem; }
+      .hero-text h2 { font-size: 1rem; }
     }
   </style>
 </head>
@@ -175,11 +194,30 @@
     </div>
   </section>
 
+  <section class="about" id="about">
+    <div class="about-content">
+      <h2>About Me</h2>
+      <p>
+        I am an experienced Mechanical Maintenance Technician and Product Development Manager with a proven track record in manufacturing, product innovation, and operational leadership.
+      </p>
+      <p>
+        With over half a decade at Unipres UK, I gained invaluable experience working across key departments, developing strong technical expertise, a collaborative mindset, and a commitment to delivering customer-focused solutions. This role sharpened my problem-solving skills and strengthened my ability to meet stringent manufacturing specifications while maintaining high quality standards.
+      </p>
+      <p>
+        As a Product Development Manager, I oversaw the day-to-day operations of sales and distribution at the company’s main workshop, liaising with suppliers and artisan craftsmen on key production and consultancy design projects. I led R&D initiatives for new product ranges, enhanced existing products, and worked closely with stakeholders to ensure exceptional results that matched and exceeded customer expectations.
+      </p>
+      <p>
+        I bring a results-driven approach, underpinned by trust, respect, integrity, and professionalism. These values, combined with my technical knowledge and creative problem-solving, equip me to help businesses optimise value, achieve success, and deliver world-class products and services.
+      </p>
+    </div>
+  </section>
+
   <footer>
     &copy; 2025 Jack Simm – Portfolio
   </footer>
 
   <script>
+    // Dropdown menu toggle
     const toggle = document.querySelector(".logo");
     const menu = document.getElementById("dropdownMenu");
 
@@ -192,6 +230,18 @@
         menu.style.display = "none";
       }
     });
+
+    // Fade-in About section
+    const aboutSection = document.querySelector('.about');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          aboutSection.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    observer.observe(aboutSection);
   </script>
 
 </body>
