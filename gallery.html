@@ -95,6 +95,7 @@
       overflow: hidden;
       box-shadow: 0 1px 4px rgba(0,0,0,0.05);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
     }
 
     .gallery-item:hover {
@@ -106,6 +107,53 @@
       width: 100%;
       height: auto;
       display: block;
+    }
+
+    /* Lightbox styles */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 200;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .lightbox:target {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: var(--accent);
     }
   </style>
 </head>
@@ -125,10 +173,18 @@
     <h1>Gallery</h1>
     <div class="gallery">
       <div class="gallery-item">
-        <img src="untitled-41-2.jpg" alt="Product Design">
+        <a href="#img1">
+          <img src="untitled.41 2.JPG" alt="Product Design">
+        </a>
       </div>
     </div>
   </main>
+
+  <!-- Lightbox -->
+  <div id="img1" class="lightbox">
+    <a href="#" class="close">&times;</a>
+    <img src="untitled.41 2.JPG" alt="Product Design Large">
+  </div>
 
   <script>
     const toggle = document.querySelector(".logo");
