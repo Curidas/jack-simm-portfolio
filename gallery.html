@@ -70,11 +70,21 @@
       background: #f2f2f2;
     }
 
+    /* Responsive dropdown for mobile */
+    @media (max-width: 600px) {
+      .dropdown {
+        left: 0;
+        width: 100%;
+        border-radius: 0;
+      }
+    }
+
     /* Video Banner */
     .banner {
       position: relative;
       width: 100%;
-      height: 300px; /* Reduced height */
+      height: 40vh; /* Responsive height */
+      min-height: 240px;
       overflow: hidden;
     }
 
@@ -110,6 +120,16 @@
       box-shadow: 0 1px 4px rgba(0,0,0,0.05);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       cursor: pointer;
+
+      /* For fade-in animation */
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .gallery-item.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .gallery-item:hover {
@@ -157,13 +177,14 @@
 
     .close {
       position: absolute;
-      top: 20px;
-      right: 35px;
+      top: 10px;
+      right: 20px;
       color: #fff;
-      font-size: 40px;
+      font-size: 32px;
       font-weight: bold;
       text-decoration: none;
       cursor: pointer;
+      padding: 8px;
     }
 
     .close:hover {
@@ -199,6 +220,7 @@
           <img src="untitled.41 2.JPG" alt="Product Design">
         </a>
       </div>
+      <!-- Add more gallery items here -->
     </div>
   </main>
 
@@ -221,6 +243,19 @@
         menu.style.display = "none";
       }
     });
+
+    // Fade-in gallery items on scroll
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    galleryItems.forEach(item => observer.observe(item));
   </script>
 
 </body>
