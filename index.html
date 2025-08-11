@@ -43,6 +43,7 @@
       cursor: pointer;
     }
 
+    /* Dropdown menu */
     .dropdown {
       position: absolute;
       top: 70px;
@@ -50,9 +51,17 @@
       background-color: var(--white);
       border-radius: 14px;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-      display: none;
       flex-direction: column;
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
       z-index: 99;
+    }
+    .dropdown.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
 
     .dropdown a {
@@ -73,7 +82,7 @@
       position: relative;
       width: 100%;
       height: 100vh;
-      background-image: url('g.bip.25.JPG'); /* Replace with your image file */
+      background-image: url('g.bip.25.JPG'); /* Replace with your image */
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -83,7 +92,6 @@
       transition: opacity 0.4s ease;
     }
 
-    /* Mobile fix for background visibility */
     @media (max-width: 768px) {
       .banner {
         background-attachment: scroll;
@@ -135,38 +143,66 @@
 
     /* About Section */
     .about {
-      min-height: 100vh;
       background: var(--white);
+      padding: 80px 20px;
+    }
+
+    .about-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-content h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin-bottom: 40px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .about-block {
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 60px 20px;
+      gap: 40px;
+      margin-bottom: 80px;
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 1s ease, transform 1s ease;
     }
 
-    .about.show {
+    .about-block.show {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .about-content {
-      max-width: 800px;
-      text-align: center;
+    .about-block.reverse {
+      flex-direction: row-reverse;
     }
 
-    .about-content h2 {
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
-
-    .about-content p {
+    .about-text {
+      flex: 1;
       font-size: 1.1rem;
-      line-height: 1.7;
       color: #555;
-      margin-bottom: 1rem;
+    }
+
+    .about-image {
+      flex: 1;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    @media (max-width: 768px) {
+      .about-block,
+      .about-block.reverse {
+        flex-direction: column;
+      }
+      .about-image {
+        order: -1;
+      }
     }
 
     footer {
@@ -188,13 +224,13 @@
 <body>
 
   <header>
-    <div class="logo">≡</div>
-    <div class="dropdown" id="dropdownMenu">
+    <div class="logo" aria-expanded="false" aria-controls="dropdownMenu">≡</div>
+    <nav class="dropdown" id="dropdownMenu">
       <a href="index.html">Home</a>
       <a href="gallery.html">Gallery</a>
       <a href="projects.html">Projects</a>
       <a href="cv.html">CV</a>
-    </div>
+    </nav>
   </header>
 
   <section class="banner" id="banner">
@@ -207,18 +243,34 @@
   <section class="about" id="about">
     <div class="about-content">
       <h2>About Me</h2>
-      <p>
-        I am an experienced Mechanical Maintenance Technician and Product Development Manager with a proven track record in manufacturing, product innovation, and operational leadership.
-      </p>
-      <p>
-        With over half a decade at Unipres UK, I gained invaluable experience working across key departments, developing strong technical expertise, a collaborative mindset, and a commitment to delivering customer-focused solutions. This role sharpened my problem-solving skills and strengthened my ability to meet stringent manufacturing specifications while maintaining high quality standards.
-      </p>
-      <p>
-        As a Product Development Manager, I oversaw the day-to-day operations of sales and distribution at the company’s main workshop, liaising with suppliers and artisan craftsmen on key production and consultancy design projects. I led R&D initiatives for new product ranges, enhanced existing products, and worked closely with stakeholders to ensure exceptional results that matched and exceeded customer expectations.
-      </p>
-      <p>
-        I bring a results-driven approach, underpinned by trust, respect, integrity, and professionalism. These values, combined with my technical knowledge and creative problem-solving, equip me to help businesses optimise value, achieve success, and deliver world-class products and services.
-      </p>
+
+      <div class="about-block">
+        <div class="about-text">
+          <p>I am an experienced Mechanical Maintenance Technician and Product Development Manager with a proven track record in manufacturing, product innovation, and operational leadership.</p>
+        </div>
+        <div class="about-image">
+          <img src="Screenshot 2024-12-26 at 20.59.27.png" alt="Working in a workshop" loading="lazy">
+        </div>
+      </div>
+
+      <div class="about-block reverse">
+        <div class="about-text">
+          <p>With over half a decade at Unipres UK, I gained invaluable experience working across key departments, developing strong technical expertise, a collaborative mindset, and a commitment to delivering customer-focused solutions.</p>
+        </div>
+        <div class="about-image">
+          <img src="image2.jpg" alt="Product design process" loading="lazy">
+        </div>
+      </div>
+
+      <div class="about-block">
+        <div class="about-text">
+          <p>As a Product Development Manager, I oversaw day-to-day operations, liaised with suppliers and artisan craftsmen, led R&D initiatives, and worked closely with stakeholders to ensure exceptional results that exceeded customer expectations.</p>
+        </div>
+        <div class="about-image">
+          <img src="image3.jpg" alt="Collaboration with artisans" loading="lazy">
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -233,38 +285,46 @@
 
     logoButton.addEventListener("click", (e) => {
       e.stopPropagation();
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+      const expanded = logoButton.getAttribute("aria-expanded") === "true" || false;
+      logoButton.setAttribute("aria-expanded", !expanded);
+      menu.classList.toggle("show");
     });
 
     document.addEventListener("click", (e) => {
       if (!menu.contains(e.target) && e.target !== logoButton) {
-        menu.style.display = "none";
+        menu.classList.remove("show");
+        logoButton.setAttribute("aria-expanded", false);
       }
     });
 
-    // Fade-in About section + banner fade out
-    const aboutSection = document.querySelector('.about');
-    const banner = document.getElementById('banner');
-    const heroText = document.getElementById('heroText');
-
+    // Fade-in About blocks
+    const aboutBlocks = document.querySelectorAll('.about-block');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          aboutSection.classList.add('show');
+          entry.target.classList.add('show');
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.2 });
+    aboutBlocks.forEach(block => observer.observe(block));
 
-    observer.observe(aboutSection);
-
-    // Scroll fade effect for banner
+    // Optimized scroll fade for banner
+    const banner = document.getElementById('banner');
+    const heroText = document.getElementById('heroText');
+    let ticking = false;
     window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      const bannerHeight = banner.offsetHeight;
-      const opacity = Math.max(0, 1 - scrollY / (bannerHeight / 2));
-      banner.style.opacity = opacity;
-      heroText.style.opacity = opacity;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          const bannerHeight = banner.offsetHeight;
+          const opacity = Math.max(0, 1 - scrollY / (bannerHeight / 2));
+          banner.style.opacity = opacity;
+          heroText.style.opacity = opacity;
+          ticking = false;
+        });
+        ticking = true;
+      }
     });
   </script>
 
