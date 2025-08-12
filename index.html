@@ -141,26 +141,55 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* About Section – single image style */
+    /* About Section */
     .about {
       background: var(--white);
       padding: 80px 20px;
     }
 
     .about-content {
-      max-width: 900px;
+      max-width: 1200px;
       margin: 0 auto;
-      text-align: center;
     }
 
     .about-content h2 {
       font-size: clamp(1.8rem, 3vw, 2.5rem);
       margin-bottom: 40px;
       font-weight: 600;
+      text-align: center;
+    }
+
+    .about-block {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .about-block.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .about-text {
+      flex: 1 1 400px;
+      font-size: 1.2rem;
+      color: #333;
+      max-width: 750px;
+      margin: 0 auto;
+      line-height: 1.8;
+      letter-spacing: -0.15px;
+    }
+
+    .about-text p + p {
+      margin-top: 28px;
     }
 
     .about-image {
-      margin-bottom: 40px;
+      flex: 1 1 400px;
     }
 
     .about-image img {
@@ -168,25 +197,15 @@
       height: auto;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 1s ease, transform 1s ease;
     }
 
-    .about-text {
-      font-size: 1.1rem;
-      color: #555;
-      max-width: 750px;
-      margin: 0 auto;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    .show img,
-    .show .about-text {
-      opacity: 1;
-      transform: translateY(0);
+    @media (max-width: 768px) {
+      .about-block {
+        flex-direction: column;
+      }
+      .about-image {
+        order: -1;
+      }
     }
 
     footer {
@@ -195,6 +214,13 @@
       font-size: 0.9rem;
       color: #aaa;
       background: var(--white);
+    }
+
+    @media (max-width: 600px) {
+      header { padding: 20px; }
+      .dropdown { left: 20px; width: calc(100% - 40px); }
+      .hero-text h1 { font-size: 2rem; }
+      .hero-text h2 { font-size: 1rem; }
     }
   </style>
 </head>
@@ -218,16 +244,20 @@
   </section>
 
   <section class="about" id="about">
-    <div class="about-content show">
+    <div class="about-content">
       <h2>About Me</h2>
-      <div class="about-image">
-        <img src="about-me-train.png" alt="Jack Simm looking out of a train window" loading="lazy">
+
+      <div class="about-block">
+        <div class="about-image">
+          <img src="about-me-train.png" alt="Jack Simm looking out of a train window" loading="lazy">
+        </div>
+        <div class="about-text">
+          <p>I am an experienced Mechanical Maintenance Technician and Product Development Manager with a proven track record in manufacturing, product innovation, and operational leadership.</p>
+          <p>With over half a decade at Unipres UK, I gained invaluable experience working across key departments, developing strong technical expertise, a collaborative mindset, and a commitment to delivering customer-focused solutions.</p>
+          <p>As a Product Development Manager, I oversaw day-to-day operations, liaised with suppliers and artisan craftsmen, led R&D initiatives, and worked closely with stakeholders to ensure exceptional results that exceeded customer expectations.</p>
+        </div>
       </div>
-      <div class="about-text">
-        <p>I am an experienced Mechanical Maintenance Technician and Product Development Manager with a proven track record in manufacturing, product innovation, and operational leadership.</p>
-        <p>With over half a decade at Unipres UK, I gained invaluable experience working across key departments, developing strong technical expertise, a collaborative mindset, and a commitment to delivering customer-focused solutions.</p>
-        <p>As a Product Development Manager, I oversaw day-to-day operations, liaised with suppliers and artisan craftsmen, led R&D initiatives, and worked closely with stakeholders to ensure exceptional results that exceeded customer expectations.</p>
-      </div>
+
     </div>
   </section>
 
@@ -254,17 +284,17 @@
       }
     });
 
-    // Fade-in About image and text on scroll
-    const aboutSection = document.querySelector('.about-content');
+    // Fade-in About blocks
+    const aboutBlocks = document.querySelectorAll('.about-block');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          aboutSection.classList.add('show');
+          entry.target.classList.add('show');
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.2 });
-    observer.observe(aboutSection);
+    aboutBlocks.forEach(block => observer.observe(block));
 
     // Optimized scroll fade for banner
     const banner = document.getElementById('banner');
