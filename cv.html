@@ -40,6 +40,7 @@
       top: 20px;
       left: 20px;
       z-index: 1000;
+      user-select: none;
     }
 
     .menu-container {
@@ -49,27 +50,32 @@
       padding: 15px 20px;
       font-size: 0.95rem;
       font-weight: 400;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 12px;
-    }
-
-    /* Hamburger button */
-    .logo {
       cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 24px;
-      height: 18px;
+      width: 48px;
+      height: 48px;
+      justify-content: center;
+      transition: background-color 0.2s ease;
     }
 
-    .logo span {
-      display: block;
-      height: 3px;
-      background-color: var(--text);
-      border-radius: 2px;
-      transition: background-color 0.3s ease;
+    .menu-container:hover,
+    .menu-container:focus-visible {
+      background-color: #e5e5ea;
+      outline: none;
+      border-radius: 12px;
+    }
+
+    .menu-container:focus-visible {
+      box-shadow: 0 0 0 3px var(--accent);
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 1.5rem;
+      line-height: 1;
+      user-select: none;
+      color: var(--text);
     }
 
     nav.dropdown {
@@ -78,29 +84,39 @@
       background: var(--white);
       border-radius: 12px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-      margin-top: 5px;
+      margin-top: 8px;
       min-width: 140px;
-      user-select: none;
-    }
-
-    nav.dropdown a {
-      padding: 12px 18px;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 400;
-      border-radius: 8px;
-      transition: background 0.2s;
-      white-space: nowrap;
-    }
-
-    nav.dropdown a:hover,
-    nav.dropdown a:focus {
-      background: #f2f2f2;
-      outline: none;
+      position: absolute;
+      left: 0;
+      top: 72px;
+      z-index: 1100;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
     }
 
     nav.dropdown.show {
       display: flex;
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    nav.dropdown a {
+      padding: 12px 20px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 400;
+      border-radius: 8px;
+      white-space: nowrap;
+      transition: background-color 0.2s ease;
+    }
+
+    nav.dropdown a:hover,
+    nav.dropdown a:focus-visible {
+      background: #f2f2f2;
+      outline: none;
     }
 
     /* Contact card styling */
@@ -293,17 +309,13 @@
 <body>
 
   <header>
-    <div class="menu-container">
-      <div class="logo" aria-label="Toggle menu" role="button" tabindex="0">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+    <div class="menu-container" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-label="Toggle menu">
+      <div class="logo" aria-hidden="true">≡</div>
       <nav class="dropdown" id="dropdownMenu">
-        <a href="index.html">Home</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="projects.html">Projects</a>
-        <a href="cv.html">CV</a>
+        <a href="index.html" tabindex="-1">Home</a>
+        <a href="gallery.html" tabindex="-1">Gallery</a>
+        <a href="projects.html" tabindex="-1">Projects</a>
+        <a href="cv.html" tabindex="-1">CV</a>
       </nav>
     </div>
   </header>
@@ -316,7 +328,7 @@
   </div>
 
   <main>
-
+    <!-- CV content unchanged -->
     <section>
       <h2>Profile</h2>
       <div class="timeline profile">
@@ -422,7 +434,6 @@
         </div>
       </div>
     </section>
-
   </main>
 
   <footer>
@@ -443,19 +454,33 @@
     cards.forEach(card => observer.observe(card));
 
     // Dropdown toggle
-    const logo = document.querySelector('.logo');
+    const menuContainer = document.querySelector('.menu-container');
     const dropdown = document.getElementById('dropdownMenu');
-    logo.addEventListener('click', () => {
+
+    menuContainer.addEventListener('click', () => {
+      const isExpanded = menuContainer.getAttribute('aria-expanded') === 'true';
+      menuContainer.setAttribute('aria-expanded', !isExpanded);
       dropdown.classList.toggle('show');
     });
-    logo.addEventListener('keydown', e => {
-      if(e.key === 'Enter' || e.key === ' ') {
+
+    menuContainer.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
+        const isExpanded = menuContainer.getAttribute('aria-expanded') === 'true';
+        menuContainer.setAttribute('aria-expanded', !isExpanded);
         dropdown.classList.toggle('show');
       }
+      // Optional: close menu on Escape key
+      if (e.key === 'Escape') {
+        menuContainer.setAttribute('aria-expanded', false);
+        dropdown.classList.remove('show');
+        menuContainer.focus();
+      }
     });
-    document.addEventListener('click', e => {
-      if (!logo.contains(e.target) && !dropdown.contains(e.target)) {
+
+    document.addEventListener('click', (e) => {
+      if (!menuContainer.contains(e.target) && !dropdown.contains(e.target)) {
+        menuContainer.setAttribute('aria-expanded', false);
         dropdown.classList.remove('show');
       }
     });
