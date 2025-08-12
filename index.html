@@ -154,38 +154,40 @@
 
     .about-content h2 {
       font-size: clamp(1.8rem, 3vw, 2.5rem);
-      margin-bottom: 40px;
       font-weight: 600;
+      letter-spacing: -0.5px;
+      margin-bottom: 50px;
       text-align: center;
     }
 
-    .about-block {
+    .about-block.single {
       display: flex;
       align-items: center;
-      gap: 40px;
-      margin-bottom: 80px;
+      gap: 60px;
+      max-width: 1000px;
+      margin: 0 auto;
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 1s ease, transform 1s ease;
     }
 
-    .about-block.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .about-block.reverse {
-      flex-direction: row-reverse;
-    }
-
     .about-text {
       flex: 1;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
+      font-weight: 400;
+      line-height: 1.7;
       color: #555;
+    }
+
+    .about-text p + p {
+      margin-top: 20px;
     }
 
     .about-image {
       flex: 1;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
     }
 
     .about-image img {
@@ -195,13 +197,39 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
 
+    /* Animation classes when in view */
+    .about-image.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .about-block.single.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Mobile layout */
     @media (max-width: 768px) {
-      .about-block,
-      .about-block.reverse {
+      .about-block.single {
         flex-direction: column;
+        gap: 30px;
+        padding: 0 20px;
       }
+
       .about-image {
         order: -1;
+        width: 100%;
+      }
+
+      .about-image img {
+        width: 100%;
+        border-radius: 0; /* Hero style on mobile */
+        box-shadow: none;
+      }
+
+      .about-text {
+        text-align: center;
+        font-size: 1.05rem;
+        line-height: 1.6;
       }
     }
 
@@ -244,30 +272,14 @@
     <div class="about-content">
       <h2>About Me</h2>
 
-      <div class="about-block">
+      <div class="about-block single" id="aboutBlock">
+        <div class="about-image" id="aboutImage">
+          <img src="WhatsApp-Image-2025-01-08-train.png" alt="Jack Simm looking out of a train window" loading="lazy">
+        </div>
         <div class="about-text">
           <p>I am an experienced Mechanical Maintenance Technician and Product Development Manager with a proven track record in manufacturing, product innovation, and operational leadership.</p>
-        </div>
-        <div class="about-image">
-          <img src="Screenshot 2024-12-26 at 21.29.37.png" alt="Jack Simm at work" loading="lazy">
-        </div>
-      </div>
-
-      <div class="about-block reverse">
-        <div class="about-text">
           <p>With over half a decade at Unipres UK, I gained invaluable experience working across key departments, developing strong technical expertise, a collaborative mindset, and a commitment to delivering customer-focused solutions.</p>
-        </div>
-        <div class="about-image">
-          <img src="image2.jpg" alt="Product design process" loading="lazy">
-        </div>
-      </div>
-
-      <div class="about-block">
-        <div class="about-text">
           <p>As a Product Development Manager, I oversaw day-to-day operations, liaised with suppliers and artisan craftsmen, led R&D initiatives, and worked closely with stakeholders to ensure exceptional results that exceeded customer expectations.</p>
-        </div>
-        <div class="about-image">
-          <img src="image3.jpg" alt="Collaboration with artisans" loading="lazy">
         </div>
       </div>
 
@@ -297,17 +309,23 @@
       }
     });
 
-    // Fade-in About blocks
-    const aboutBlocks = document.querySelectorAll('.about-block');
+    // Scroll fade animations for About section
+    const aboutImage = document.getElementById('aboutImage');
+    const aboutBlock = document.getElementById('aboutBlock');
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('show');
+          aboutImage.classList.add('show');
+          setTimeout(() => {
+            aboutBlock.classList.add('show');
+          }, 300); // Delay text fade after image
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.2 });
-    aboutBlocks.forEach(block => observer.observe(block));
+
+    observer.observe(aboutBlock);
 
     // Optimized scroll fade for banner
     const banner = document.getElementById('banner');
