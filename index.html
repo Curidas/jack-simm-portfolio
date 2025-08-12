@@ -43,7 +43,6 @@
       cursor: pointer;
     }
 
-    /* Dropdown menu */
     .dropdown {
       position: absolute;
       top: 70px;
@@ -72,7 +71,6 @@
       transition: background 0.2s;
       cursor: pointer;
     }
-
     .dropdown a:hover {
       background: #f2f2f2;
     }
@@ -89,7 +87,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: opacity 0.4s ease;
     }
 
     @media (max-width: 768px) {
@@ -101,24 +98,22 @@
     .banner::after {
       content: '';
       position: absolute;
-      top: 0; left: 0;
+      bottom: 0;
+      left: 0;
       width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
-      z-index: 1;
-      opacity: 0;
-      animation: fadeIn 1.5s ease forwards;
+      height: 150px;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #ffffff 100%);
+      z-index: 2;
     }
 
     .hero-text {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       text-align: center;
       color: #fff;
       text-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
       animation: fadeInUp 1.2s ease forwards;
       opacity: 0;
-      transition: opacity 0.4s ease;
     }
 
     .hero-text h1 {
@@ -132,23 +127,36 @@
       font-weight: 400;
     }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Curved Divider */
+    .banner-divider {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      z-index: 3;
+      overflow: hidden;
+      line-height: 0;
+    }
+    .banner-divider svg {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     /* About Section */
     .about {
       background: var(--white);
       padding: 80px 20px;
+      text-align: center;
     }
 
     .about-content {
-      max-width: 1200px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
@@ -156,56 +164,22 @@
       font-size: clamp(1.8rem, 3vw, 2.5rem);
       margin-bottom: 40px;
       font-weight: 600;
-      text-align: center;
-    }
-
-    .about-block {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 40px;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    .about-block.show {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     .about-text {
-      flex: 1 1 400px;
       font-size: 1.2rem;
       color: #333;
-      max-width: 750px;
-      margin: 0 auto;
       line-height: 1.8;
       letter-spacing: -0.15px;
-    }
-
-    .about-text p + p {
-      margin-top: 28px;
-    }
-
-    .about-image {
-      flex: 1 1 400px;
+      margin-bottom: 40px;
     }
 
     .about-image img {
       width: 100%;
+      max-width: 750px;
       height: auto;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    }
-
-    @media (max-width: 768px) {
-      .about-block {
-        flex-direction: column;
-      }
-      .about-image {
-        order: -1;
-      }
     }
 
     footer {
@@ -214,13 +188,6 @@
       font-size: 0.9rem;
       color: #aaa;
       background: var(--white);
-    }
-
-    @media (max-width: 600px) {
-      header { padding: 20px; }
-      .dropdown { left: 20px; width: calc(100% - 40px); }
-      .hero-text h1 { font-size: 2rem; }
-      .hero-text h2 { font-size: 1rem; }
     }
   </style>
 </head>
@@ -241,23 +208,22 @@
       <h1>Jack Simm</h1>
       <h2>Product Designer & Product Development Manager</h2>
     </div>
+    <div class="banner-divider">
+      <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C480,120 960,0 1440,120 L1440,0 L0,0 Z" fill="#ffffff"/>
+      </svg>
+    </div>
   </section>
 
   <section class="about" id="about">
     <div class="about-content">
       <h2>About Me</h2>
-
-      <div class="about-block">
-        <div class="about-image">
-          <img src="about-me-train.png" alt="Jack Simm looking out of a train window" loading="lazy">
-        </div>
-        <div class="about-text">
-          <p>I am an experienced Mechanical Maintenance Technician and Product Development Manager with a proven track record in manufacturing, product innovation, and operational leadership.</p>
-          <p>With over half a decade at Unipres UK, I gained invaluable experience working across key departments, developing strong technical expertise, a collaborative mindset, and a commitment to delivering customer-focused solutions.</p>
-          <p>As a Product Development Manager, I oversaw day-to-day operations, liaised with suppliers and artisan craftsmen, led R&D initiatives, and worked closely with stakeholders to ensure exceptional results that exceeded customer expectations.</p>
-        </div>
+      <div class="about-text">
+        <p>I am an experienced Mechanical Maintenance Technician and Product Development Manager with a proven track record in manufacturing, product innovation, and operational leadership. Over the years, I have cultivated a unique balance of technical expertise and creative thinking, allowing me to lead projects from concept to completion with precision and style.</p>
       </div>
-
+      <div class="about-image">
+        <img src="about-me-train.png" alt="Jack Simm at work" loading="lazy">
+      </div>
     </div>
   </section>
 
@@ -284,36 +250,10 @@
       }
     });
 
-    // Fade-in About blocks
-    const aboutBlocks = document.querySelectorAll('.about-block');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    aboutBlocks.forEach(block => observer.observe(block));
-
-    // Optimized scroll fade for banner
-    const banner = document.getElementById('banner');
-    const heroText = document.getElementById('heroText');
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-          const bannerHeight = banner.offsetHeight;
-          const opacity = Math.max(0, 1 - scrollY / (bannerHeight / 2));
-          banner.style.opacity = opacity;
-          heroText.style.opacity = opacity;
-          ticking = false;
-        });
-        ticking = true;
-      }
+    // Fade-in hero text
+    window.addEventListener('load', () => {
+      document.getElementById('heroText').style.opacity = 1;
     });
   </script>
-
 </body>
 </html>
