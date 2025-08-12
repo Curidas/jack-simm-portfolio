@@ -43,12 +43,13 @@
       background-color: var(--white);
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       z-index: 1000;
+      padding: 0 20px;
     }
 
     .header-bar {
       max-width: 900px;
       margin: 0 auto;
-      padding: 15px 20px;
+      padding: 15px 0;
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -56,28 +57,31 @@
       position: relative;
     }
 
+    /* Move hamburger button outside container for far left alignment */
     .menu-container {
-      width: 100%;
       display: flex;
       align-items: center;
       justify-content: flex-start;
       font-size: 0.95rem;
       font-weight: 400;
+      width: 100%;
     }
 
+    /* Hamburger button styles */
     .logo {
       cursor: pointer;
       font-weight: 600;
-      font-size: 1.6rem; /* Adjusted size to match homepage */
+      font-size: 1.6rem;
       line-height: 1;
       user-select: none;
       display: flex;
       align-items: center;
-      width: 40px; /* Fixed width for consistent size */
-      height: 40px; /* Fixed height for consistent size */
+      width: 40px;
+      height: 40px;
       justify-content: center;
       border-radius: 8px;
       transition: background-color 0.2s;
+      margin-left: 0; /* flush left */
     }
 
     .logo:hover, .logo:focus {
@@ -93,8 +97,8 @@
       box-shadow: 0 12px 30px rgba(0,0,0,0.1);
       margin-top: 5px;
       position: absolute;
-      top: 56px; /* header-bar height + spacing */
-      left: 0;
+      top: 56px;
+      left: 20px; /* aligned under hamburger with page padding */
       min-width: 130px;
       z-index: 1100;
     }
@@ -280,10 +284,10 @@
         padding: 30px 15px 80px;
       }
       header {
-        /* fixed header styles remain the same */
+        padding: 0 15px;
       }
       .header-bar {
-        padding: 12px 15px;
+        padding: 12px 0;
       }
       .contact-card {
         margin-top: 110px;
@@ -303,7 +307,7 @@
         top: 25px;
       }
       nav.dropdown {
-        left: 0;
+        left: 15px;
         top: 48px;
       }
     }
@@ -477,5 +481,6 @@
       }
     });
   </script>
+
 </body>
 </html>
