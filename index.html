@@ -25,26 +25,30 @@
       line-height: 1.6;
     }
 
-    /* HEADER with transparent background and no shadow */
     header {
-      position: relative; /* for dropdown positioning */
       display: flex;
+      justify-content: space-between;
       align-items: center;
       padding: 20px 60px;
-      background-color: transparent !important;
-      box-shadow: none !important;
-      justify-content: flex-start; /* Align burger left */
+      background-color: var(--white);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
       z-index: 100;
+      position: relative; /* for dropdown positioning */
     }
 
+    /* Burger symbol with grey rounded background only */
     .logo {
+      background-color: #eee; /* light grey background */
+      border-radius: 12px;
+      padding: 8px 14px;
       font-weight: 600;
       font-size: 1.2rem;
       cursor: pointer;
       user-select: none;
-      /* Keep burger on far left */
-      position: relative;
-      left: 0;
+      display: inline-block;
+      line-height: 1;
     }
 
     /* Dropdown menu */
