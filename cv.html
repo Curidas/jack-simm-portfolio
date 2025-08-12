@@ -27,10 +27,9 @@
       color: var(--text);
       line-height: 1.6;
       font-weight: 300;
-      padding: 40px 20px 100px;
+      padding: 60px 20px 100px; /* extra top padding for fixed menu */
       max-width: 900px;
       margin: 0 auto;
-      position: relative;
     }
 
     h1, h2, h3 {
@@ -96,7 +95,7 @@
     /* Timeline container */
     .timeline {
       position: relative;
-      margin-left: 40px; /* space for vertical line */
+      margin-left: 40px;
       padding-left: 40px;
       border-left: 3px solid var(--line);
     }
@@ -119,7 +118,7 @@
       transform: translateY(0);
     }
 
-    /* Dot on timeline for each card */
+    /* Dot on timeline for each card - no white border now */
     .timeline-card::before {
       content: '';
       position: absolute;
@@ -129,7 +128,6 @@
       height: 16px;
       background-color: var(--text);
       border-radius: 50%;
-      border: 3px solid var(--white);
       box-sizing: content-box;
     }
 
@@ -157,93 +155,77 @@
       padding-bottom: 40px;
     }
 
-    /* Dropdown menu styles */
-    header.menu-header {
+    /* Menu styles */
+    .menu-container {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: var(--white);
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-      display: flex;
-      align-items: center;
-      padding: 10px 20px;
-      z-index: 200;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
     }
 
     .logo {
+      font-size: 1.8rem;
       font-weight: 600;
-      font-size: 1.5rem;
       cursor: pointer;
       user-select: none;
-      margin-right: auto;
     }
 
-    nav.dropdown {
-      position: absolute;
-      top: 50px;
-      left: 20px;
-      background-color: var(--white);
-      border-radius: 12px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    .dropdown {
       display: none;
       flex-direction: column;
-      z-index: 201;
-      min-width: 160px;
+      position: absolute;
+      top: 40px;
+      left: 0;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      padding: 10px 0;
     }
 
-    nav.dropdown a {
-      padding: 14px 24px;
+    .dropdown a {
+      padding: 10px 20px;
       text-decoration: none;
       color: var(--text);
       font-weight: 400;
-      transition: background 0.2s;
-      cursor: pointer;
-      white-space: nowrap;
     }
 
-    nav.dropdown a:hover {
-      background: #f2f2f2;
+    .dropdown a:hover {
+      background-color: var(--bg);
     }
 
-    /* Responsive */
     @media (max-width: 600px) {
-      nav.dropdown {
-        left: 0;
-        width: 100%;
-        border-radius: 0;
-        top: 48px;
-      }
       body {
-        padding-top: 60px;
+        padding: 50px 15px 80px;
+      }
+      .timeline {
+        margin-left: 30px;
+        padding-left: 30px;
+        border-left-width: 2px;
+      }
+      .timeline-card {
+        padding: 20px 20px;
+      }
+      .timeline-card::before {
+        left: -28px;
+        width: 12px;
+        height: 12px;
+        top: 25px;
       }
     }
-
-    /* Add top padding to body so content is not hidden under fixed header */
-    body.with-menu-padding {
-      padding-top: 60px !important;
-    }
-
-    @media (max-width: 600px) {
-      body.with-menu-padding {
-        padding-top: 70px !important;
-      }
-    }
-
   </style>
 </head>
 <body>
 
-  <!-- Dropdown menu header -->
-  <header class="menu-header">
-    <div class="logo" aria-label="Toggle menu" role="button" tabindex="0">≡</div>
-    <nav class="dropdown" id="dropdownMenu">
+  <!-- Dropdown Menu -->
+  <div class="menu-container">
+    <div class="logo" tabindex="0">&#9776;</div>
+    <div class="dropdown" id="dropdownMenu">
       <a href="index.html">Home</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="projects.html">Projects</a>
+      <a href="portfolio.html">Portfolio</a>
       <a href="cv.html">CV</a>
-    </nav>
-  </header>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
 
   <header class="header-info">
     <h1>Jack Simm</h1>
@@ -382,24 +364,15 @@
     const body = document.body;
 
     logo.addEventListener('click', () => {
-      if (dropdown.style.display === 'flex') {
-        dropdown.style.display = 'none';
-        body.classList.remove('with-menu-padding');
-      } else {
-        dropdown.style.display = 'flex';
-        body.classList.add('with-menu-padding');
-      }
+      dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
     });
 
-    // Close dropdown if clicking outside
     document.addEventListener('click', e => {
       if (!logo.contains(e.target) && !dropdown.contains(e.target)) {
         dropdown.style.display = 'none';
-        body.classList.remove('with-menu-padding');
       }
     });
 
-    // Keyboard accessibility
     logo.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
