@@ -141,53 +141,26 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* About Section */
+    /* About Section – single image style */
     .about {
       background: var(--white);
       padding: 80px 20px;
     }
 
     .about-content {
-      max-width: 1200px;
+      max-width: 900px;
       margin: 0 auto;
+      text-align: center;
     }
 
     .about-content h2 {
       font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin-bottom: 40px;
       font-weight: 600;
-      letter-spacing: -0.5px;
-      margin-bottom: 50px;
-      text-align: center;
-    }
-
-    .about-block.single {
-      display: flex;
-      align-items: center;
-      gap: 60px;
-      max-width: 1000px;
-      margin: 0 auto;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    .about-text {
-      flex: 1;
-      font-size: 1.15rem;
-      font-weight: 400;
-      line-height: 1.7;
-      color: #555;
-    }
-
-    .about-text p + p {
-      margin-top: 20px;
     }
 
     .about-image {
-      flex: 1;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1s ease, transform 1s ease;
+      margin-bottom: 40px;
     }
 
     .about-image img {
@@ -195,42 +168,25 @@
       height: auto;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
     }
 
-    /* Animation classes when in view */
-    .about-image.show {
+    .about-text {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 750px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .show img,
+    .show .about-text {
       opacity: 1;
       transform: translateY(0);
-    }
-    .about-block.single.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Mobile layout */
-    @media (max-width: 768px) {
-      .about-block.single {
-        flex-direction: column;
-        gap: 30px;
-        padding: 0 20px;
-      }
-
-      .about-image {
-        order: -1;
-        width: 100%;
-      }
-
-      .about-image img {
-        width: 100%;
-        border-radius: 0; /* Hero style on mobile */
-        box-shadow: none;
-      }
-
-      .about-text {
-        text-align: center;
-        font-size: 1.05rem;
-        line-height: 1.6;
-      }
     }
 
     footer {
@@ -239,13 +195,6 @@
       font-size: 0.9rem;
       color: #aaa;
       background: var(--white);
-    }
-
-    @media (max-width: 600px) {
-      header { padding: 20px; }
-      .dropdown { left: 20px; width: calc(100% - 40px); }
-      .hero-text h1 { font-size: 2rem; }
-      .hero-text h2 { font-size: 1rem; }
     }
   </style>
 </head>
@@ -269,20 +218,16 @@
   </section>
 
   <section class="about" id="about">
-    <div class="about-content">
+    <div class="about-content show">
       <h2>About Me</h2>
-
-      <div class="about-block single" id="aboutBlock">
-        <div class="about-image" id="aboutImage">
-          <img src="WhatsApp-Image-2025-01-08-train.png" alt="Jack Simm looking out of a train window" loading="lazy">
-        </div>
-        <div class="about-text">
-          <p>I am an experienced Mechanical Maintenance Technician and Product Development Manager with a proven track record in manufacturing, product innovation, and operational leadership.</p>
-          <p>With over half a decade at Unipres UK, I gained invaluable experience working across key departments, developing strong technical expertise, a collaborative mindset, and a commitment to delivering customer-focused solutions.</p>
-          <p>As a Product Development Manager, I oversaw day-to-day operations, liaised with suppliers and artisan craftsmen, led R&D initiatives, and worked closely with stakeholders to ensure exceptional results that exceeded customer expectations.</p>
-        </div>
+      <div class="about-image">
+        <img src="about-me-train.png" alt="Jack Simm looking out of a train window" loading="lazy">
       </div>
-
+      <div class="about-text">
+        <p>I am an experienced Mechanical Maintenance Technician and Product Development Manager with a proven track record in manufacturing, product innovation, and operational leadership.</p>
+        <p>With over half a decade at Unipres UK, I gained invaluable experience working across key departments, developing strong technical expertise, a collaborative mindset, and a commitment to delivering customer-focused solutions.</p>
+        <p>As a Product Development Manager, I oversaw day-to-day operations, liaised with suppliers and artisan craftsmen, led R&D initiatives, and worked closely with stakeholders to ensure exceptional results that exceeded customer expectations.</p>
+      </div>
     </div>
   </section>
 
@@ -309,23 +254,17 @@
       }
     });
 
-    // Scroll fade animations for About section
-    const aboutImage = document.getElementById('aboutImage');
-    const aboutBlock = document.getElementById('aboutBlock');
-
+    // Fade-in About image and text on scroll
+    const aboutSection = document.querySelector('.about-content');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          aboutImage.classList.add('show');
-          setTimeout(() => {
-            aboutBlock.classList.add('show');
-          }, 300); // Delay text fade after image
+          aboutSection.classList.add('show');
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.2 });
-
-    observer.observe(aboutBlock);
+    observer.observe(aboutSection);
 
     // Optimized scroll fade for banner
     const banner = document.getElementById('banner');
