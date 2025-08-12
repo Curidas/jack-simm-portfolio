@@ -2,122 +2,139 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Home – Jack Simm</title>
 
-  <!-- Poppins for dropdown/menu (and page if you prefer) -->
+  <!-- Poppins font only -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    :root{
+    /* Root colors */
+    :root {
       --text: #1d1d1f;
       --white: #ffffff;
       --accent: #007aff;
-      --page-bg: #ffffff; /* page background (white) */
+      --grey-bg: #f2f2f4; /* for pill behind burger */
     }
 
     /* Reset */
-    *{box-sizing:border-box;margin:0;padding:0}
-
-    html,body{
-      height:100%;
-      background:var(--page-bg);
-      color:var(--text);
-      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
     }
 
-    /* ---------- Header: no banner / no grey bar ---------- */
-    header{
+    html, body {
+      height: 100%;
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* HEADER */
+    header {
       position: sticky;
       top: 0;
-      left: 0;
-      z-index: 1200;
-      width: 100%;
-      display:flex;
-      align-items:center;
-      justify-content:flex-start;
-      padding:16px 20px;              /* horizontal space on the page */
-      background: transparent !important; /* ensure no banner colour shows */
-      box-shadow: none !important;        /* remove any shadow that created band */
-      border-bottom: none !important;
+      background: var(--white);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      z-index: 1000;
+      /* No box-shadow or border */
+      box-shadow: none;
+      border-bottom: none;
     }
 
-    /* Put the small rounded grey box only behind the burger symbol */
-    .menu-toggle{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      background:#f2f2f4;      /* light grey box ONLY behind burger */
-      border-radius:12px;
-      padding:8px 12px;        /* size of the grey pill */
-      font-weight:600;
-      font-size:1.15rem;
-      color:var(--text);
-      border:0;
-      cursor:pointer;
-      user-select:none;
+    /* Burger with grey rounded background */
+    #menuToggle {
+      background: var(--grey-bg);
+      border: none;
+      border-radius: 12px;
+      padding: 8px 14px;
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--text);
+      cursor: pointer;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background-color 0.2s ease;
     }
 
-    /* visually match Apple's minimalism: no extra banner around header */
-    /* dropdown positioned under the burger (left aligned to the burger) */
-    .dropdown{
-      position:absolute;
-      top: calc(16px + 40px); /* header top padding + approx menu height */
-      left: 20px;              /* aligns with header left padding */
-      min-width:160px;
-      display:none;            /* hidden by default */
-      flex-direction:column;
-      gap:6px;
-      padding:8px;
-      background: var(--white); /* white background for the dropdown panel */
-      border-radius:12px;
+    #menuToggle:hover,
+    #menuToggle:focus {
+      background: #e0e0e2;
+      outline: none;
+    }
+
+    /* DROPDOWN MENU */
+    .dropdown {
+      position: absolute;
+      top: calc(16px + 44px); /* header padding + approx button height */
+      left: 20px;
+      background: var(--white);
+      border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      font-family: 'Poppins', sans-serif; /* Poppins for dropdown text */
-      z-index:1300;
+      min-width: 160px;
+      display: none;
+      flex-direction: column;
+      padding: 8px 0;
+      z-index: 1100;
+      font-family: 'Poppins', sans-serif;
     }
 
-    .dropdown.show{ display:flex; }
+    .dropdown.show {
+      display: flex;
+    }
 
-    .dropdown a{
-      display:block;
-      padding:10px 14px;
-      text-decoration:none;
-      color:var(--text);
-      border-radius:8px;
-      font-weight:400;
-      transition: background-color .12s ease, color .12s ease;
-      white-space:nowrap;
+    .dropdown a {
+      padding: 12px 20px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 400;
+      white-space: nowrap;
+      transition: background-color 0.15s ease;
     }
 
     .dropdown a:hover,
-    .dropdown a:focus{
-      background: #f5f5f7;
-      color: var(--text);
+    .dropdown a:focus {
+      background-color: #f5f5f7;
+      font-weight: 600;
       outline: none;
-      font-weight:600;
     }
 
-    /* Keep rest of page content unchanged style-wise */
-    main{
-      max-width:900px;
-      margin:80px auto;
-      padding:0 20px;
-      text-align:center;
+    /* MAIN CONTENT */
+    main {
+      max-width: 900px;
+      margin: 80px auto 40px;
+      padding: 0 20px;
+      text-align: center;
     }
 
-    h1{ font-size:2.4rem; margin-bottom:18px; font-weight:600; }
-    p { font-size:1.05rem; color:var(--text); font-weight:300; }
+    main h1 {
+      font-weight: 600;
+      font-size: 2.4rem;
+      margin-bottom: 18px;
+    }
 
-    /* Responsive adjustments */
-    @media (max-width:600px){
-      header{ padding:12px 12px; }
-      .dropdown{
+    main p {
+      font-weight: 300;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header {
+        padding: 12px 12px;
+      }
+      .dropdown {
         left: 12px;
-        right:12px;
+        right: 12px;
         min-width: auto;
       }
     }
@@ -126,12 +143,10 @@
 <body>
 
   <header>
-    <!-- Small grey rounded box only behind burger symbol -->
-    <button id="menuToggle" class="menu-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="siteDropdown">
+    <button id="menuToggle" aria-haspopup="true" aria-expanded="false" aria-controls="siteDropdown" aria-label="Main menu">
       ≡ Jack Simm
     </button>
 
-    <!-- Dropdown appears beneath the burger; white panel, subtle shadow -->
     <nav id="siteDropdown" class="dropdown" role="menu" aria-label="Main navigation">
       <a href="index.html" role="menuitem" tabindex="-1">Home</a>
       <a href="gallery.html" role="menuitem" tabindex="-1">Gallery</a>
@@ -146,29 +161,49 @@
   </main>
 
   <script>
-    // Toggle + accessibility (Enter/Space/Escape + click outside)
-    (function () {
+    (function() {
       const toggle = document.getElementById('menuToggle');
       const menu = document.getElementById('siteDropdown');
 
-      function isOpen(){ return menu.classList.contains('show'); }
-      function open(){ menu.classList.add('show'); toggle.setAttribute('aria-expanded','true'); }
-      function close(){ menu.classList.remove('show'); toggle.setAttribute('aria-expanded','false'); }
+      function isOpen() { return menu.classList.contains('show'); }
+      function open() {
+        menu.classList.add('show');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+      function close() {
+        menu.classList.remove('show');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
 
-      toggle.addEventListener('click', e => { e.stopPropagation(); isOpen()? close() : open(); });
+      toggle.addEventListener('click', e => {
+        e.stopPropagation();
+        isOpen() ? close() : open();
+      });
+
       toggle.addEventListener('keydown', e => {
-        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); isOpen()? close(): open(); }
-        if(e.key === 'Escape') { close(); toggle.focus(); }
+        if(e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          isOpen() ? close() : open();
+        }
+        if(e.key === 'Escape') {
+          close();
+          toggle.focus();
+        }
       });
 
-      // close when clicking outside
       document.addEventListener('click', e => {
-        if(!menu.contains(e.target) && e.target !== toggle) close();
+        if (!menu.contains(e.target) && e.target !== toggle) {
+          close();
+        }
       });
 
-      // close on Escape anywhere
-      document.addEventListener('keydown', e => { if(e.key === 'Escape') close(); });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+          close();
+        }
+      });
     })();
   </script>
+
 </body>
 </html>
