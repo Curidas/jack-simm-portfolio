@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,82 +27,68 @@
       color: var(--text);
       line-height: 1.6;
       font-weight: 300;
-      /* Remove old padding, replaced with padding-top to offset fixed header */
-      padding-top: 56px;
+      padding: 96px 20px 100px; /* Added top padding 96px = header height (56px) + 40px original */
       max-width: 900px;
       margin: 0 auto;
       position: relative;
       min-height: 100vh;
+      /* ensure content below header */
+      position: relative;
+      z-index: 0;
     }
 
-    /* --- HEADER AND MENU BAR --- */
+    /* Fixed header with full width background */
     header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 56px; /* homepage header height */
+      height: 56px;
       background-color: var(--white);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      border-radius: 0 0 12px 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       z-index: 1000;
       display: flex;
       align-items: center;
+      padding-left: 16px;
+      /* prevent shrinking */
+      box-sizing: border-box;
     }
 
-    /* Hamburger button exactly like homepage */
-    .logo {
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 1.5rem; /* Adjusted for exact homepage size */
-      line-height: 1;
-      user-select: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 48px;   /* homepage hamburger width */
-      height: 48px;  /* homepage hamburger height */
-      border-radius: 0 0 0 12px;
-      margin-left: 0;
-      padding: 0;
+    .menu-container {
+      /* no width or margin so it hugs content exactly */
       background: transparent;
-      border: none;
-      transition: background-color 0.2s;
-      flex-shrink: 0;
-      font-family: monospace; /* For the "≡" symbol to match homepage font style */
-    }
-    .logo:hover,
-    .logo:focus {
-      background-color: #efefef;
-      outline: none;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 0;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      user-select: none;
     }
 
-    /* Container for the rest of header content, centered and max-width */
-    .header-content {
-      flex-grow: 1;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      position: relative;
-      height: 56px; /* match header height */
+    .logo {
+      font-weight: 600;
+      font-size: 1.8rem; /* same size as home page */
+      line-height: 1;
+      cursor: pointer;
+      user-select: none;
+      display: inline-block;
+      color: var(--text);
     }
 
     nav.dropdown {
+      position: absolute;
+      top: 56px;
+      left: 16px;
       display: none;
       flex-direction: column;
       background: var(--white);
       border-radius: 12px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-      position: absolute;
-      top: 56px; /* directly below the header */
-      left: 0; /* aligned with hamburger left edge */
-      min-width: 130px;
+      margin-top: 5px;
+      min-width: 140px;
       z-index: 1100;
-      padding: 8px 0;
     }
 
     nav.dropdown a {
@@ -113,7 +99,6 @@
       border-radius: 8px;
       transition: background 0.2s;
       white-space: nowrap;
-      display: block;
     }
 
     nav.dropdown a:hover {
@@ -126,13 +111,15 @@
 
     /* Contact card styling */
     .contact-card {
-      margin-top: 20px; /* small top margin, no need for big offset because body padding-top handles header */
+      margin-top: 40px; /* Reduced from 100px because we added body padding-top */
       background: var(--white);
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.05);
       font-size: 0.95rem;
       line-height: 1.5;
+      position: relative;
+      z-index: 0;
     }
 
     .contact-card strong {
@@ -153,6 +140,8 @@
       max-width: 900px;
       margin-left: auto;
       margin-right: auto;
+      position: relative;
+      z-index: 0;
     }
 
     h1, h2, h3 {
@@ -279,27 +268,19 @@
       color: var(--muted);
       margin-top: 80px;
       padding-bottom: 40px;
+      position: relative;
+      z-index: 0;
     }
 
     @media (max-width: 600px) {
       body {
-        padding-top: 48px;
+        padding: 96px 15px 80px; /* same top padding on small screens */
       }
       header {
-        height: 48px;
-      }
-      .logo {
-        width: 40px;
-        height: 40px;
-        border-radius: 0 0 0 12px;
-        font-size: 1.4rem;
-      }
-      .header-content {
-        padding: 0 15px;
-        max-width: 100%;
+        padding-left: 15px;
       }
       .contact-card {
-        margin-top: 20px;
+        margin-top: 40px;
       }
       .timeline {
         margin-left: 30px;
@@ -315,23 +296,19 @@
         height: 12px;
         top: 25px;
       }
-      nav.dropdown {
-        left: 0;
-        top: 48px;
-      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <button class="logo" aria-label="Toggle menu" aria-expanded="false" aria-controls="dropdownMenu">≡</button>
-    <div class="header-content">
-      <nav class="dropdown" id="dropdownMenu" role="menu" aria-hidden="true">
-        <a href="index.html" role="menuitem">Home</a>
-        <a href="gallery.html" role="menuitem">Gallery</a>
-        <a href="projects.html" role="menuitem">Projects</a>
-        <a href="cv.html" role="menuitem">CV</a>
+    <div class="menu-container">
+      <div class="logo" aria-label="Toggle menu" role="button" tabindex="0">≡</div>
+      <nav class="dropdown" id="dropdownMenu">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="projects.html">Projects</a>
+        <a href="cv.html">CV</a>
       </nav>
     </div>
   </header>
@@ -429,18 +406,24 @@
 
     <section>
       <h2>Skills</h2>
-      <div class="timeline profile">
-        <div class="timeline-card profile">
+      <div class="timeline">
+        <div class="timeline-card">
           <ul>
-            <li>CAD software (Solidworks, AutoCAD, Fusion 360)</li>
-            <li>Prototyping & model making</li>
-            <li>Manufacturing processes</li>
-            <li>Adobe Creative Suite (Photoshop, Illustrator)</li>
-            <li>Team collaboration & communication</li>
-            <li>Project management & scheduling</li>
-            <li>Research & analysis</li>
-            <li>Management: Team leadership, project coordination</li>
+            <li><strong>CAD:</strong> SolidWorks, Fusion 360, Shapr3D</li>
+            <li><strong>Design:</strong> Photoshop, Illustrator, InDesign</li>
+            <li><strong>Prototyping:</strong> Workshop skills, 3D printing, model making</li>
+            <li><strong>Web:</strong> HTML, CSS</li>
+            <li><strong>Soft Skills:</strong> Communication, Critical Thinking, Presentation</li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Hobbies & Interests</h2>
+      <div class="timeline">
+        <div class="timeline-card">
+          <p>Design, Furniture Making, Photography, Reading, Cycling</p>
         </div>
       </div>
     </section>
@@ -448,25 +431,29 @@
   </main>
 
   <footer>
-    <p>© 2024 Jack Simm</p>
+    <p>© 2024 Jack Simm. All rights reserved.</p>
   </footer>
 
   <script>
-    const logo = document.querySelector('.logo');
-    const dropdown = document.getElementById('dropdownMenu');
+    const menuToggle = document.querySelector('.menu-container .logo');
+    const dropdownMenu = document.getElementById('dropdownMenu');
 
-    logo.addEventListener('click', () => {
-      const expanded = logo.getAttribute('aria-expanded') === 'true';
-      logo.setAttribute('aria-expanded', String(!expanded));
-      dropdown.classList.toggle('show');
-      dropdown.setAttribute('aria-hidden', String(expanded));
+    menuToggle.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('show');
     });
 
-    window.addEventListener('click', (e) => {
-      if (!logo.contains(e.target) && !dropdown.contains(e.target)) {
-        dropdown.classList.remove('show');
-        logo.setAttribute('aria-expanded', 'false');
-        dropdown.setAttribute('aria-hidden', 'true');
+    // Accessibility: allow toggle with Enter key
+    menuToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        dropdownMenu.classList.toggle('show');
+      }
+    });
+
+    // Close dropdown if clicking outside
+    document.addEventListener('click', (event) => {
+      if (!menuToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        dropdownMenu.classList.remove('show');
       }
     });
   </script>
