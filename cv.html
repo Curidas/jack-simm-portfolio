@@ -3,19 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jack Simm – CV Timeline</title>
-
-  <!-- Poppins font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-
+  <title>Jack Simm – CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --text: #1d1d1f;
       --bg: #f5f5f7;
       --white: #ffffff;
-      --muted: #8e8e93;
-      --line: #d2d2d7;
-      --accent: #007aff;
     }
 
     * {
@@ -29,409 +23,192 @@
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      font-weight: 300;
-      padding: 40px 20px 100px;
-      max-width: 900px;
-      margin: 0 auto;
-      position: relative;
-      min-height: 100vh;
     }
 
-    /* Fixed dropdown menu (same style as index) */
+    /* HEADER and dropdown menu */
     header {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 1000;
-    }
-
-    .menu-container {
-      background: var(--white);
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      padding: 10px 15px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 20px 60px;
+      background-color: var(--white);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      position: relative;
     }
 
     .logo {
-      display: inline-block;
-      font-size: 1.4rem;
+      font-weight: 600;
+      font-size: 1.2rem;
+      cursor: pointer;
+      user-select: none;
     }
 
-    nav.dropdown {
+    .dropdown {
+      position: absolute;
+      top: 70px;
+      left: 60px;
+      background-color: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
       display: none;
       flex-direction: column;
-      background: var(--white);
-      border-radius: 12px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-      margin-top: 5px;
+      z-index: 99;
+      min-width: 150px;
     }
 
-    nav.dropdown a {
-      padding: 12px 18px;
+    .dropdown a {
+      padding: 16px 24px;
       text-decoration: none;
       color: var(--text);
       font-weight: 400;
-      border-radius: 8px;
       transition: background 0.2s;
-      white-space: nowrap;
+      cursor: pointer;
     }
 
-    nav.dropdown a:hover {
+    .dropdown a:hover {
       background: #f2f2f2;
     }
 
-    nav.dropdown.show {
-      display: flex;
-    }
-
-    /* Contact card styling */
-    .contact-card {
-      margin-top: 100px;
-      background: var(--white);
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    .contact-card strong {
-      font-size: 1.2rem;
-      font-weight: 600;
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .contact-card p {
-      margin-bottom: 6px;
-      user-select: text;
-      word-break: break-word;
-    }
-
+    /* Main CV content */
     main {
-      margin-top: 40px;
       max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    h1, h2, h3 {
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    h1 {
-      font-size: 2.8rem;
-      margin-bottom: 8px;
-    }
-
-    h2 {
-      font-size: 1.8rem;
-      margin-bottom: 32px;
-      border-bottom: 2px solid var(--line);
-      padding-bottom: 8px;
-    }
-
-    h3 {
-      font-size: 1.3rem;
-      margin-bottom: 6px;
-    }
-
-    .subtext {
-      font-weight: 400;
-      color: var(--muted);
-      margin-bottom: 12px;
-      font-size: 0.95rem;
-    }
-
-    p {
-      margin-bottom: 12px;
-      font-size: 1rem;
-      color: var(--text);
-    }
-
-    ul {
-      list-style-type: none;
-      padding-left: 18px;
-      margin-bottom: 12px;
-    }
-
-    ul li {
-      position: relative;
-      padding-left: 12px;
-      margin-bottom: 6px;
-      font-weight: 400;
-      color: var(--text);
-    }
-
-    ul li::before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: currentColor;
-      font-size: 1.2rem;
-      line-height: 1;
-      top: 3px;
-    }
-
-    /* Timeline container */
-    .timeline {
-      position: relative;
-      margin-left: 40px;
-      padding-left: 40px;
-      border-left: 3px solid var(--line);
-    }
-
-    /* Each timeline card */
-    .timeline-card {
+      margin: 40px auto;
       background: var(--white);
-      border-radius: 14px;
-      padding: 24px 28px;
-      margin-bottom: 40px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-      position: relative;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      padding: 40px 60px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.05);
     }
 
-    .timeline-card.show {
-      opacity: 1;
-      transform: translateY(0);
+    main h1 {
+      font-weight: 600;
+      font-size: 2.8rem;
+      margin-bottom: 10px;
     }
 
-    .timeline-card::before {
-      content: '';
-      position: absolute;
-      left: -39px;
-      top: 30px;
-      width: 16px;
-      height: 16px;
-      background-color: var(--text);
-      border-radius: 50%;
-    }
-
-    /* Profile card adjustments */
-    .timeline-card.profile::before {
-      content: none;
-    }
-    .timeline.profile {
-      border-left: none;
-      margin-left: 0;
-      padding-left: 0;
-    }
-    .timeline-card.profile ul {
-      list-style: disc;
-      padding-left: 20px;
-    }
-    .timeline-card.profile ul li::before {
-      content: none;
+    main h2 {
+      font-weight: 400;
+      font-size: 1.4rem;
+      color: #555;
+      margin-bottom: 30px;
     }
 
     section {
-      margin-bottom: 60px;
+      margin-bottom: 40px;
     }
 
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-top: 80px;
-      padding-bottom: 40px;
+    section h3 {
+      font-weight: 600;
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 6px;
     }
 
-    @media (max-width: 600px) {
-      body {
-        padding: 30px 15px 80px;
-      }
+    section p, section ul {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--text);
+    }
+
+    section ul {
+      list-style: disc inside;
+      margin-top: 12px;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
       header {
-        left: 15px;
-        top: 15px;
+        padding: 20px 30px;
       }
-      .contact-card {
-        margin-top: 80px;
+      main {
+        padding: 30px 20px;
+        margin: 20px;
       }
-      .timeline {
-        margin-left: 30px;
-        padding-left: 30px;
-        border-left-width: 2px;
-      }
-      .timeline-card {
-        padding: 20px;
-      }
-      .timeline-card::before {
-        left: -28px;
-        width: 12px;
-        height: 12px;
-        top: 25px;
+      .dropdown {
+        left: 30px;
+        top: 60px;
       }
     }
   </style>
 </head>
 <body>
-
   <header>
-    <div class="menu-container">
-      <div class="logo" aria-label="Toggle menu" role="button" tabindex="0">≡</div>
-      <nav class="dropdown" id="dropdownMenu">
-        <a href="index.html">Home</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="projects.html">Projects</a>
-        <a href="cv.html">CV</a>
-      </nav>
-    </div>
+    <div class="logo" aria-label="Toggle menu" role="button" tabindex="0">≡</div>
+    <nav class="dropdown" id="dropdownMenu">
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="projects.html">Projects</a>
+      <a href="cv.html">CV</a>
+    </nav>
   </header>
 
-  <div class="contact-card">
-    <strong>Jack Simm</strong>
-    <p>Product Designer / Product Development Manager</p>
-    <p>Email: jack.simm.design@gmail.com</p>
-    <p>Phone: +44 0737584523</p>
-  </div>
-
   <main>
+    <h1>Jack Simm</h1>
+    <h2>Product Designer & Product Development Manager</h2>
+
     <section>
-      <h2>Profile</h2>
-      <div class="timeline profile">
-        <div class="timeline-card profile">
-          <p><strong>Dedicated and enthusiastic Product Design student</strong> with a professional foundation in mechanical engineering and manufacturing.</p>
-          <p>I bring a unique combination of creativity and precision, shaped by years in the engineering sector and academic design practice.</p>
-          <ul>
-            <li>Driven by curiosity and a love for problem-solving</li>
-            <li>Value detail, clarity, and communication</li>
-            <li>Blend technical skill with creative thinking</li>
-          </ul>
-        </div>
-      </div>
+      <h3>Profile</h3>
+      <p>
+        Experienced Mechanical Maintenance Technician and Product Development Manager with a proven track record in manufacturing, product innovation, and operational leadership.
+      </p>
     </section>
 
     <section>
-      <h2>Work History</h2>
-      <div class="timeline">
-        <div class="timeline-card">
-          <h3>Product Development Manager</h3>
-          <p class="subtext">Fabb Brothers – Mar 2024 to Sep 2024</p>
-          <ul>
-            <li>Led research and prototyping of artisan-based furniture lines.</li>
-            <li>Coordinated with suppliers and craftspeople to achieve design vision.</li>
-            <li>Managed studio space and logistics for ongoing production.</li>
-          </ul>
-        </div>
-
-        <div class="timeline-card">
-          <h3>Kaizen Team Member</h3>
-          <p class="subtext">Unipres UK – Sep 2022 to Jun 2023</p>
-          <ul>
-            <li>Developed and refined engineering processes to enhance efficiency.</li>
-            <li>Produced standard operating procedures and improved system layouts.</li>
-            <li>Worked with teams across the business to optimise productivity.</li>
-          </ul>
-        </div>
-
-        <div class="timeline-card">
-          <h3>Cost Planning & CAD Technician</h3>
-          <p class="subtext">Unipres UK – Sep 2021 to Sep 2022</p>
-          <ul>
-            <li>Created manufacturing drawings and component designs using CAD.</li>
-            <li>Estimated project costs and collaborated with engineers and planners.</li>
-            <li>Presented technical plans for evaluation by senior management.</li>
-          </ul>
-        </div>
-
-        <div class="timeline-card">
-          <h3>Engineering Maintenance Technician</h3>
-          <p class="subtext">Unipres UK – Sep 2017 to Sep 2021</p>
-          <ul>
-            <li>Conducted preventive and reactive mechanical maintenance.</li>
-            <li>Maintained high standards of health, safety and efficiency.</li>
-            <li>Worked cross-functionally with other engineering departments.</li>
-          </ul>
-        </div>
-      </div>
+      <h3>Experience</h3>
+      <ul>
+        <li>Over half a decade at Unipres UK developing technical expertise and a collaborative mindset.</li>
+        <li>Led day-to-day operations, liaised with suppliers and artisan craftsmen, and managed R&D initiatives.</li>
+        <li>Worked closely with stakeholders to deliver customer-focused solutions exceeding expectations.</li>
+      </ul>
     </section>
 
     <section>
-      <h2>Education</h2>
-      <div class="timeline">
-        <div class="timeline-card">
-          <h3>BA Product Design</h3>
-          <p class="subtext">Middlesex University – 2023–Present</p>
-        </div>
-        <div class="timeline-card">
-          <h3>HNC Manufacturing Engineering</h3>
-          <p class="subtext">Unipres UK – 2021–2023</p>
-        </div>
-        <div class="timeline-card">
-          <h3>Level 3 Engineering BTEC</h3>
-          <p class="subtext">Unipres UK – 2016–2021</p>
-        </div>
-        <div class="timeline-card">
-          <h3>Level 3 Business Studies BTEC</h3>
-          <p class="subtext">2015–2016</p>
-        </div>
-      </div>
+      <h3>Skills</h3>
+      <ul>
+        <li>Product Development & Innovation</li>
+        <li>Operational Leadership</li>
+        <li>Supplier & Stakeholder Management</li>
+        <li>Manufacturing Process Optimization</li>
+      </ul>
     </section>
 
     <section>
-      <h2>Skills</h2>
-      <div class="timeline">
-        <div class="timeline-card">
-          <ul>
-            <li><strong>CAD:</strong> SolidWorks, Fusion 360, Shapr3D</li>
-            <li><strong>Design:</strong> Photoshop, Illustrator, InDesign</li>
-            <li><strong>Prototyping:</strong> Workshop skills, 3D printing, model making</li>
-            <li><strong>Web:</strong> HTML, CSS</li>
-            <li><strong>Soft Skills:</strong> Communication, Critical Thinking, Presentation</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Hobbies & Interests</h2>
-      <div class="timeline">
-        <div class="timeline-card">
-          <p>Design, Furniture Making, Photography, Tennis, Film, Running, Antiques, Typography, Architecture</p>
-        </div>
-      </div>
+      <h3>Contact</h3>
+      <p>Email: jack.simm@example.com</p>
+      <p>Phone: +44 1234 567890</p>
     </section>
   </main>
 
-  <footer>
-    &copy; 2025 Jack Simm – Portfolio
-  </footer>
-
   <script>
-    // Fade-in animation on scroll
-    const cards = document.querySelectorAll('.timeline-card');
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    cards.forEach(card => observer.observe(card));
+    const logoButton = document.querySelector(".logo");
+    const menu = document.getElementById("dropdownMenu");
 
-    // Dropdown toggle
-    const logo = document.querySelector('.logo');
-    const dropdown = document.getElementById('dropdownMenu');
-    logo.addEventListener('click', () => {
-      dropdown.classList.toggle('show');
+    function toggleMenu() {
+      if (menu.style.display === "flex") {
+        menu.style.display = "none";
+      } else {
+        menu.style.display = "flex";
+      }
+    }
+
+    logoButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleMenu();
     });
-    logo.addEventListener('keydown', e => {
-      if(e.key === 'Enter' || e.key === ' ') {
+
+    logoButton.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
         e.preventDefault();
-        dropdown.classList.toggle('show');
+        toggleMenu();
       }
     });
-    document.addEventListener('click', e => {
-      if (!logo.contains(e.target) && !dropdown.contains(e.target)) {
-        dropdown.classList.remove('show');
+
+    document.addEventListener("click", (e) => {
+      if (!menu.contains(e.target) && e.target !== logoButton) {
+        menu.style.display = "none";
       }
     });
   </script>
