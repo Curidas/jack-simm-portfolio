@@ -34,35 +34,34 @@
       min-height: 100vh;
     }
 
-    /* Full width fixed header bar */
+    /* --- HEADER AND MENU BAR --- */
     header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
+      background-color: var(--white);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       z-index: 1000;
     }
 
     .header-bar {
-      width: 100%;
-      background-color: var(--white);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      padding: 20px 0;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 15px 20px;
       display: flex;
-      justify-content: center;
+      align-items: center;
+      justify-content: flex-start;
+      border-radius: 0 0 12px 12px;
     }
 
     .menu-container {
-      background: var(--white);
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      padding: 15px 20px;
-      font-size: 0.95rem;
-      font-weight: 400;
-      max-width: 900px;
       width: 100%;
       display: flex;
       align-items: center;
+      justify-content: flex-start;
+      font-size: 0.95rem;
+      font-weight: 400;
     }
 
     .logo {
@@ -70,6 +69,7 @@
       font-weight: 600;
       font-size: 1.1rem;
       display: inline-block;
+      user-select: none;
     }
 
     nav.dropdown {
@@ -80,10 +80,9 @@
       box-shadow: 0 12px 30px rgba(0,0,0,0.1);
       margin-top: 5px;
       position: absolute;
-      top: 60px;
+      top: 56px; /* header-bar height + some spacing */
       left: 20px;
-      min-width: 150px;
-      z-index: 1100;
+      min-width: 130px;
     }
 
     nav.dropdown a {
@@ -94,6 +93,7 @@
       border-radius: 8px;
       transition: background 0.2s;
       white-space: nowrap;
+      display: block;
     }
 
     nav.dropdown a:hover {
@@ -106,7 +106,7 @@
 
     /* Contact card styling */
     .contact-card {
-      margin-top: 100px;
+      margin-top: 120px; /* Added top margin to compensate for fixed header */
       background: var(--white);
       padding: 20px;
       border-radius: 12px;
@@ -266,13 +266,13 @@
         padding: 30px 15px 80px;
       }
       header {
-        max-width: none;
-        width: auto;
-        left: 15px;
-        top: 15px;
+        /* fixed header styles remain the same */
+      }
+      .header-bar {
+        padding: 12px 15px;
       }
       .contact-card {
-        margin-top: 80px;
+        margin-top: 110px;
       }
       .timeline {
         margin-left: 30px;
@@ -290,7 +290,7 @@
       }
       nav.dropdown {
         left: 15px;
-        top: 55px;
+        top: 48px;
       }
     }
   </style>
