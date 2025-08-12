@@ -4,148 +4,119 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Projects – Jack Simm</title>
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #fff;
       --text: #1d1d1f;
-      --accent: #f5f5f7;
-      --shadow-light: rgba(0, 0, 0, 0.07);
-      --shadow-hover: rgba(0, 0, 0, 0.12);
+      --bg: #f5f5f7;
+      --white: #ffffff;
+      --accent: #007aff;
+      --line: #d2d2d7;
     }
-
-    body {
+    * {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: var(--bg);
       color: var(--text);
-      font-size: clamp(1rem, 1.2vw, 1.1rem);
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      font-weight: 300;
     }
-
-    /* Header */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 24px 48px;
-      background: #fff;
-      border-bottom: 1px solid #d2d2d7;
+      padding: 16px 60px;
+      background-color: var(--white);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
       position: sticky;
       top: 0;
       z-index: 100;
-      font-weight: 600;
-      font-size: clamp(1rem, 2vw, 1.3rem);
       user-select: none;
+    }
+    .logo {
+      font-weight: 600;
+      font-size: 1.2rem;
       cursor: pointer;
-      color: var(--text);
-      transition: box-shadow 0.25s ease;
+      outline: none;
     }
-    header:hover {
-      box-shadow: 0 2px 8px var(--shadow-light);
-    }
-
-    .left {
-      letter-spacing: 0.04em;
-    }
-
+    /* Dropdown */
     .dropdown {
       position: absolute;
       top: 70px;
-      left: 48px;
-      background: #fff;
+      left: 60px;
+      background-color: var(--white);
       border-radius: 12px;
-      box-shadow: 0 6px 24px var(--shadow-light);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
       display: none;
       flex-direction: column;
-      z-index: 1000;
-      min-width: 140px;
-      overflow: hidden;
-    }
-
-    .dropdown a {
-      padding: 16px 24px;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 500;
-      white-space: nowrap;
-      transition: background-color 0.2s ease;
-    }
-
-    .dropdown a:hover,
-    .dropdown a:focus {
-      background-color: var(--accent);
-      outline: none;
-    }
-
-    /* Container */
-    .container {
-      max-width: 1400px;
-      margin: 80px auto 120px;
-      padding: 0 clamp(16px, 5vw, 48px);
-    }
-
-    h1 {
-      text-align: center;
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin-bottom: 72px;
-      color: var(--text);
-      font-weight: 600;
-      letter-spacing: -0.5px;
-    }
-
-    /* Projects Grid */
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 48px;
-    }
-
-    .project img {
-      width: 100%;
-      border-radius: 16px;
-      box-shadow: 0 16px 40px var(--shadow-light);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      cursor: zoom-in;
+      z-index: 999;
+      min-width: 160px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
       user-select: none;
     }
-
-    .project img:hover,
-    .project img:focus {
-      transform: scale(1.015);
-      box-shadow: 0 20px 60px var(--shadow-hover);
+    .dropdown.show {
+      display: flex;
+    }
+    .dropdown a {
+      padding: 14px 24px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 400;
+      transition: background 0.2s;
+    }
+    .dropdown a:hover,
+    .dropdown a:focus {
+      background-color: #f2f2f2;
       outline: none;
     }
 
-    footer {
-      text-align: center;
-      padding: 60px 20px;
-      font-size: 0.9rem;
-      color: #999;
+    main {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 0 20px;
     }
-
-    @media (max-width: 600px) {
-      .container {
-        margin: 60px auto 80px;
-        padding: 0 16px;
-      }
-      header {
-        padding: 20px 16px;
-      }
-      .dropdown {
-        left: 16px;
-        top: 60px;
-      }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .project-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .project-list li {
+      background: var(--white);
+      margin-bottom: 20px;
+      padding: 16px 24px;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .project-list li:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      transform: translateY(-3px);
+    }
+    .project-list li a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 1.1rem;
+      display: block;
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="left" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu" onclick="toggleDropdown()" onkeydown="handleKey(event)">
-    ≡ Jack Simm
-  </div>
+  <div class="logo" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu" id="menuToggle">≡ Jack Simm</div>
   <nav class="dropdown" id="dropdownMenu" role="menu" aria-label="Main navigation">
     <a href="index.html" role="menuitem" tabindex="-1">Home</a>
     <a href="gallery.html" role="menuitem" tabindex="-1">Gallery</a>
@@ -154,47 +125,47 @@
   </nav>
 </header>
 
-<div class="container">
+<main>
   <h1>Projects</h1>
-  <div class="project-grid">
-    <div class="project">
-      <img src="Exploded Organiser.32.jpg" alt="Exploded Organiser View" tabindex="0" />
-    </div>
-    <div class="project">
-      <img src="untitled.31.jpg" alt="Exploded Organiser View 2" tabindex="0" />
-    </div>
-    <!-- Add more projects as needed -->
-  </div>
-</div>
-
-<footer>
-  &copy; 2025 Jack Simm – Portfolio
-</footer>
+  <ul class="project-list">
+    <li><a href="https://github.com/jacksimm/project1" target="_blank" rel="noopener noreferrer">Project One</a></li>
+    <li><a href="https://github.com/jacksimm/project2" target="_blank" rel="noopener noreferrer">Project Two</a></li>
+    <li><a href="https://github.com/jacksimm/project3" target="_blank" rel="noopener noreferrer">Project Three</a></li>
+  </ul>
+</main>
 
 <script>
-  const toggle = document.querySelector(".left");
-  const menu = document.getElementById("dropdownMenu");
+  const toggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('dropdownMenu');
 
   function toggleDropdown() {
-    const isOpen = menu.style.display === "flex";
-    menu.style.display = isOpen ? "none" : "flex";
-    toggle.setAttribute('aria-expanded', String(!isOpen));
+    const isOpen = menu.classList.contains('show');
+    if (isOpen) {
+      menu.classList.remove('show');
+      toggle.setAttribute('aria-expanded', 'false');
+    } else {
+      menu.classList.add('show');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
   }
 
-  function handleKey(e) {
+  toggle.addEventListener('click', toggleDropdown);
+
+  toggle.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       toggleDropdown();
     }
     if (e.key === 'Escape') {
-      menu.style.display = 'none';
+      menu.classList.remove('show');
       toggle.setAttribute('aria-expanded', 'false');
+      toggle.focus();
     }
-  }
+  });
 
-  document.addEventListener("click", (e) => {
+  document.addEventListener('click', e => {
     if (!menu.contains(e.target) && e.target !== toggle) {
-      menu.style.display = "none";
+      menu.classList.remove('show');
       toggle.setAttribute('aria-expanded', 'false');
     }
   });
