@@ -10,7 +10,6 @@
       --text: #1d1d1f;
       --white: #fff;
       --shadow-light: rgba(0,0,0,0.1);
-      --shadow-hover: rgba(0,0,0,0.15);
     }
 
     * {
@@ -33,8 +32,7 @@
       padding: 20px 60px;
       display: flex;
       align-items: center;
-      background: transparent; /* No grey bar */
-      user-select: none;
+      background: transparent;
       font-weight: 600;
       font-size: 1.4rem;
       cursor: pointer;
@@ -66,13 +64,10 @@
       color: var(--text);
       white-space: nowrap;
       transition: background-color 0.2s ease;
-      user-select: none;
     }
 
-    nav.dropdown a:hover,
-    nav.dropdown a:focus {
+    nav.dropdown a:hover {
       background-color: #f5f5f7;
-      outline: none;
     }
 
     /* Banner */
@@ -80,7 +75,7 @@
       position: relative;
       width: 100%;
       height: 100vh;
-      background-image: url('g.bip.25.JPG'); /* Your image */
+      background-image: url('g.bip.25.JPG');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -90,7 +85,6 @@
       transition: opacity 0.4s ease;
     }
 
-    /* Mobile fix for background */
     @media (max-width: 768px) {
       .banner {
         background-attachment: scroll;
@@ -117,7 +111,6 @@
       text-shadow: 0 3px 12px rgba(0,0,0,0.4);
       animation: fadeInUp 1.2s ease forwards;
       opacity: 0;
-      transition: opacity 0.4s ease;
       user-select: none;
     }
 
@@ -141,23 +134,40 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* About Section */
+    /* About Section with image */
     .about {
-      max-width: 800px;
+      max-width: 1100px;
       margin: 80px auto 120px;
       padding: 0 24px;
-      color: #555;
-      font-weight: 400;
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+      flex-wrap: wrap;
     }
 
-    .about h2 {
+    .about img {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+      color: #555;
+    }
+
+    .about-text h2 {
       font-weight: 600;
       font-size: clamp(1.8rem, 3vw, 2.4rem);
       margin-bottom: 24px;
       color: var(--text);
     }
 
-    .about p {
+    .about-text p {
       margin-bottom: 1.2rem;
       line-height: 1.7;
     }
@@ -167,28 +177,22 @@
       padding: 60px 20px;
       font-size: 0.9rem;
       color: #999;
-      user-select: none;
       background: var(--white);
     }
 
-    @media (max-width: 600px) {
-      header {
-        padding: 16px 24px;
+    @media (max-width: 768px) {
+      .about {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .about-text {
+        text-align: left;
       }
       nav.dropdown {
         left: 24px;
         top: 50px;
         min-width: 140px;
-      }
-      .about {
-        margin: 60px 16px 80px;
-        padding: 0 16px;
-      }
-      .hero-text h1 {
-        font-size: 2rem;
-      }
-      .hero-text h2 {
-        font-size: 1rem;
       }
     }
   </style>
@@ -196,13 +200,12 @@
 <body>
 
 <header>
-  <div class="logo" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu" role="button"
-       onclick="toggleDropdown()" onkeydown="handleKey(event)">≡</div>
-  <nav class="dropdown" id="dropdownMenu" role="menu" aria-label="Main navigation">
-    <a href="index.html" role="menuitem" tabindex="-1">Home</a>
-    <a href="gallery.html" role="menuitem" tabindex="-1">Gallery</a>
-    <a href="projects.html" role="menuitem" tabindex="-1">Projects</a>
-    <a href="cv.html" role="menuitem" tabindex="-1">CV</a>
+  <div class="logo" tabindex="0" onclick="toggleDropdown()">≡</div>
+  <nav class="dropdown" id="dropdownMenu">
+    <a href="index.html">Home</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="projects.html">Projects</a>
+    <a href="cv.html">CV</a>
   </nav>
 </header>
 
@@ -214,19 +217,22 @@
 </section>
 
 <section class="about" id="about">
-  <h2>About Me</h2>
-  <p>
-    I am an experienced Mechanical Maintenance Technician and Product Development Manager with a proven track record in manufacturing, product innovation, and operational leadership.
-  </p>
-  <p>
-    With over half a decade at Unipres UK, I gained invaluable experience working across key departments, developing strong technical expertise, a collaborative mindset, and a commitment to delivering customer-focused solutions. This role sharpened my problem-solving skills and strengthened my ability to meet stringent manufacturing specifications while maintaining high quality standards.
-  </p>
-  <p>
-    As a Product Development Manager, I oversaw the day-to-day operations of sales and distribution at the company’s main workshop, liaising with suppliers and artisan craftsmen on key production and consultancy design projects. I led R&D initiatives for new product ranges, enhanced existing products, and worked closely with stakeholders to ensure exceptional results that matched and exceeded customer expectations.
-  </p>
-  <p>
-    I bring a results-driven approach, underpinned by trust, respect, integrity, and professionalism. These values, combined with my technical knowledge and creative problem-solving, equip me to help businesses optimise value, achieve success, and deliver world-class products and services.
-  </p>
+  <img src="your-image.jpg" alt="Jack Simm portrait">
+  <div class="about-text">
+    <h2>About Me</h2>
+    <p>
+      I am an experienced Mechanical Maintenance Technician and Product Development Manager with a proven track record in manufacturing, product innovation, and operational leadership.
+    </p>
+    <p>
+      With over half a decade at Unipres UK, I gained invaluable experience working across key departments, developing strong technical expertise, a collaborative mindset, and a commitment to delivering customer-focused solutions.
+    </p>
+    <p>
+      As a Product Development Manager, I oversaw the day-to-day operations of sales and distribution at the company’s main workshop, liaising with suppliers and artisan craftsmen on key production and consultancy design projects.
+    </p>
+    <p>
+      I bring a results-driven approach, underpinned by trust, respect, integrity, and professionalism — equipping me to help businesses optimise value, achieve success, and deliver world-class products and services.
+    </p>
+  </div>
 </section>
 
 <footer>
@@ -238,30 +244,15 @@
   const menu = document.getElementById("dropdownMenu");
 
   function toggleDropdown() {
-    const isOpen = menu.style.display === "flex";
-    menu.style.display = isOpen ? "none" : "flex";
-    toggle.setAttribute('aria-expanded', String(!isOpen));
-  }
-
-  function handleKey(e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      toggleDropdown();
-    }
-    if (e.key === 'Escape') {
-      menu.style.display = "none";
-      toggle.setAttribute('aria-expanded', "false");
-    }
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
   }
 
   document.addEventListener("click", (e) => {
     if (!menu.contains(e.target) && e.target !== toggle) {
       menu.style.display = "none";
-      toggle.setAttribute('aria-expanded', "false");
     }
   });
 
-  // Banner fade on scroll
   const banner = document.getElementById('banner');
   const heroText = document.getElementById('heroText');
   window.addEventListener('scroll', () => {
@@ -271,12 +262,6 @@
     if (opacity < 0) opacity = 0;
     banner.style.opacity = opacity;
     heroText.style.opacity = opacity;
-  });
-
-  // Animate banner fade in on load
-  window.addEventListener('load', () => {
-    banner.style.opacity = 1;
-    heroText.style.opacity = 1;
   });
 </script>
 
