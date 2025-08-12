@@ -92,7 +92,7 @@
     }
 
     /* Timeline Container */
-    .timeline {
+    main.timeline {
       max-width: 900px;
       margin: 60px auto 80px;
       padding-left: 60px;
@@ -100,7 +100,7 @@
     }
 
     /* Vertical line */
-    .timeline::before {
+    main.timeline::before {
       content: "";
       position: absolute;
       left: 20px; /* shift left so timeline is spaced from content */
@@ -147,7 +147,7 @@
     .timeline-item h3 {
       font-weight: 600;
       font-size: 1.3rem;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       color: var(--text);
     }
 
@@ -170,11 +170,11 @@
 
     /* Responsive tweaks */
     @media (max-width: 600px) {
-      .timeline {
+      main.timeline {
         padding-left: 40px;
         margin: 40px 20px 60px;
       }
-      .timeline::before {
+      main.timeline::before {
         left: 10px;
         width: 3px;
       }
@@ -205,25 +205,58 @@
     <article class="timeline-item" tabindex="0">
       <h3>Product Development Manager</h3>
       <time>2021 – Present</time>
-      <p>Oversee day-to-day operations, supplier liaison, artisan craftsmen collaboration, R&D leadership, and stakeholder communication delivering exceptional product development results.</p>
+      <p>
+        Oversee day-to-day operations, supplier liaison, artisan craftsmen collaboration, R&D leadership, and stakeholder communication delivering exceptional product development results.
+      </p>
     </article>
 
     <article class="timeline-item" tabindex="0">
       <h3>Mechanical Maintenance Technician</h3>
       <time>2015 – 2021</time>
-      <p>Performed maintenance, troubleshooting, and process improvements in manufacturing environments at Unipres UK, building a strong technical foundation.</p>
+      <p>
+        Performed maintenance, troubleshooting, and process improvements in manufacturing environments at Unipres UK, building a strong technical foundation.
+      </p>
     </article>
 
     <article class="timeline-item" tabindex="0">
       <h3>Education</h3>
       <time>2013 – 2015</time>
-      <p>Studied Mechanical Engineering and Maintenance at [Your Institution], gaining solid theoretical and practical knowledge in product design and manufacturing.</p>
+      <p>
+        Studied Mechanical Engineering and Maintenance at [Your Institution], gaining solid theoretical and practical knowledge in product design and manufacturing.
+      </p>
     </article>
 
     <article class="timeline-item" tabindex="0">
-      <h3>Early Career & Internships</h3>
-      <time>2010 – 2013</time>
-      <p>Completed various internships and apprenticeships in mechanical engineering, honing skills in production and product development.</p>
+      <h3>Skills & Expertise</h3>
+      <time>Ongoing</time>
+      <p>
+        • Product development lifecycle management<br/>
+        • Mechanical maintenance and troubleshooting<br/>
+        • Supplier and artisan management<br/>
+        • R&D and innovation processes<br/>
+        • Cross-functional team leadership
+      </p>
+    </article>
+
+    <article class="timeline-item" tabindex="0">
+      <h3>Certifications</h3>
+      <time>Various Dates</time>
+      <p>
+        • Lean Six Sigma Green Belt<br/>
+        • Advanced Maintenance Practices<br/>
+        • Product Design and Development Workshops
+      </p>
+    </article>
+
+    <article class="timeline-item" tabindex="0">
+      <h3>Tools & Technologies</h3>
+      <time>Current</time>
+      <p>
+        • CAD Software (SolidWorks, AutoCAD)<br/>
+        • Maintenance Management Systems<br/>
+        • Project Management Tools (Asana, Trello)<br/>
+        • Microsoft Office Suite
+      </p>
     </article>
 
   </main>
