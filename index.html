@@ -8,7 +8,9 @@
   <style>
     :root {
       --text: #1d1d1f;
-      --bg: #fff;
+      --white: #fff;
+      --shadow-light: rgba(0,0,0,0.1);
+      --shadow-hover: rgba(0,0,0,0.15);
     }
 
     * {
@@ -18,8 +20,8 @@
     }
 
     body {
-      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background-color: var(--bg);
+      font-family: 'Poppins', sans-serif;
+      background: var(--white);
       color: var(--text);
       line-height: 1.6;
     }
@@ -27,73 +29,135 @@
     header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      padding: 16px 48px;
+      z-index: 1000;
+      padding: 20px 60px;
+      display: flex;
+      align-items: center;
+      background: transparent; /* No grey bar */
       user-select: none;
       font-weight: 600;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       cursor: pointer;
-      color: var(--text);
-      background: transparent;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
     }
 
     .logo {
       user-select: none;
-      outline-offset: 4px;
+      color: var(--text);
     }
 
-    .dropdown {
+    nav.dropdown {
       position: absolute;
-      top: 56px;
-      left: 48px;
+      top: 60px;
+      left: 60px;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 10px 25px var(--shadow-light);
       display: none;
       flex-direction: column;
-      z-index: 200;
+      min-width: 150px;
       font-weight: 500;
       font-size: 1rem;
-      background: transparent;
-      border-radius: 0;
-      box-shadow: none;
-      padding: 0;
-      min-width: 140px;
+      z-index: 1100;
     }
 
-    .dropdown a {
-      padding: 12px 20px;
+    nav.dropdown a {
+      padding: 14px 24px;
       text-decoration: none;
       color: var(--text);
       white-space: nowrap;
       transition: background-color 0.2s ease;
-      border-radius: 0;
       user-select: none;
     }
 
-    .dropdown a:hover,
-    .dropdown a:focus {
+    nav.dropdown a:hover,
+    nav.dropdown a:focus {
       background-color: #f5f5f7;
       outline: none;
     }
 
-    .container {
+    /* Banner */
+    .banner {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background-image: url('g.bip.25.JPG'); /* Your image */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.4s ease;
+    }
+
+    /* Mobile fix for background */
+    @media (max-width: 768px) {
+      .banner {
+        background-attachment: scroll;
+      }
+    }
+
+    .banner::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0));
+      z-index: 1;
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #fff;
+      text-shadow: 0 3px 12px rgba(0,0,0,0.4);
+      animation: fadeInUp 1.2s ease forwards;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      user-select: none;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .hero-text h2 {
+      font-weight: 400;
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* About Section */
+    .about {
       max-width: 800px;
       margin: 80px auto 120px;
       padding: 0 24px;
-      font-weight: 400;
-      font-size: 1.1rem;
       color: #555;
+      font-weight: 400;
     }
 
-    h2 {
+    .about h2 {
       font-weight: 600;
       font-size: clamp(1.8rem, 3vw, 2.4rem);
       margin-bottom: 24px;
       color: var(--text);
     }
 
-    p {
+    .about p {
       margin-bottom: 1.2rem;
       line-height: 1.7;
     }
@@ -103,22 +167,28 @@
       padding: 60px 20px;
       font-size: 0.9rem;
       color: #999;
-      background: transparent;
       user-select: none;
+      background: var(--white);
     }
 
     @media (max-width: 600px) {
       header {
         padding: 16px 24px;
       }
-      .dropdown {
+      nav.dropdown {
         left: 24px;
         top: 50px;
-        min-width: 120px;
+        min-width: 140px;
       }
-      .container {
-        margin: 60px auto 80px;
+      .about {
+        margin: 60px 16px 80px;
         padding: 0 16px;
+      }
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+      .hero-text h2 {
+        font-size: 1rem;
       }
     }
   </style>
@@ -126,10 +196,8 @@
 <body>
 
 <header>
-  <div class="logo" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu" role="button" 
-       onclick="toggleDropdown()" onkeydown="handleKey(event)">
-    ≡
-  </div>
+  <div class="logo" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu" role="button"
+       onclick="toggleDropdown()" onkeydown="handleKey(event)">≡</div>
   <nav class="dropdown" id="dropdownMenu" role="menu" aria-label="Main navigation">
     <a href="index.html" role="menuitem" tabindex="-1">Home</a>
     <a href="gallery.html" role="menuitem" tabindex="-1">Gallery</a>
@@ -138,7 +206,14 @@
   </nav>
 </header>
 
-<div class="container">
+<section class="banner" id="banner">
+  <div class="hero-text" id="heroText">
+    <h1>Jack Simm</h1>
+    <h2>Product Designer & Product Development Manager</h2>
+  </div>
+</section>
+
+<section class="about" id="about">
   <h2>About Me</h2>
   <p>
     I am an experienced Mechanical Maintenance Technician and Product Development Manager with a proven track record in manufacturing, product innovation, and operational leadership.
@@ -152,19 +227,19 @@
   <p>
     I bring a results-driven approach, underpinned by trust, respect, integrity, and professionalism. These values, combined with my technical knowledge and creative problem-solving, equip me to help businesses optimise value, achieve success, and deliver world-class products and services.
   </p>
-</div>
+</section>
 
 <footer>
   &copy; 2025 Jack Simm – Portfolio
 </footer>
 
 <script>
-  const toggle = document.querySelector('.logo');
-  const menu = document.getElementById('dropdownMenu');
+  const toggle = document.querySelector(".logo");
+  const menu = document.getElementById("dropdownMenu");
 
   function toggleDropdown() {
-    const isOpen = menu.style.display === 'flex';
-    menu.style.display = isOpen ? 'none' : 'flex';
+    const isOpen = menu.style.display === "flex";
+    menu.style.display = isOpen ? "none" : "flex";
     toggle.setAttribute('aria-expanded', String(!isOpen));
   }
 
@@ -174,18 +249,34 @@
       toggleDropdown();
     }
     if (e.key === 'Escape') {
-      menu.style.display = 'none';
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.focus();
+      menu.style.display = "none";
+      toggle.setAttribute('aria-expanded', "false");
     }
   }
 
-  // Close dropdown if clicking outside
-  document.addEventListener('click', (e) => {
+  document.addEventListener("click", (e) => {
     if (!menu.contains(e.target) && e.target !== toggle) {
-      menu.style.display = 'none';
-      toggle.setAttribute('aria-expanded', 'false');
+      menu.style.display = "none";
+      toggle.setAttribute('aria-expanded', "false");
     }
+  });
+
+  // Banner fade on scroll
+  const banner = document.getElementById('banner');
+  const heroText = document.getElementById('heroText');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const bannerHeight = banner.offsetHeight;
+    let opacity = 1 - scrollY / (bannerHeight / 2);
+    if (opacity < 0) opacity = 0;
+    banner.style.opacity = opacity;
+    heroText.style.opacity = opacity;
+  });
+
+  // Animate banner fade in on load
+  window.addEventListener('load', () => {
+    banner.style.opacity = 1;
+    heroText.style.opacity = 1;
   });
 </script>
 
