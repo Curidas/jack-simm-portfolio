@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gallery – Jack Simm</title>
-  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --text: #1d1d1f;
@@ -13,13 +14,11 @@
       --accent: #007aff;
       --line: #d2d2d7;
     }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     body {
       font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: var(--bg);
@@ -27,58 +26,55 @@
       line-height: 1.6;
       font-weight: 300;
     }
-
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 16px 60px;
       background-color: var(--white);
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
       position: sticky;
       top: 0;
       z-index: 100;
+      user-select: none;
     }
-
     .logo {
       font-weight: 600;
       font-size: 1.2rem;
       cursor: pointer;
+      outline: none;
     }
-
+    /* Dropdown menu with Poppins font */
     .dropdown {
       position: absolute;
       top: 70px;
       left: 60px;
       background-color: var(--white);
       border-radius: 12px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
       display: none;
       flex-direction: column;
-      z-index: 99;
+      z-index: 999;
+      min-width: 160px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      user-select: none;
     }
-
+    .dropdown.show {
+      display: flex;
+    }
     .dropdown a {
-      padding: 16px 24px;
+      padding: 14px 24px;
       text-decoration: none;
       color: var(--text);
       font-weight: 400;
       transition: background 0.2s;
     }
-
-    .dropdown a:hover {
-      background: #f2f2f2;
+    .dropdown a:hover,
+    .dropdown a:focus {
+      background-color: #f2f2f2;
+      outline: none;
     }
-
-    /* Responsive dropdown for mobile */
-    @media (max-width: 600px) {
-      .dropdown {
-        left: 0;
-        width: 100%;
-        border-radius: 0;
-      }
-    }
-
     /* Video Banner */
     .banner {
       position: relative;
@@ -87,32 +83,27 @@
       min-height: 240px;
       overflow: hidden;
     }
-
     .banner video {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-
     main {
       max-width: 1000px;
       margin: 60px auto;
       padding: 0 20px;
     }
-
     h1 {
       font-size: 2.5rem;
       font-weight: 600;
       margin-bottom: 40px;
       text-align: center;
     }
-
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 20px;
     }
-
     .gallery-item {
       background: var(--white);
       border-radius: 12px;
@@ -120,31 +111,25 @@
       box-shadow: 0 1px 4px rgba(0,0,0,0.05);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       cursor: pointer;
-
-      /* For fade-in animation */
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-
     .gallery-item.show {
       opacity: 1;
       transform: translateY(0);
     }
-
     .gallery-item:hover {
       transform: translateY(-4px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
-
     .gallery-item img {
       width: 100%;
-      height: 250px; /* Consistent height for all thumbnails */
-      object-fit: cover; /* Crop to fit without distortion */
+      height: 250px;
+      object-fit: cover;
       display: block;
     }
-
-    /* Lightbox styles */
+    /* Lightbox */
     .lightbox {
       display: none;
       position: fixed;
@@ -158,7 +143,6 @@
       align-items: center;
       justify-content: center;
     }
-
     .lightbox img {
       max-width: 90%;
       max-height: 80%;
@@ -166,16 +150,13 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.5);
       animation: fadeIn 0.3s ease;
     }
-
     .lightbox:target {
       display: flex;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.98); }
       to { opacity: 1; transform: scale(1); }
     }
-
     .close {
       position: absolute;
       top: 10px;
@@ -187,28 +168,35 @@
       cursor: pointer;
       padding: 8px;
     }
-
     .close:hover {
       color: var(--accent);
+    }
+
+    @media (max-width: 600px) {
+      .dropdown {
+        left: 0;
+        width: 100%;
+        border-radius: 0;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="logo" onclick="toggleDropdown()">≡</div>
-    <div class="dropdown" id="dropdownMenu">
-      <a href="index.html">Home</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="projects.html">Projects</a>
-      <a href="cv.html">CV</a>
-    </div>
+    <div class="logo" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu" id="menuToggle">≡ Jack Simm</div>
+    <nav class="dropdown" id="dropdownMenu" role="menu" aria-label="Main navigation">
+      <a href="index.html" role="menuitem" tabindex="-1">Home</a>
+      <a href="gallery.html" role="menuitem" tabindex="-1">Gallery</a>
+      <a href="projects.html" role="menuitem" tabindex="-1">Projects</a>
+      <a href="cv.html" role="menuitem" tabindex="-1">CV</a>
+    </nav>
   </header>
 
   <!-- Video Banner -->
   <section class="banner">
     <video autoplay loop muted playsinline>
-      <source src="Amazon.40.mp4" type="video/mp4">
+      <source src="Amazon.40.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
   </section>
@@ -218,12 +206,12 @@
     <div class="gallery">
       <div class="gallery-item">
         <a href="#img1">
-          <img src="untitled.41%202.JPG" alt="Product Design">
+          <img src="untitled.41%202.JPG" alt="Product Design" />
         </a>
       </div>
       <div class="gallery-item">
         <a href="#img2">
-          <img src="Exploded%20Organiser.45.jpg" alt="Exploded Organiser">
+          <img src="Exploded%20Organiser.45.jpg" alt="Exploded Organiser" />
         </a>
       </div>
     </div>
@@ -232,40 +220,57 @@
   <!-- Lightbox -->
   <div id="img1" class="lightbox">
     <a href="#" class="close">&times;</a>
-    <img src="untitled.41%202.JPG" alt="Product Design Large">
+    <img src="untitled.41%202.JPG" alt="Product Design Large" />
   </div>
 
   <div id="img2" class="lightbox">
     <a href="#" class="close">&times;</a>
-    <img src="Exploded%20Organiser.45.jpg" alt="Exploded Organiser Large">
+    <img src="Exploded%20Organiser.45.jpg" alt="Exploded Organiser Large" />
   </div>
 
   <script>
-    const toggle = document.querySelector(".logo");
-    const menu = document.getElementById("dropdownMenu");
+    const toggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('dropdownMenu');
 
-    toggle.addEventListener("click", () => {
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-    });
+    function toggleDropdown() {
+      const isOpen = menu.classList.contains('show');
+      if (isOpen) {
+        menu.classList.remove('show');
+        toggle.setAttribute('aria-expanded', 'false');
+      } else {
+        menu.classList.add('show');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    }
 
-    document.addEventListener("click", (e) => {
-      if (!menu.contains(e.target) && e.target !== toggle) {
-        menu.style.display = "none";
+    toggle.addEventListener('click', toggleDropdown);
+
+    toggle.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleDropdown();
+      }
+      if (e.key === 'Escape') {
+        menu.classList.remove('show');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.focus();
       }
     });
 
-    // Fade-in gallery items on scroll
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
+    document.addEventListener('click', e => {
+      if (!menu.contains(e.target) && e.target !== toggle) {
+        menu.classList.remove('show');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
 
-    galleryItems.forEach(item => observer.observe(item));
+    // Animate gallery items fade in
+    window.addEventListener('load', () => {
+      const items = document.querySelectorAll('.gallery-item');
+      items.forEach((item, index) => {
+        setTimeout(() => item.classList.add('show'), index * 150);
+      });
+    });
   </script>
 
 </body>
