@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jack Simm – CV Timeline</title>
+  <title>Jack Simm – CV</title>
   <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --text: #1d1d1f;
       --bg: #f5f5f7;
       --white: #ffffff;
-      --line: #d2d2d7;
-      --accent: #1d1d1f;
+      --timeline-grey: #c1c1c1;
     }
 
     * {
@@ -22,30 +21,29 @@
 
     body {
       font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
+      background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    /* Header with dropdown */
     header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background-color: var(--white);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
       position: sticky;
       top: 0;
-      background: var(--white);
-      padding: 20px 60px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
       z-index: 100;
-      user-select: none;
       position: relative;
     }
 
     .logo {
       font-weight: 600;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       cursor: pointer;
       user-select: none;
     }
@@ -55,28 +53,26 @@
       position: absolute;
       top: 70px;
       left: 60px;
-      background: var(--white);
+      background-color: var(--white);
       border-radius: 12px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
       display: none;
       flex-direction: column;
-      min-width: 160px;
       z-index: 99;
+      min-width: 150px;
     }
 
     .dropdown a {
       padding: 16px 24px;
+      text-decoration: none;
       color: var(--text);
       font-weight: 400;
-      text-decoration: none;
       transition: background 0.2s;
       cursor: pointer;
     }
 
-    .dropdown a:hover,
-    .dropdown a:focus {
+    .dropdown a:hover {
       background: #f2f2f2;
-      outline: none;
     }
 
     @media (max-width: 600px) {
@@ -85,43 +81,52 @@
       }
       .dropdown {
         left: 0;
-        top: 60px;
         width: 100%;
         border-radius: 0;
+        top: 60px;
       }
     }
 
-    /* Timeline Container */
-    main.timeline {
+    /* Page Title */
+    .page-title {
+      text-align: center;
+      padding: 60px 20px 40px;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Timeline container */
+    .timeline-container {
       max-width: 900px;
-      margin: 60px auto 80px;
+      margin: 0 auto 80px;
       padding-left: 60px;
       position: relative;
     }
 
-    /* Vertical line */
-    main.timeline::before {
-      content: "";
+    /* Vertical timeline line */
+    .timeline-container::before {
+      content: '';
       position: absolute;
-      left: 20px; /* shift left so timeline is spaced from content */
       top: 0;
-      bottom: 0;
+      left: 20px;
       width: 4px;
-      background: var(--line);
+      height: 100%;
+      background-color: var(--timeline-grey);
       border-radius: 2px;
     }
 
-    /* Each timeline entry */
+    /* Each timeline item */
     .timeline-item {
       position: relative;
       background: var(--white);
-      padding: 20px 30px;
-      margin-bottom: 40px;
       border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      margin-bottom: 40px;
+      padding: 20px 30px 20px 40px;
+      transition: transform 0.4s ease, opacity 0.6s ease;
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(40px);
     }
 
     .timeline-item.show {
@@ -131,60 +136,73 @@
 
     /* Dot on timeline */
     .timeline-item::before {
-      content: "";
+      content: '';
       position: absolute;
-      left: -40px; /* place the dot on the vertical line */
-      top: 25px;
-      width: 16px;
-      height: 16px;
+      top: 30px;
+      left: -40px;
+      width: 20px;
+      height: 20px;
+      background-color: var(--text);
       border-radius: 50%;
-      background: var(--accent);
-      border: 4px solid var(--white);
+      border: 4px solid var(--bg);
       box-sizing: content-box;
     }
 
-    /* Title of each entry */
+    /* Headings */
     .timeline-item h3 {
+      font-size: 1.5rem;
       font-weight: 600;
-      font-size: 1.3rem;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       color: var(--text);
     }
 
-    /* Date or period */
-    .timeline-item time {
-      display: block;
-      font-size: 0.9rem;
-      color: #888;
-      margin-bottom: 12px;
-      font-weight: 400;
-    }
-
-    /* Description text */
-    .timeline-item p {
+    .timeline-item h4 {
       font-size: 1.1rem;
-      color: var(--text);
-      line-height: 1.5;
-      white-space: pre-line;
+      font-weight: 500;
+      color: #555;
+      margin-bottom: 12px;
     }
 
-    /* Responsive tweaks */
-    @media (max-width: 600px) {
-      main.timeline {
+    /* Paragraph text */
+    .timeline-item p {
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.5;
+      letter-spacing: -0.15px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .timeline-container {
         padding-left: 40px;
-        margin: 40px 20px 60px;
       }
-      main.timeline::before {
-        left: 10px;
-        width: 3px;
+      .timeline-item {
+        padding-left: 30px;
       }
       .timeline-item::before {
         left: -30px;
-        width: 12px;
-        height: 12px;
-        border-width: 3px;
-        top: 20px;
+        width: 16px;
+        height: 16px;
+        top: 28px;
       }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 20px;
+      }
+      .page-title {
+        font-size: 2rem;
+        padding: 40px 20px 30px;
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9rem;
+      color: #aaa;
+      background: var(--white);
     }
   </style>
 </head>
@@ -192,118 +210,96 @@
 
   <header>
     <div class="logo" aria-label="Toggle menu" role="button" tabindex="0">≡</div>
-    <nav class="dropdown" id="dropdownMenu" aria-label="Primary navigation">
+    <nav class="dropdown" id="dropdownMenu">
       <a href="index.html">Home</a>
       <a href="gallery.html">Gallery</a>
       <a href="projects.html">Projects</a>
-      <a href="cv.html" aria-current="page">CV</a>
+      <a href="cv.html">CV</a>
     </nav>
   </header>
 
-  <main class="timeline" aria-label="Career timeline">
+  <h1 class="page-title">Curriculum Vitae</h1>
 
-    <article class="timeline-item" tabindex="0">
+  <main class="timeline-container">
+
+    <article class="timeline-item">
       <h3>Product Development Manager</h3>
-      <time>2021 – Present</time>
-      <p>
-        Oversee day-to-day operations, supplier liaison, artisan craftsmen collaboration, R&D leadership, and stakeholder communication delivering exceptional product development results.
-      </p>
+      <h4>Jack Simm Design Studio – July 2022 – Present</h4>
+      <p>Working as a Product Development Manager, I manage day-to-day operations, liaise with suppliers and artisan craftsmen, and lead R&D projects to deliver outstanding product innovation and quality.</p>
     </article>
 
-    <article class="timeline-item" tabindex="0">
+    <article class="timeline-item">
+      <h3>Product Development Manager</h3>
+      <h4>Unipres UK Ltd – August 2021 – June 2022</h4>
+      <p>Managed all product development activities for automotive parts, worked cross-functionally with engineering and manufacturing teams to streamline processes and improve product quality.</p>
+    </article>
+
+    <article class="timeline-item">
       <h3>Mechanical Maintenance Technician</h3>
-      <time>2015 – 2021</time>
-      <p>
-        Performed maintenance, troubleshooting, and process improvements in manufacturing environments at Unipres UK, building a strong technical foundation.
-      </p>
+      <h4>Unipres UK Ltd – January 2017 – August 2021</h4>
+      <p>Serviced and maintained production machinery, performed troubleshooting, and supported operational efficiency in a high-volume manufacturing environment.</p>
     </article>
 
-    <article class="timeline-item" tabindex="0">
+    <article class="timeline-item">
       <h3>Education</h3>
-      <time>2013 – 2015</time>
-      <p>
-        Studied Mechanical Engineering and Maintenance at [Your Institution], gaining solid theoretical and practical knowledge in product design and manufacturing.
-      </p>
-    </article>
-
-    <article class="timeline-item" tabindex="0">
-      <h3>Skills & Expertise</h3>
-      <time>Ongoing</time>
-      <p>
-        • Product development lifecycle management<br/>
-        • Mechanical maintenance and troubleshooting<br/>
-        • Supplier and artisan management<br/>
-        • R&D and innovation processes<br/>
-        • Cross-functional team leadership
-      </p>
-    </article>
-
-    <article class="timeline-item" tabindex="0">
-      <h3>Certifications</h3>
-      <time>Various Dates</time>
-      <p>
-        • Lean Six Sigma Green Belt<br/>
-        • Advanced Maintenance Practices<br/>
-        • Product Design and Development Workshops
-      </p>
-    </article>
-
-    <article class="timeline-item" tabindex="0">
-      <h3>Tools & Technologies</h3>
-      <time>Current</time>
-      <p>
-        • CAD Software (SolidWorks, AutoCAD)<br/>
-        • Maintenance Management Systems<br/>
-        • Project Management Tools (Asana, Trello)<br/>
-        • Microsoft Office Suite
-      </p>
+      <h4>BTEC Level 3 Extended Diploma in Mechanical Engineering</h4>
+      <p>Darlington College, 2015</p>
+      <h4>NVQ Level 2 Mechanical Engineering Maintenance</h4>
+      <p>Unipres UK Ltd, 2019</p>
     </article>
 
   </main>
 
+  <footer>
+    &copy; 2025 Jack Simm – Portfolio
+  </footer>
+
   <script>
     // Dropdown toggle
-    const logoButton = document.querySelector(".logo");
-    const menu = document.getElementById("dropdownMenu");
+    const logoButton = document.querySelector('.logo');
+    const menu = document.getElementById('dropdownMenu');
 
     function toggleMenu() {
-      if (menu.style.display === "flex") {
-        menu.style.display = "none";
+      if (menu.style.display === 'flex') {
+        menu.style.display = 'none';
       } else {
-        menu.style.display = "flex";
+        menu.style.display = 'flex';
       }
     }
 
-    logoButton.addEventListener("click", e => {
+    logoButton.addEventListener('click', e => {
       e.stopPropagation();
       toggleMenu();
     });
 
-    logoButton.addEventListener("keydown", e => {
-      if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+    logoButton.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
         e.preventDefault();
         toggleMenu();
       }
     });
 
-    document.addEventListener("click", e => {
+    document.addEventListener('click', e => {
       if (!menu.contains(e.target) && e.target !== logoButton) {
-        menu.style.display = "none";
+        menu.style.display = 'none';
       }
     });
 
     // Scroll animation for timeline items
-    const items = document.querySelectorAll('.timeline-item');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
 
-    items.forEach(item => observer.observe(item));
+    timelineItems.forEach(item => observer.observe(item));
   </script>
 
 </body>
