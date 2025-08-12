@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jack Simm – CV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jack Simm – CV Timeline</title>
   <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -11,60 +11,39 @@
       --bg: #f5f5f7;
       --white: #ffffff;
       --accent: #007aff;
-      --muted: #8e8e93;
       --line: #d2d2d7;
+      --muted: #8e8e93;
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      font-weight: 300;
-      padding-bottom: 100px;
     }
-
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 60px;
       background-color: var(--white);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
       position: sticky;
       top: 0;
       z-index: 100;
     }
-
-    .logo {
-      font-weight: 600;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-
-    .dropdown {
+    .logo { font-weight: 600; font-size: 1.2rem; cursor: pointer; user-select: none; }
+    nav.dropdown {
       position: absolute;
-      top: 70px;
-      left: 60px;
-      background-color: var(--white);
+      top: 70px; left: 60px;
+      background: var(--white);
       border-radius: 12px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
       display: none;
       flex-direction: column;
       z-index: 99;
+      min-width: 150px;
     }
-
     .dropdown a {
       padding: 16px 24px;
       text-decoration: none;
@@ -72,81 +51,94 @@
       font-weight: 400;
       transition: background 0.2s;
     }
-
-    .dropdown a:hover {
-      background: #f2f2f2;
-    }
-
+    .dropdown a:hover { background: #f2f2f2; }
     main {
-      max-width: 960px;
+      max-width: 900px;
       margin: 60px auto;
       padding: 0 20px;
     }
-
-    section {
-      margin-bottom: 60px;
-    }
-
     h1 {
       font-size: 2.6rem;
       font-weight: 600;
       margin-bottom: 4px;
+      text-align: center;
+    }
+    .subtext {
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 40px;
     }
 
-    h2 {
+    /* Timeline structure */
+    .timeline {
+      position: relative;
+      margin-left: 30px;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 0;
+      width: 2px;
+      background: var(--line);
+    }
+    .timeline-card {
+      position: relative;
+      margin-bottom: 40px;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 20px 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .timeline-card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .timeline-card::before {
+      content: "";
+      position: absolute;
+      left: -37px;
+      top: 20px;
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+    h2.section-title {
       font-size: 1.6rem;
       font-weight: 600;
-      margin-bottom: 20px;
+      margin: 60px 0 30px;
+      text-align: center;
     }
-
     h3 {
       font-size: 1.1rem;
       font-weight: 600;
       margin-bottom: 4px;
     }
-
-    .subtext {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-
-    .card {
-      background: var(--white);
-      border-radius: 16px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-      padding: 24px;
-      margin-bottom: 24px;
-    }
-
-    ul {
-      padding-left: 20px;
-      margin-top: 10px;
-    }
-
-    li {
-      margin-bottom: 6px;
-    }
-
+    ul { padding-left: 20px; margin-top: 10px; }
+    li { margin-bottom: 6px; }
     footer {
       text-align: center;
       font-size: 0.85rem;
       color: var(--muted);
       margin-top: 80px;
+      padding: 20px;
     }
-
-    @media (max-width: 768px) {
-      .dropdown {
-        left: 20px;
-        width: calc(100% - 40px);
-      }
+    @media (max-width: 600px) {
+      header { padding: 20px; }
+      nav.dropdown { left: 0; width: 100%; border-radius: 0; }
+      .timeline { margin-left: 20px; }
+      .timeline-card::before { left: -27px; }
     }
   </style>
 </head>
 <body>
-
 <header>
-  <div class="logo" onclick="toggleDropdown()">≡</div>
+  <div class="logo" role="button" tabindex="0">≡</div>
   <nav class="dropdown" id="dropdownMenu">
     <a href="index.html">Home</a>
     <a href="gallery.html">Gallery</a>
@@ -156,40 +148,40 @@
 </header>
 
 <main>
-  <section>
-    <h1>Jack Simm</h1>
-    <p class="subtext">Product Designer / Product Development Manager</p>
-    <p>Email: jack.simm.design@gmail.com<br>Phone: +44 0737584523</p>
-  </section>
+  <h1>Jack Simm</h1>
+  <p class="subtext">Product Designer / Product Development Manager<br>
+  jack.simm.design@gmail.com • +44 0737584523</p>
 
-  <section>
-    <h2>Profile</h2>
-    <p>Dedicated and enthusiastic Product Design student with a professional foundation in mechanical engineering and manufacturing. I bring a unique combination of creativity and precision, shaped by years in the engineering sector and academic design practice. I’m driven by curiosity, love solving problems, and value detail, clarity and communication.</p>
-  </section>
+  <h2 class="section-title">Profile</h2>
+  <div class="timeline">
+    <div class="timeline-card">
+      <p>Dedicated and enthusiastic Product Design student with a professional foundation in mechanical engineering and manufacturing. I bring a unique combination of creativity and precision, shaped by years in the engineering sector and academic design practice. I’m driven by curiosity, love solving problems, and value detail, clarity and communication.</p>
+    </div>
+  </div>
 
-  <section>
-    <h2>Education</h2>
-    <div class="card">
+  <h2 class="section-title">Education</h2>
+  <div class="timeline">
+    <div class="timeline-card">
       <h3>BA Product Design</h3>
       <p class="subtext">Middlesex University – 2023–Present</p>
     </div>
-    <div class="card">
+    <div class="timeline-card">
       <h3>HNC Manufacturing Engineering</h3>
       <p class="subtext">Unipres UK – 2021–2023</p>
     </div>
-    <div class="card">
+    <div class="timeline-card">
       <h3>Level 3 Engineering BTEC</h3>
       <p class="subtext">Unipres UK – 2016–2021</p>
     </div>
-    <div class="card">
+    <div class="timeline-card">
       <h3>Level 3 Business Studies BTEC</h3>
       <p class="subtext">2015–2016</p>
     </div>
-  </section>
+  </div>
 
-  <section>
-    <h2>Work History</h2>
-    <div class="card">
+  <h2 class="section-title">Work History</h2>
+  <div class="timeline">
+    <div class="timeline-card">
       <h3>Product Development Manager</h3>
       <p class="subtext">Fabb Brothers – Mar 2024 to Sep 2024</p>
       <ul>
@@ -198,25 +190,25 @@
         <li>Managed studio space and logistics for ongoing production.</li>
       </ul>
     </div>
-    <div class="card">
+    <div class="timeline-card">
       <h3>Kaizen Team Member</h3>
       <p class="subtext">Unipres UK – Sep 2022 to Jun 2023</p>
       <ul>
         <li>Developed and refined engineering processes to enhance efficiency.</li>
-        <li>Produced standard operating procedures and improved system layouts.</li>
+        <li>Produced standard operating procedures and improved layouts.</li>
         <li>Worked with teams across the business to optimise productivity.</li>
       </ul>
     </div>
-    <div class="card">
+    <div class="timeline-card">
       <h3>Cost Planning & CAD Technician</h3>
       <p class="subtext">Unipres UK – Sep 2021 to Sep 2022</p>
       <ul>
-        <li>Created manufacturing drawings and component designs using CAD.</li>
-        <li>Estimated project costs and collaborated with engineers and planners.</li>
-        <li>Presented technical plans for evaluation by senior management.</li>
+        <li>Created manufacturing drawings and designs using CAD.</li>
+        <li>Estimated project costs and collaborated with engineers.</li>
+        <li>Presented technical plans for evaluation by management.</li>
       </ul>
     </div>
-    <div class="card">
+    <div class="timeline-card">
       <h3>Engineering Maintenance Technician</h3>
       <p class="subtext">Unipres UK – Sep 2017 to Sep 2021</p>
       <ul>
@@ -225,11 +217,11 @@
         <li>Worked cross-functionally with other engineering departments.</li>
       </ul>
     </div>
-  </section>
+  </div>
 
-  <section>
-    <h2>Skills</h2>
-    <div class="card">
+  <h2 class="section-title">Skills</h2>
+  <div class="timeline">
+    <div class="timeline-card">
       <ul>
         <li><strong>CAD:</strong> SolidWorks, Fusion 360, Shapr3D</li>
         <li><strong>Design:</strong> Photoshop, Illustrator, InDesign</li>
@@ -238,14 +230,15 @@
         <li><strong>Soft Skills:</strong> Communication, Critical Thinking, Presentation</li>
       </ul>
     </div>
-  </section>
+  </div>
 
-  <section>
-    <h2>Hobbies & Interests</h2>
-    <div class="card">
+  <h2 class="section-title">Hobbies & Interests</h2>
+  <div class="timeline">
+    <div class="timeline-card">
       <p>Design, Furniture Making, Photography, Tennis, Film, Running, Antiques, Typography, Architecture</p>
     </div>
-  </section>
+  </div>
+
 </main>
 
 <footer>
@@ -253,19 +246,32 @@
 </footer>
 
 <script>
-  const toggle = document.querySelector(".logo");
+  const logoButton = document.querySelector(".logo");
   const menu = document.getElementById("dropdownMenu");
 
-  toggle.addEventListener("click", () => {
+  logoButton.addEventListener("click", (e) => {
+    e.stopPropagation();
     menu.style.display = menu.style.display === "flex" ? "none" : "flex";
   });
 
   document.addEventListener("click", (e) => {
-    if (!menu.contains(e.target) && e.target !== toggle) {
+    if (!menu.contains(e.target) && e.target !== logoButton) {
       menu.style.display = "none";
     }
   });
-</script>
 
+  // Animate timeline cards on scroll
+  const cards = document.querySelectorAll('.timeline-card');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  cards.forEach(card => observer.observe(card));
+</script>
 </body>
 </html>
