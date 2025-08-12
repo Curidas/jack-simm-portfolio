@@ -34,47 +34,44 @@
       min-height: 100vh;
     }
 
-    /* Header from index.html */
+    /* Header - matches index.html style */
     header {
-      width: 100%;
-      background: var(--white);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       position: fixed;
       top: 0;
       left: 0;
+      width: 100%;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
       z-index: 1000;
     }
 
     .nav-container {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
       max-width: 1100px;
       margin: 0 auto;
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
     }
 
-    .logo {
-      font-weight: 600;
-      font-size: 1.2rem;
+    .menu-toggle {
       cursor: pointer;
-    }
-
-    .menu-icon {
       font-size: 1.5rem;
-      cursor: pointer;
+      font-weight: bold;
+      background: none;
+      border: none;
+      margin-right: 20px;
     }
 
     nav {
-      position: absolute;
-      top: 60px;
-      right: 20px;
-      background: var(--white);
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
       display: none;
       flex-direction: column;
-      min-width: 150px;
+      position: absolute;
+      top: 60px;
+      left: 20px;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+      overflow: hidden;
     }
 
     nav.show {
@@ -86,6 +83,7 @@
       text-decoration: none;
       color: var(--text);
       font-weight: 400;
+      white-space: nowrap;
       transition: background 0.2s;
     }
 
@@ -127,6 +125,11 @@
     h1, h2, h3 {
       font-weight: 600;
       color: var(--text);
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 8px;
     }
 
     h2 {
@@ -246,6 +249,9 @@
     }
 
     @media (max-width: 600px) {
+      body {
+        padding: 30px 15px 80px;
+      }
       .contact-card {
         margin-top: 80px;
       }
@@ -270,8 +276,7 @@
 
   <header>
     <div class="nav-container">
-      <div class="logo">Jack Simm</div>
-      <div class="menu-icon" id="menuToggle">☰</div>
+      <button class="menu-toggle" id="menuToggle">≡</button>
       <nav id="dropdownMenu">
         <a href="index.html">Home</a>
         <a href="gallery.html">Gallery</a>
@@ -289,8 +294,117 @@
   </div>
 
   <main>
-    <!-- CV Sections stay exactly the same -->
-    <!-- ... same as your original CV code ... -->
+    <!-- Profile -->
+    <section>
+      <h2>Profile</h2>
+      <div class="timeline profile">
+        <div class="timeline-card profile">
+          <p><strong>Dedicated and enthusiastic Product Design student</strong> with a professional foundation in mechanical engineering and manufacturing.</p>
+          <p>I bring a unique combination of creativity and precision, shaped by years in the engineering sector and academic design practice.</p>
+          <ul>
+            <li>Driven by curiosity and a love for problem-solving</li>
+            <li>Value detail, clarity, and communication</li>
+            <li>Blend technical skill with creative thinking</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Work History -->
+    <section>
+      <h2>Work History</h2>
+      <div class="timeline">
+        <div class="timeline-card">
+          <h3>Product Development Manager</h3>
+          <p class="subtext">Fabb Brothers – Mar 2024 to Sep 2024</p>
+          <ul>
+            <li>Led research and prototyping of artisan-based furniture lines.</li>
+            <li>Coordinated with suppliers and craftspeople to achieve design vision.</li>
+            <li>Managed studio space and logistics for ongoing production.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-card">
+          <h3>Kaizen Team Member</h3>
+          <p class="subtext">Unipres UK – Sep 2022 to Jun 2023</p>
+          <ul>
+            <li>Developed and refined engineering processes to enhance efficiency.</li>
+            <li>Produced standard operating procedures and improved system layouts.</li>
+            <li>Worked with teams across the business to optimise productivity.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-card">
+          <h3>Cost Planning & CAD Technician</h3>
+          <p class="subtext">Unipres UK – Sep 2021 to Sep 2022</p>
+          <ul>
+            <li>Created manufacturing drawings and component designs using CAD.</li>
+            <li>Estimated project costs and collaborated with engineers and planners.</li>
+            <li>Presented technical plans for evaluation by senior management.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-card">
+          <h3>Engineering Maintenance Technician</h3>
+          <p class="subtext">Unipres UK – Sep 2017 to Sep 2021</p>
+          <ul>
+            <li>Conducted preventive and reactive mechanical maintenance.</li>
+            <li>Maintained high standards of health, safety and efficiency.</li>
+            <li>Worked cross-functionally with other engineering departments.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section>
+      <h2>Education</h2>
+      <div class="timeline">
+        <div class="timeline-card">
+          <h3>BA Product Design</h3>
+          <p class="subtext">Middlesex University – 2023–Present</p>
+        </div>
+        <div class="timeline-card">
+          <h3>HNC Manufacturing Engineering</h3>
+          <p class="subtext">Unipres UK – 2021–2023</p>
+        </div>
+        <div class="timeline-card">
+          <h3>Level 3 Engineering BTEC</h3>
+          <p class="subtext">Unipres UK – 2016–2021</p>
+        </div>
+        <div class="timeline-card">
+          <h3>Level 3 Business Studies BTEC</h3>
+          <p class="subtext">2015–2016</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section>
+      <h2>Skills</h2>
+      <div class="timeline">
+        <div class="timeline-card">
+          <ul>
+            <li><strong>CAD:</strong> SolidWorks, Fusion 360, Shapr3D</li>
+            <li><strong>Design:</strong> Photoshop, Illustrator, InDesign</li>
+            <li><strong>Prototyping:</strong> Workshop skills, 3D printing, model making</li>
+            <li><strong>Web:</strong> HTML, CSS</li>
+            <li><strong>Soft Skills:</strong> Communication, Critical Thinking, Presentation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hobbies -->
+    <section>
+      <h2>Hobbies & Interests</h2>
+      <div class="timeline">
+        <div class="timeline-card">
+          <p>Design, Furniture Making, Photography, Tennis, Film, Running, Antiques, Typography, Architecture</p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
@@ -310,7 +424,7 @@
     }, { threshold: 0.15 });
     cards.forEach(card => observer.observe(card));
 
-    // Dropdown toggle (from index.html)
+    // Dropdown toggle
     const menuToggle = document.getElementById('menuToggle');
     const dropdown = document.getElementById('dropdownMenu');
     menuToggle.addEventListener('click', () => {
