@@ -27,58 +27,59 @@
       color: var(--text);
       line-height: 1.6;
       font-weight: 300;
-      padding: 100px 20px 100px; /* top padding to clear fixed header */
+      padding: 40px 20px 100px;
       max-width: 900px;
       margin: 0 auto;
       position: relative;
       min-height: 100vh;
     }
 
-    /* Full-width fixed header bar */
+    /* Fixed dropdown menu button */
     header {
       position: fixed;
-      top: 0;
+      top: 20px;
       left: 0;
       width: 100%;
-      background: var(--white);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       z-index: 1000;
-      padding: 20px;
+      background: transparent;
       display: flex;
-      align-items: center;
-      height: 60px; /* fix height for consistent spacing */
+      justify-content: flex-start;
+      padding-left: 20px;
     }
 
-    /* Container inside header to constrain width */
     .menu-container {
-      max-width: 900px;
-      width: 100%;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      padding: 15px 20px;
+      font-size: 0.95rem;
+      font-weight: 400;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: relative;
     }
 
-    /* Hamburger button */
     .logo {
       cursor: pointer;
       font-weight: 600;
-      font-size: 1.8rem; /* same size as homepage */
+      font-size: 1.1rem;
+      display: inline-block;
       user-select: none;
-      line-height: 1;
     }
 
     nav.dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: max-content;
+      margin-top: 5px;
       display: none;
       flex-direction: column;
       background: var(--white);
       border-radius: 12px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-      margin-top: 10px;
-      position: absolute;
-      top: 60px; /* just below header */
-      left: 20px; /* align with header padding */
-      min-width: 140px;
-      z-index: 1100;
+      z-index: 1001;
     }
 
     nav.dropdown a {
@@ -89,7 +90,6 @@
       border-radius: 8px;
       transition: background 0.2s;
       white-space: nowrap;
-      display: block;
     }
 
     nav.dropdown a:hover {
@@ -102,16 +102,26 @@
 
     /* Contact card styling */
     .contact-card {
-      margin-top: 40px;
+      margin-top: 100px;
       background: var(--white);
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.05);
       font-size: 0.95rem;
       line-height: 1.5;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
+    }
+
+    .contact-card strong {
+      font-size: 1.2rem;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .contact-card p {
+      margin-bottom: 6px;
+      user-select: text;
+      word-break: break-word;
     }
 
     main {
@@ -245,30 +255,21 @@
       color: var(--muted);
       margin-top: 80px;
       padding-bottom: 40px;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     @media (max-width: 600px) {
       body {
-        padding: 100px 15px 80px;
+        padding: 30px 15px 80px;
       }
       header {
-        padding: 15px;
-        height: 50px;
-      }
-      .menu-container {
-        max-width: 100%;
-        margin: 0 10px;
-      }
-      nav.dropdown {
-        top: 50px;
+        max-width: none;
+        width: auto;
         left: 15px;
-        min-width: 120px;
+        top: 15px;
+        padding-left: 0;
       }
       .contact-card {
-        margin-top: 40px;
+        margin-top: 80px;
       }
       .timeline {
         margin-left: 30px;
@@ -354,17 +355,7 @@
           <ul>
             <li>Created manufacturing drawings and component designs using CAD.</li>
             <li>Estimated project costs and collaborated with engineers and planners.</li>
-            <li>Presented technical plans for evaluation by senior management.</li>
-          </ul>
-        </div>
-
-        <div class="timeline-card">
-          <h3>Engineering Maintenance Technician</h3>
-          <p class="subtext">Unipres UK – Sep 2017 to Sep 2021</p>
-          <ul>
-            <li>Conducted preventive and reactive mechanical maintenance.</li>
-            <li>Maintained high standards of health, safety and efficiency.</li>
-            <li>Worked cross-functionally with other engineering departments.</li>
+            <li>Presented technical information to stakeholders to support decision-making.</li>
           </ul>
         </div>
       </div>
@@ -374,44 +365,21 @@
       <h2>Education</h2>
       <div class="timeline">
         <div class="timeline-card">
-          <h3>BA Product Design</h3>
-          <p class="subtext">Middlesex University – 2023–Present</p>
-        </div>
-        <div class="timeline-card">
-          <h3>HNC Manufacturing Engineering</h3>
-          <p class="subtext">Unipres UK – 2021–2023</p>
-        </div>
-        <div class="timeline-card">
-          <h3>Level 3 Engineering BTEC</h3>
-          <p class="subtext">Unipres UK – 2016–2021</p>
-        </div>
-        <div class="timeline-card">
-          <h3>Level 3 Business Studies BTEC</h3>
-          <p class="subtext">2015–2016</p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Skills</h2>
-      <div class="timeline">
-        <div class="timeline-card">
+          <h3>BSc Product Design (Hons)</h3>
+          <p class="subtext">The Open University – 2023 to Present</p>
           <ul>
-            <li><strong>CAD:</strong> SolidWorks, Fusion 360, Shapr3D</li>
-            <li><strong>Design:</strong> Photoshop, Illustrator, InDesign</li>
-            <li><strong>Prototyping:</strong> Workshop skills, 3D printing, model making</li>
-            <li><strong>Web:</strong> HTML, CSS</li>
-            <li><strong>Soft Skills:</strong> Communication, Critical Thinking, Presentation</li>
+            <li>Developing skills in user-centered design, prototyping, and CAD.</li>
+            <li>Engaging in collaborative projects and practical design challenges.</li>
           </ul>
         </div>
-      </div>
-    </section>
 
-    <section>
-      <h2>Hobbies & Interests</h2>
-      <div class="timeline">
         <div class="timeline-card">
-          <p>Design, Furniture Making, Photography, Tennis, Film, Running, Antiques, Typography, Architecture</p>
+          <h3>BA (Hons) Mechanical Engineering</h3>
+          <p class="subtext">University of Huddersfield – 2017 to 2021</p>
+          <ul>
+            <li>Gained broad engineering knowledge with a focus on design and manufacturing.</li>
+            <li>Completed a project on automated manufacturing systems.</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -419,44 +387,49 @@
   </main>
 
   <footer>
-    &copy; 2025 Jack Simm – Portfolio
+    &copy; 2025 Jack Simm. All rights reserved.
   </footer>
 
   <script>
-    // Fade-in animation on scroll
-    const cards = document.querySelectorAll('.timeline-card');
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    cards.forEach(card => observer.observe(card));
-
-    // Dropdown toggle
     const logo = document.querySelector('.logo');
     const dropdown = document.getElementById('dropdownMenu');
 
-    function toggleMenu() {
+    function toggleDropdown() {
       dropdown.classList.toggle('show');
     }
 
-    logo.addEventListener('click', toggleMenu);
+    logo.addEventListener('click', toggleDropdown);
+
+    // Allow keyboard access
     logo.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
+      if(e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        toggleMenu();
+        toggleDropdown();
       }
     });
 
-    // Close dropdown when clicking outside
+    // Close dropdown if clicked outside
     document.addEventListener('click', (e) => {
       if (!logo.contains(e.target) && !dropdown.contains(e.target)) {
         dropdown.classList.remove('show');
       }
     });
+
+    // Optional: Animate timeline cards on scroll
+    const timelineCards = document.querySelectorAll('.timeline-card');
+
+    function showCardsOnScroll() {
+      const triggerBottom = window.innerHeight * 0.85;
+      timelineCards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if(cardTop < triggerBottom) {
+          card.classList.add('show');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', showCardsOnScroll);
+    window.addEventListener('load', showCardsOnScroll);
   </script>
 
 </body>
