@@ -34,26 +34,27 @@
       min-height: 100vh;
     }
 
-    /* Dropdown Menu Styling */
+    /* Fixed dropdown menu button */
     header {
       position: fixed;
       top: 20px;
       left: 20px;
       z-index: 1000;
-      font-weight: 400;
-      font-size: 0.95rem;
+    }
+
+    .menu-container {
       background: var(--white);
       border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       padding: 15px 20px;
-      max-width: 250px;
-      user-select: none;
+      font-size: 0.95rem;
+      font-weight: 400;
     }
+
     .logo {
       cursor: pointer;
       font-weight: 600;
       font-size: 1.1rem;
-      margin-bottom: 10px;
       display: inline-block;
     }
 
@@ -65,6 +66,7 @@
       box-shadow: 0 12px 30px rgba(0,0,0,0.1);
       margin-top: 5px;
     }
+
     nav.dropdown a {
       padding: 12px 18px;
       text-decoration: none;
@@ -74,36 +76,41 @@
       transition: background 0.2s;
       white-space: nowrap;
     }
+
     nav.dropdown a:hover {
       background: #f2f2f2;
     }
 
-    /* Show menu when active */
     nav.dropdown.show {
       display: flex;
     }
 
-    /* Name & Contact inside header */
-    .header-info {
-      margin-top: 10px;
-      color: var(--text);
-      line-height: 1.4;
-      font-weight: 400;
+    /* Contact card styling */
+    .contact-card {
+      margin-top: 100px;
+      background: var(--white);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
       font-size: 0.95rem;
+      line-height: 1.5;
     }
-    .header-info strong {
+
+    .contact-card strong {
+      font-size: 1.2rem;
       font-weight: 600;
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
-    .header-info p {
+
+    .contact-card p {
       margin-bottom: 6px;
       user-select: text;
       word-break: break-word;
     }
 
     main {
-      margin-top: 140px; /* push content so header doesn't overlap */
+      margin-top: 40px;
       max-width: 900px;
       margin-left: auto;
       margin-right: auto;
@@ -158,7 +165,6 @@
       color: var(--text);
     }
 
-    /* Dot before each list item, same color as text */
     ul li::before {
       content: '•';
       position: absolute;
@@ -172,7 +178,7 @@
     /* Timeline container */
     .timeline {
       position: relative;
-      margin-left: 40px; /* space for vertical line */
+      margin-left: 40px;
       padding-left: 40px;
       border-left: 3px solid var(--line);
     }
@@ -195,7 +201,6 @@
       transform: translateY(0);
     }
 
-    /* Dot on timeline for each card */
     .timeline-card::before {
       content: '';
       position: absolute;
@@ -205,35 +210,30 @@
       height: 16px;
       background-color: var(--text);
       border-radius: 50%;
-      /* removed white border as requested */
       box-sizing: content-box;
     }
 
-    /* Special case: remove dot for Profile section */
+    /* Profile card adjustments */
     .timeline-card.profile::before {
       content: none;
-    }
-    .timeline-card.profile {
-      border-left: none;
-      margin-left: 0;
-      padding-left: 0;
-    }
-    .timeline-card.profile > p {
-      padding-left: 0;
-      margin-left: 0;
     }
     .timeline.profile {
       border-left: none;
       margin-left: 0;
       padding-left: 0;
     }
+    .timeline-card.profile ul {
+      list-style: disc;
+      padding-left: 20px;
+    }
+    .timeline-card.profile ul li::before {
+      content: none;
+    }
 
-    /* Section spacing */
     section {
       margin-bottom: 60px;
     }
 
-    /* Footer */
     footer {
       text-align: center;
       font-size: 0.9rem;
@@ -245,16 +245,15 @@
     @media (max-width: 600px) {
       body {
         padding: 30px 15px 80px;
-        margin-left: 10px;
-        margin-right: 10px;
       }
       header {
         max-width: none;
-        width: 90vw;
-        left: 5vw;
+        width: auto;
+        left: 15px;
         top: 15px;
-        padding: 12px 15px;
-        font-size: 0.9rem;
+      }
+      .contact-card {
+        margin-top: 80px;
       }
       .timeline {
         margin-left: 30px;
@@ -262,7 +261,7 @@
         border-left-width: 2px;
       }
       .timeline-card {
-        padding: 20px 20px;
+        padding: 20px;
       }
       .timeline-card::before {
         left: -28px;
@@ -270,28 +269,29 @@
         height: 12px;
         top: 25px;
       }
-      .logo {
-        font-size: 1rem;
-      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="logo" aria-label="Toggle menu" role="button" tabindex="0">≡</div>
-    <nav class="dropdown" id="dropdownMenu">
-      <a href="index.html">Home</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="projects.html">Projects</a>
-      <a href="cv.html">CV</a>
-    </nav>
-    <div class="header-info" aria-label="Contact information">
-      <strong>Jack Simm</strong>
-      <p>Product Designer / Product Development Manager</p>
-      <p>Email: jack.simm.design@gmail.com<br>Phone: +44 0737584523</p>
+    <div class="menu-container">
+      <div class="logo" aria-label="Toggle menu" role="button" tabindex="0">≡</div>
+      <nav class="dropdown" id="dropdownMenu">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="projects.html">Projects</a>
+        <a href="cv.html">CV</a>
+      </nav>
     </div>
   </header>
+
+  <div class="contact-card" aria-label="Contact information">
+    <strong>Jack Simm</strong>
+    <p>Product Designer / Product Development Manager</p>
+    <p>Email: jack.simm.design@gmail.com</p>
+    <p>Phone: +44 0737584523</p>
+  </div>
 
   <main>
 
@@ -299,7 +299,13 @@
       <h2>Profile</h2>
       <div class="timeline profile">
         <div class="timeline-card profile">
-          <p>Dedicated and enthusiastic Product Design student with a professional foundation in mechanical engineering and manufacturing. I bring a unique combination of creativity and precision, shaped by years in the engineering sector and academic design practice. I’m driven by curiosity, love solving problems, and value detail, clarity and communication.</p>
+          <p><strong>Dedicated and enthusiastic Product Design student</strong> with a professional foundation in mechanical engineering and manufacturing.</p>
+          <p>I bring a unique combination of creativity and precision, shaped by years in the engineering sector and academic design practice.</p>
+          <ul>
+            <li>Driven by curiosity and a love for problem-solving</li>
+            <li>Value detail, clarity, and communication</li>
+            <li>Blend technical skill with creative thinking</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -404,7 +410,6 @@
   <script>
     // Fade-in animation on scroll
     const cards = document.querySelectorAll('.timeline-card');
-
     const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -412,29 +417,21 @@
           obs.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.15
-    });
-
+    }, { threshold: 0.15 });
     cards.forEach(card => observer.observe(card));
 
     // Dropdown toggle
     const logo = document.querySelector('.logo');
     const dropdown = document.getElementById('dropdownMenu');
-
     logo.addEventListener('click', () => {
       dropdown.classList.toggle('show');
     });
-
-    // Allow toggle with keyboard (Enter or Space)
     logo.addEventListener('keydown', e => {
       if(e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         dropdown.classList.toggle('show');
       }
     });
-
-    // Close dropdown if click outside
     document.addEventListener('click', e => {
       if (!logo.contains(e.target) && !dropdown.contains(e.target)) {
         dropdown.classList.remove('show');
