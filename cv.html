@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -40,28 +40,27 @@
       top: 0;
       left: 0;
       width: 100%;
+      height: 56px; /* Same as homepage */
       background-color: var(--white);
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      border-radius: 0 0 12px 12px;
       z-index: 1000;
-      /* NO horizontal padding here */
       display: flex;
       align-items: center;
-      height: 56px;
-      border-radius: 0 0 12px 12px;
     }
 
-    /* Hamburger button flush left */
+    /* Hamburger button exactly like homepage */
     .logo {
       cursor: pointer;
       font-weight: 600;
-      font-size: 1.6rem;
+      font-size: 1.5rem; /* Adjusted for exact homepage size */
       line-height: 1;
       user-select: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 56px;
-      height: 56px;
+      width: 48px;   /* homepage hamburger width */
+      height: 48px;  /* homepage hamburger height */
       border-radius: 0 0 0 12px;
       margin-left: 0;
       padding: 0;
@@ -69,6 +68,7 @@
       border: none;
       transition: background-color 0.2s;
       flex-shrink: 0;
+      font-family: monospace; /* For the "≡" symbol to match homepage font style */
     }
     .logo:hover,
     .logo:focus {
@@ -87,6 +87,7 @@
       align-items: center;
       justify-content: flex-start;
       position: relative;
+      height: 56px; /* match header height */
     }
 
     nav.dropdown {
@@ -95,12 +96,12 @@
       background: var(--white);
       border-radius: 12px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-      margin-top: 5px;
       position: absolute;
-      top: 56px;
-      left: 20px; /* Align with container padding */
+      top: 56px; /* directly below the header */
+      left: 0; /* aligned with hamburger left edge */
       min-width: 130px;
       z-index: 1100;
+      padding: 8px 0;
     }
 
     nav.dropdown a {
@@ -287,8 +288,8 @@
         height: 48px;
       }
       .logo {
-        width: 48px;
-        height: 48px;
+        width: 40px;
+        height: 40px;
         border-radius: 0 0 0 12px;
         font-size: 1.4rem;
       }
@@ -314,7 +315,7 @@
         top: 25px;
       }
       nav.dropdown {
-        left: 15px;
+        left: 0;
         top: 48px;
       }
     }
@@ -432,7 +433,6 @@
           <ul>
             <li><strong>CAD:</strong> SolidWorks, Fusion 360, Shapr3D</li>
             <li><strong>Design:</strong> Photoshop, Illustrator, InDesign</li>
-            <li><strong>Prototyping:</strong> Workshop skills, 3D printing, model making</li>
             <li><strong>Management:</strong> Team leadership, project coordination</li>
           </ul>
         </div>
