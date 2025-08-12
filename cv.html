@@ -4,7 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jack Simm – CV Timeline</title>
-  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <!-- Poppins font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+
   <style>
     :root {
       --text: #1d1d1f;
@@ -22,7 +25,7 @@
     }
 
     body {
-      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Poppins', sans-serif;
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
@@ -34,61 +37,54 @@
       min-height: 100vh;
     }
 
-    /* Header - matches index.html style */
+    /* Fixed dropdown menu (same style as index) */
     header {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: var(--white);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      top: 20px;
+      left: 20px;
       z-index: 1000;
     }
 
-    .nav-container {
-      display: flex;
-      align-items: center;
-      padding: 12px 20px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .menu-toggle {
+    .menu-container {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      padding: 10px 15px;
+      font-size: 1rem;
+      font-weight: 600;
       cursor: pointer;
-      font-size: 1.5rem;
-      font-weight: bold;
-      background: none;
-      border: none;
-      margin-right: 20px;
     }
 
-    nav {
+    .logo {
+      display: inline-block;
+      font-size: 1.4rem;
+    }
+
+    nav.dropdown {
       display: none;
       flex-direction: column;
-      position: absolute;
-      top: 60px;
-      left: 20px;
       background: var(--white);
-      border-radius: 8px;
+      border-radius: 12px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-      overflow: hidden;
+      margin-top: 5px;
     }
 
-    nav.show {
-      display: flex;
-    }
-
-    nav a {
+    nav.dropdown a {
       padding: 12px 18px;
       text-decoration: none;
       color: var(--text);
       font-weight: 400;
-      white-space: nowrap;
+      border-radius: 8px;
       transition: background 0.2s;
+      white-space: nowrap;
     }
 
-    nav a:hover {
+    nav.dropdown a:hover {
       background: #f2f2f2;
+    }
+
+    nav.dropdown.show {
+      display: flex;
     }
 
     /* Contact card styling */
@@ -216,7 +212,6 @@
       height: 16px;
       background-color: var(--text);
       border-radius: 50%;
-      box-sizing: content-box;
     }
 
     /* Profile card adjustments */
@@ -252,6 +247,10 @@
       body {
         padding: 30px 15px 80px;
       }
+      header {
+        left: 15px;
+        top: 15px;
+      }
       .contact-card {
         margin-top: 80px;
       }
@@ -275,9 +274,9 @@
 <body>
 
   <header>
-    <div class="nav-container">
-      <button class="menu-toggle" id="menuToggle">≡</button>
-      <nav id="dropdownMenu">
+    <div class="menu-container">
+      <div class="logo" aria-label="Toggle menu" role="button" tabindex="0">≡</div>
+      <nav class="dropdown" id="dropdownMenu">
         <a href="index.html">Home</a>
         <a href="gallery.html">Gallery</a>
         <a href="projects.html">Projects</a>
@@ -286,7 +285,7 @@
     </div>
   </header>
 
-  <div class="contact-card" aria-label="Contact information">
+  <div class="contact-card">
     <strong>Jack Simm</strong>
     <p>Product Designer / Product Development Manager</p>
     <p>Email: jack.simm.design@gmail.com</p>
@@ -294,7 +293,6 @@
   </div>
 
   <main>
-    <!-- Profile -->
     <section>
       <h2>Profile</h2>
       <div class="timeline profile">
@@ -310,7 +308,6 @@
       </div>
     </section>
 
-    <!-- Work History -->
     <section>
       <h2>Work History</h2>
       <div class="timeline">
@@ -356,7 +353,6 @@
       </div>
     </section>
 
-    <!-- Education -->
     <section>
       <h2>Education</h2>
       <div class="timeline">
@@ -379,7 +375,6 @@
       </div>
     </section>
 
-    <!-- Skills -->
     <section>
       <h2>Skills</h2>
       <div class="timeline">
@@ -395,7 +390,6 @@
       </div>
     </section>
 
-    <!-- Hobbies -->
     <section>
       <h2>Hobbies & Interests</h2>
       <div class="timeline">
@@ -404,7 +398,6 @@
         </div>
       </div>
     </section>
-
   </main>
 
   <footer>
@@ -425,13 +418,19 @@
     cards.forEach(card => observer.observe(card));
 
     // Dropdown toggle
-    const menuToggle = document.getElementById('menuToggle');
+    const logo = document.querySelector('.logo');
     const dropdown = document.getElementById('dropdownMenu');
-    menuToggle.addEventListener('click', () => {
+    logo.addEventListener('click', () => {
       dropdown.classList.toggle('show');
     });
+    logo.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        dropdown.classList.toggle('show');
+      }
+    });
     document.addEventListener('click', e => {
-      if (!menuToggle.contains(e.target) && !dropdown.contains(e.target)) {
+      if (!logo.contains(e.target) && !dropdown.contains(e.target)) {
         dropdown.classList.remove('show');
       }
     });
