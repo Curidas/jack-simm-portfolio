@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jack Simm – Product Designer</title>
-  <meta name="description" content="Jack Simm – Product Designer & Product Development Manager portfolio showcasing design, product development, and innovation.">
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" as="style" onload="this.rel='stylesheet'">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --text: #1d1d1f;
@@ -36,12 +35,12 @@
       background: transparent;
       font-weight: 600;
       font-size: 1.4rem;
+      cursor: pointer;
     }
 
     .logo {
       user-select: none;
       color: var(--text);
-      cursor: pointer;
     }
 
     nav.dropdown {
@@ -51,23 +50,12 @@
       background: var(--white);
       border-radius: 12px;
       box-shadow: 0 10px 25px var(--shadow-light);
-      display: flex;
+      display: none;
       flex-direction: column;
       min-width: 150px;
       font-weight: 500;
       font-size: 1rem;
       z-index: 1100;
-
-      opacity: 0;
-      transform: translateY(-10px);
-      pointer-events: none;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    nav.dropdown.active {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
     }
 
     nav.dropdown a {
@@ -87,7 +75,7 @@
       position: relative;
       width: 100%;
       height: 100vh;
-      background-image: url('g.bip.25.JPG');
+      background-image: url('g.bip.25.JPG'); /* your model image */
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -154,7 +142,7 @@
       background: url('about-me-train.png') center center / cover no-repeat;
       display: flex;
       align-items: center;
-      justify-content: flex-end; /* push text to right side */
+      justify-content: flex-end; /* push text right */
       padding: 60px;
       color: #fff;
       opacity: 0;
@@ -178,7 +166,8 @@
     .about-text {
       position: relative;
       z-index: 2;
-      max-width: 600px;
+      max-width: 450px;
+      margin-right: 5%;
       line-height: 1.7;
       text-align: left;
     }
@@ -187,10 +176,7 @@
       font-weight: 600;
       font-size: clamp(1.8rem, 3vw, 2.4rem);
       margin-bottom: 24px;
-    }
-
-    .about-text p {
-      margin-bottom: 1.2rem;
+      color: #fff;
     }
 
     footer {
@@ -203,11 +189,12 @@
 
     @media (max-width: 768px) {
       .about {
-        padding: 40px 20px;
+        justify-content: center;
+        padding: 30px;
         text-align: center;
-        justify-content: center; /* center text for mobile */
       }
       .about-text {
+        margin-right: 0;
         max-width: 90%;
       }
       nav.dropdown {
@@ -216,19 +203,12 @@
         min-width: 140px;
       }
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation: none !important;
-        transition: none !important;
-      }
-    }
   </style>
 </head>
 <body>
 
 <header>
-  <button class="logo" aria-label="Menu" onclick="toggleDropdown()">≡</button>
+  <div class="logo" tabindex="0" onclick="toggleDropdown()">≡</div>
   <nav class="dropdown" id="dropdownMenu">
     <a href="index.html">Home</a>
     <a href="gallery.html">Gallery</a>
@@ -271,40 +251,32 @@
   const menu = document.getElementById("dropdownMenu");
 
   function toggleDropdown() {
-    menu.classList.toggle("active");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
   }
 
   document.addEventListener("click", (e) => {
     if (!menu.contains(e.target) && e.target !== toggle) {
-      menu.classList.remove("active");
+      menu.style.display = "none";
     }
   });
 
-  toggle.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      toggleDropdown();
-    }
-  });
-
-  // Fade transition between banner and about section
   const banner = document.getElementById('banner');
   const heroText = document.getElementById('heroText');
-  const aboutSection = document.getElementById('about');
-
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
     const bannerHeight = banner.offsetHeight;
-
-    // fade banner out
-    let opacity = 1 - scrollY / (bannerHeight / 1.2);
+    let opacity = 1 - scrollY / (bannerHeight / 2);
     if (opacity < 0) opacity = 0;
     banner.style.opacity = opacity;
     heroText.style.opacity = opacity;
+  });
 
-    // fade about section in
-    const aboutOffset = aboutSection.offsetTop - window.innerHeight / 2;
-    if (scrollY > aboutOffset) {
-      aboutSection.classList.add('visible');
+  // Fade in About section on scroll
+  const about = document.getElementById('about');
+  window.addEventListener('scroll', () => {
+    const rect = about.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      about.classList.add('visible');
     }
   });
 </script>
