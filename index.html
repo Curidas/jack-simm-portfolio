@@ -10,6 +10,7 @@
       --text: #1d1d1f;
       --white: #fff;
       --shadow-light: rgba(0,0,0,0.1);
+      --shadow-dark: rgba(0,0,0,0.25);
     }
 
     * {
@@ -31,43 +32,55 @@
       z-index: 1000;
       padding: 20px 60px;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      background: transparent;
-      font-weight: 600;
-      font-size: 1.4rem;
-      cursor: pointer;
+      background: var(--white);
+      box-shadow: 0 2px 12px var(--shadow-light);
     }
 
     .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
       user-select: none;
-      color: var(--text);
     }
 
     nav.dropdown {
       position: absolute;
-      top: 60px;
-      left: 60px;
+      top: 70px;
+      right: 60px;
       background: var(--white);
       border-radius: 12px;
-      box-shadow: 0 10px 25px var(--shadow-light);
+      box-shadow: 0 10px 25px var(--shadow-dark);
       display: none;
       flex-direction: column;
-      min-width: 150px;
-      font-weight: 500;
-      font-size: 1rem;
-      z-index: 1100;
+      min-width: 160px;
+      overflow: hidden;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+
+    nav.dropdown.show {
+      display: flex;
+      transform: translateY(0);
+      opacity: 1;
     }
 
     nav.dropdown a {
-      padding: 14px 24px;
+      padding: 14px 20px;
       text-decoration: none;
       color: var(--text);
-      white-space: nowrap;
-      transition: background-color 0.2s ease;
+      font-weight: 500;
+      transition: background 0.2s ease;
     }
 
     nav.dropdown a:hover {
       background-color: #f5f5f7;
+    }
+
+    main {
+      overflow-x: hidden;
     }
 
     /* Banner */
@@ -75,20 +88,17 @@
       position: relative;
       width: 100%;
       height: 100vh;
-      background-image: url('g.bip.25.JPG'); /* your model image */
+      background-image: url('g.bip.25.JPG');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: opacity 0.4s ease;
     }
 
     @media (max-width: 768px) {
-      .banner {
-        background-attachment: scroll;
-      }
+      .banner { background-attachment: scroll; }
     }
 
     .banner::after {
@@ -99,8 +109,6 @@
       height: 100%;
       background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0));
       z-index: 1;
-      opacity: 0;
-      animation: fadeIn 1.5s ease forwards;
     }
 
     .hero-text {
@@ -109,9 +117,8 @@
       text-align: center;
       color: #fff;
       text-shadow: 0 3px 12px rgba(0,0,0,0.4);
-      animation: fadeInUp 1.2s ease forwards;
       opacity: 0;
-      user-select: none;
+      animation: fadeInUp 1.2s ease forwards;
     }
 
     .hero-text h1 {
@@ -125,33 +132,27 @@
       font-size: clamp(1.2rem, 2vw, 1.6rem);
     }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* About Section - train background */
+    /* About Section */
     .about {
       position: relative;
       width: 100%;
       min-height: 100vh;
-      background: url('about-me-train.png') center center / cover no-repeat;
+      background: url('about-me-train.png') center/cover no-repeat;
       display: flex;
       align-items: center;
-      justify-content: flex-end; /* push text right */
+      justify-content: flex-end;
       padding: 60px;
       color: #fff;
       opacity: 0;
       transition: opacity 1s ease;
     }
 
-    .about.visible {
-      opacity: 1;
-    }
+    .about.visible { opacity: 1; }
 
     .about::before {
       content: '';
@@ -159,7 +160,7 @@
       top: 0; left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.35); /* overlay for readability */
+      background: rgba(0,0,0,0.35);
       z-index: 1;
     }
 
@@ -169,39 +170,27 @@
       max-width: 450px;
       margin-right: 5%;
       line-height: 1.7;
-      text-align: left;
     }
 
     .about-text h2 {
       font-weight: 600;
       font-size: clamp(1.8rem, 3vw, 2.4rem);
       margin-bottom: 24px;
-      color: #fff;
     }
 
     footer {
       text-align: center;
       padding: 60px 20px;
       font-size: 0.9rem;
-      color: #999;
+      color: #555;
       background: var(--white);
     }
 
     @media (max-width: 768px) {
-      .about {
-        justify-content: center;
-        padding: 30px;
-        text-align: center;
-      }
-      .about-text {
-        margin-right: 0;
-        max-width: 90%;
-      }
-      nav.dropdown {
-        left: 24px;
-        top: 50px;
-        min-width: 140px;
-      }
+      header { padding: 20px 24px; }
+      .about { justify-content: center; padding: 30px; text-align: center; }
+      .about-text { margin-right: 0; max-width: 90%; }
+      nav.dropdown { right: 24px; top: 60px; min-width: 140px; }
     }
   </style>
 </head>
@@ -217,30 +206,24 @@
   </nav>
 </header>
 
-<section class="banner" id="banner">
-  <div class="hero-text" id="heroText">
-    <h1>Jack Simm</h1>
-    <h2>Product Designer & Product Development Manager</h2>
-  </div>
-</section>
+<main>
+  <section class="banner">
+    <div class="hero-text">
+      <h1>Jack Simm</h1>
+      <h2>Product Designer & Product Development Manager</h2>
+    </div>
+  </section>
 
-<section class="about" id="about">
-  <div class="about-text">
-    <h2>About Me</h2>
-    <p>
-      I am an experienced Mechanical Maintenance Technician and Product Development Manager with a proven track record in manufacturing, product innovation, and operational leadership.
-    </p>
-    <p>
-      With over half a decade at Unipres UK, I gained invaluable experience working across key departments, developing strong technical expertise, a collaborative mindset, and a commitment to delivering customer-focused solutions.
-    </p>
-    <p>
-      As a Product Development Manager, I oversaw the day-to-day operations of sales and distribution at the company’s main workshop, liaising with suppliers and artisan craftsmen on key production and consultancy design projects.
-    </p>
-    <p>
-      I bring a results-driven approach, underpinned by trust, respect, integrity, and professionalism — equipping me to help businesses optimise value, achieve success, and deliver world-class products and services.
-    </p>
-  </div>
-</section>
+  <section class="about" id="about">
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>I am an experienced Mechanical Maintenance Technician and Product Development Manager with a proven track record in manufacturing, product innovation, and operational leadership.</p>
+      <p>With over half a decade at Unipres UK, I gained invaluable experience working across key departments, developing strong technical expertise, a collaborative mindset, and a commitment to delivering customer-focused solutions.</p>
+      <p>As a Product Development Manager, I oversaw the day-to-day operations of sales and distribution at the company’s main workshop, liaising with suppliers and artisan craftsmen on key production and consultancy design projects.</p>
+      <p>I bring a results-driven approach, underpinned by trust, respect, integrity, and professionalism — equipping me to help businesses optimise value, achieve success, and deliver world-class products and services.</p>
+    </div>
+  </section>
+</main>
 
 <footer>
   &copy; 2025 Jack Simm – Portfolio
@@ -249,34 +232,26 @@
 <script>
   const toggle = document.querySelector(".logo");
   const menu = document.getElementById("dropdownMenu");
+  const about = document.getElementById("about");
+  const heroText = document.querySelector(".hero-text");
 
   function toggleDropdown() {
-    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    menu.classList.toggle("show");
   }
 
   document.addEventListener("click", (e) => {
     if (!menu.contains(e.target) && e.target !== toggle) {
-      menu.style.display = "none";
+      menu.classList.remove("show");
     }
   });
 
-  const banner = document.getElementById('banner');
-  const heroText = document.getElementById('heroText');
-  window.addEventListener('scroll', () => {
+  window.addEventListener("scroll", () => {
     const scrollY = window.scrollY;
-    const bannerHeight = banner.offsetHeight;
-    let opacity = 1 - scrollY / (bannerHeight / 2);
-    if (opacity < 0) opacity = 0;
-    banner.style.opacity = opacity;
-    heroText.style.opacity = opacity;
-  });
+    const bannerHeight = document.querySelector(".banner").offsetHeight;
+    heroText.style.opacity = Math.max(0, 1 - scrollY / (bannerHeight / 2));
 
-  // Fade in About section on scroll
-  const about = document.getElementById('about');
-  window.addEventListener('scroll', () => {
-    const rect = about.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 100) {
-      about.classList.add('visible');
+    if (about.getBoundingClientRect().top < window.innerHeight - 100) {
+      about.classList.add("visible");
     }
   });
 </script>
