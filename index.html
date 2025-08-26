@@ -146,42 +146,44 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* About Section with image */
+    /* About Section as full-width background */
     .about {
-      max-width: 1100px;
-      margin: 80px auto 120px;
-      padding: 0 24px;
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      background: url('about-me-train.png') center center / cover no-repeat;
       display: flex;
-      gap: 40px;
-      align-items: flex-start;
-      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 60px;
+      color: #fff;
     }
 
-    .about img {
-      max-width: 400px;
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
       width: 100%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      flex-shrink: 0;
+      height: 100%;
+      background: rgba(0,0,0,0.45); /* overlay for text readability */
+      z-index: 1;
     }
 
     .about-text {
-      flex: 1;
-      min-width: 300px;
-      color: #555;
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      line-height: 1.7;
     }
 
     .about-text h2 {
       font-weight: 600;
       font-size: clamp(1.8rem, 3vw, 2.4rem);
       margin-bottom: 24px;
-      color: var(--text);
     }
 
     .about-text p {
       margin-bottom: 1.2rem;
-      line-height: 1.7;
     }
 
     footer {
@@ -194,12 +196,12 @@
 
     @media (max-width: 768px) {
       .about {
-        flex-direction: column;
-        align-items: center;
+        padding: 40px 20px;
         text-align: center;
+        justify-content: center;
       }
       .about-text {
-        text-align: left;
+        max-width: 90%;
       }
       nav.dropdown {
         left: 24px;
@@ -237,12 +239,6 @@
 </section>
 
 <section class="about" id="about">
-  <img 
-    src="about-me-train.png" 
-    alt="Jack Simm portrait on a train looking out the window" 
-    loading="lazy"
-    onerror="this.onerror=null; this.src='https://via.placeholder.com/400x400?text=Jack+Simm';"
-  >
   <div class="about-text">
     <h2>About Me</h2>
     <p>
